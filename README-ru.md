@@ -9,8 +9,8 @@ X Keyboard Extension
 *   Файлы конфигурации XKB
     *   [Общие замечания о языке файлов конфигурации XKB.](http://pascal.tsu.ru/other/xkb/gram-common.html)
     *   [Общее строение файлов конфигурации XKB](http://pascal.tsu.ru/other/xkb/gram-file.html).
-    *   [Файл типа xkb_keycodes.](http://pascal.tsu.ru/other/xkb/gram-keycodes.html)
-    *   [Файл типа xkb_types.](http://pascal.tsu.ru/other/xkb/gram-types.html)
+    *   [Файл типа xkb_keycodes.](#файл-типа-xkbkeycodes)
+    *   [Файл типа xkb_types.](#файл-типа-xkbtypes)
     *   [Файл, типа xkb_compat.](http://pascal.tsu.ru/other/xkb/gram-compat.html)
     *   [Файл типа xkb_symbols.](http://pascal.tsu.ru/other/xkb/gram-symbols.html)
     *   [Описание "действий".](http://pascal.tsu.ru/other/xkb/gram-action.html)
