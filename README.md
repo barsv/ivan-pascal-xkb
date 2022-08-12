@@ -1,7 +1,7 @@
 # About
 
 This XKB documentation is extracted from https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/
-It was originally created by Ivan Pascal. But looks like he doesn't maintain it anymore or at least I haven't found it. I was just reading his explanations on XKB and found them to be the easiest to understand one among other docs referenced at https://www.x.org/wiki/XKB/. I wanted to fix few typos hence I created this repo.
+It was originally created by Ivan Pascal. But looks like he doesn't maintain it anymore or at least I haven't found it. I was just reading his explanations on XKB and found them to be the easiest to understand among other docs referenced at https://www.x.org/wiki/XKB/. I wanted to fix few typos hence I created this repo.
 
 # X Keyboard Extension
 
