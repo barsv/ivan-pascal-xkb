@@ -1,7 +1,7 @@
 # About
 
 This XKB documentation is extracted from https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/
-It was originally created by Ivan Pascal. But looks like he doesn't maintain it anymore. I was just reading his explanations on XKB and found them to be the easiest to understand one among other docs. I wanted to fix few typos hence I created this repo. 
+It was originally created by Ivan Pascal. But looks like he doesn't maintain it anymore or at least I haven't found it. I was just reading his explanations on XKB and found them to be the easiest to understand one among other docs referenced at https://www.x.org/wiki/XKB/. I wanted to fix few typos hence I created this repo.
 
 # X Keyboard Extension
 
@@ -13,17 +13,17 @@ It was originally created by Ivan Pascal. But looks like he doesn't maintain it 
 *   XKB configuration files.
     *   [Common notes about XKB configuration files language.](#common-notes-about-xkb-configuration-files-language)
     *   [Common structure of XKB configuration files.](#common-structure-of-xkb-configuration-files)
-    *   The xkb_keycodes type file.
-    *   [The xkb_types type file.](#the-xkbtypes-type-file)
-    *   [The xkb_compat type file.](#the-xkbcompat-type-files)
+    *   The xkb_keycodes type file.(TODO: translate from Russian)
+    *   [The xkb_types type file.](#the-xkb_types-type-file)
+    *   [The xkb_compat type file.](#the-xkb_compat-type-files)
     *   [The xkb_symbols type file.](#the-xkbsymbols-type-file)
     *   [Actions description.](#actions-description)
-*   Some examples.
-    *   New type for Enter key.
-    *   Group number switchers.
-*   Why national language input doesn't work?
-    *   What to do with 'incorrect' applications?
-*   XKB related utilites.
+*   Some examples. (TODO: translate from Russian)
+    *   New type for Enter key.(TODO: translate from Russian)
+    *   Group number switchers.(TODO: translate from Russian)
+*   Why national language input doesn't work?(TODO: translate from Russian)
+    *   What to do with 'incorrect' applications?(TODO: translate from Russian)
+*   XKB related utilites.(TODO: translate from Russian)
 
 # How to configure XKB.
 
@@ -49,8 +49,8 @@ The XKB configuration database consists of 5 components:
 tables that define symbolic names for key scan-codes  
 For example  
 ``` 
-\<TLDE>= 49;  
-\<AE01> = 10;
+<TLDE>= 49;  
+<AE01> = 10;
 ```
 
 **types**
