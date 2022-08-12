@@ -1,35 +1,35 @@
 X Keyboard Extension
 --------------------
 
-[English version](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/en/xkb/).
+[English version](README.md).
 
-*   [Настройка XKB.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/setup.html)
-*   [Еще один способ описания конфигурации XKB.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/config.html)
-*   [Немного о "внутренностях" XKB.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/internals.html)
+*   [Настройка XKB.](http://pascal.tsu.ru/other/xkb/setup.html)
+*   [Еще один способ описания конфигурации XKB.](http://pascal.tsu.ru/other/xkb/config.html)
+*   [Немного о "внутренностях" XKB.](http://pascal.tsu.ru/other/xkb/internals.html)
 *   Файлы конфигурации XKB
-    *   [Общие замечания о языке файлов конфигурации XKB.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/gram-common.html)
-    *   [Общее строение файлов конфигурации XKB](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/gram-file.html).
-    *   [Файл типа xkb\_keycodes.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/gram-keycodes.html)
-    *   [Файл типа xkb\_types.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/gram-types.html)
-    *   [Файл, типа xkb\_compat.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/gram-compat.html)
-    *   [Файл типа xkb\_symbols.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/gram-symbols.html)
-    *   [Описание "действий".](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/gram-action.html)
-*   [Примеры изменения конфигурации XKB.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/examples.html)
-    *   [Новый тип для клавиши Enter.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/example1.html)
-    *   [Добавляем новую "старую" раскладку клавиатуры.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/example2.html)
-    *   ["Вариации на тему" переключателя "рус/лат" (и еще раз - "рус").](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/example3.html)
-    *   [Еще несколько "переключателей".](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/example4.html)
-*   [Почему руссификация через XKB не работает?](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/problems.html)
-    *   [Что делать с "неправильными" программами?](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/problems1.html)
-*   [Программы, имеющие отношение к XKB.](https://web.archive.org/web/20190606161102/http://pascal.tsu.ru/other/xkb/programs.html)Настройка XKB.
+    *   [Общие замечания о языке файлов конфигурации XKB.](http://pascal.tsu.ru/other/xkb/gram-common.html)
+    *   [Общее строение файлов конфигурации XKB](http://pascal.tsu.ru/other/xkb/gram-file.html).
+    *   [Файл типа xkb\_keycodes.](http://pascal.tsu.ru/other/xkb/gram-keycodes.html)
+    *   [Файл типа xkb\_types.](http://pascal.tsu.ru/other/xkb/gram-types.html)
+    *   [Файл, типа xkb\_compat.](http://pascal.tsu.ru/other/xkb/gram-compat.html)
+    *   [Файл типа xkb\_symbols.](http://pascal.tsu.ru/other/xkb/gram-symbols.html)
+    *   [Описание "действий".](http://pascal.tsu.ru/other/xkb/gram-action.html)
+*   [Примеры изменения конфигурации XKB.](http://pascal.tsu.ru/other/xkb/examples.html)
+    *   [Новый тип для клавиши Enter.](http://pascal.tsu.ru/other/xkb/example1.html)
+    *   [Добавляем новую "старую" раскладку клавиатуры.](http://pascal.tsu.ru/other/xkb/example2.html)
+    *   ["Вариации на тему" переключателя "рус/лат" (и еще раз - "рус").](http://pascal.tsu.ru/other/xkb/example3.html)
+    *   [Еще несколько "переключателей".](http://pascal.tsu.ru/other/xkb/example4.html)
+*   [Почему руссификация через XKB не работает?](http://pascal.tsu.ru/other/xkb/problems.html)
+    *   [Что делать с "неправильными" программами?](http://pascal.tsu.ru/other/xkb/problems1.html)
+*   [Программы, имеющие отношение к XKB.](http://pascal.tsu.ru/other/xkb/programs.html)Настройка XKB.
 --------------
 
-*   [База данных, необходимых XKB,](https://web.archive.org/web/20190607224348/http://pascal.tsu.ru/other/xkb/setup.html#tables)
-*   [Три способа задания полной конфигурации XKB.](https://web.archive.org/web/20190607224348/http://pascal.tsu.ru/other/xkb/setup.html#setup)
-    *   [Первый способ.](https://web.archive.org/web/20190607224348/http://pascal.tsu.ru/other/xkb/setup.html#1)
-    *   [Второй способ.](https://web.archive.org/web/20190607224348/http://pascal.tsu.ru/other/xkb/setup.html#2)
-    *   [Третий способ.](https://web.archive.org/web/20190607224348/http://pascal.tsu.ru/other/xkb/setup.html#3)
-*   [Несколько практических рекомендаций.](https://web.archive.org/web/20190607224348/http://pascal.tsu.ru/other/xkb/setup.html#suggest)
+*   [База данных, необходимых XKB,](http://pascal.tsu.ru/other/xkb/setup.html#tables)
+*   [Три способа задания полной конфигурации XKB.](http://pascal.tsu.ru/other/xkb/setup.html#setup)
+    *   [Первый способ.](http://pascal.tsu.ru/other/xkb/setup.html#1)
+    *   [Второй способ.](http://pascal.tsu.ru/other/xkb/setup.html#2)
+    *   [Третий способ.](http://pascal.tsu.ru/other/xkb/setup.html#3)
+*   [Несколько практических рекомендаций.](http://pascal.tsu.ru/other/xkb/setup.html#suggest)
 
 При старте X-сервера, модуль XKB зачитывает все необходимые данные из текстовых файлов, которые образуют "базу данных" настроек XKB.
 
@@ -249,7 +249,7 @@ XkbOptions "grp:caps\_toggle"
 
 #### И, наконец, первый способ - описание отдельных компонентов настройки (keycodes, compat, types, symbols, geometry).
 
-Если вы не знаете с чего начать, подсмотрите соответствующий набор в **keymap**. Или попробуйте "вычислить" его "вручную" через **rules/model/layout**. (Подробнее об этом можно прочитать в ["Примеры: Где будем экспериментировать?"](https://web.archive.org/web/20190607224348/http://pascal.tsu.ru/other/xkb/examples.html))
+Если вы не знаете с чего начать, подсмотрите соответствующий набор в **keymap**. Или попробуйте "вычислить" его "вручную" через **rules/model/layout**. (Подробнее об этом можно прочитать в ["Примеры: Где будем экспериментировать?"](http://pascal.tsu.ru/other/xkb/examples.html))
 
 Могу посоветовать
 
@@ -318,7 +318,7 @@ XkbSymbols "en\_US(pc101)+ru+group(shift\_toggle)+ctrl(ctrl\_ac)"Еще один
 
 Напомню, что собственный файл конфигурации XKB может быть составлен для каждого дисплея по отдельности. Поэтому, если компоненты конфигурации уже описаны в **XF86Config**, то здесь имеет смысл указывать только те компоненты (или **rules/model/layout/**etc.), которые для данного дисплея отличаются от общих. Естественно, все эти параметры, указанные в "дополнительном файле конфигурации" имеют больший приоритет и переписывают соответствующие значения из файла конфигурации X сервера.
 
-### Начальное значения для набора [модификаторов.](https://web.archive.org/web/20190511065228/http://pascal.tsu.ru/other/xkb/internals.html#mods)
+### Начальное значения для набора [модификаторов.](http://pascal.tsu.ru/other/xkb/internals.html#mods)
 
 **modifiers** **\[ = | -= | += \]** модификатор1 + модификатор2 + ...
 
@@ -327,7 +327,7 @@ XkbSymbols "en\_US(pc101)+ru+group(shift\_toggle)+ctrl(ctrl\_ac)"Еще один
 Как я уже говорил, здесь вместо присваивания могут использоваться операции '**\-=**' - убрать модификатор(ы), '**+=**' - добавить модификатор(ы), '**\=**' - заменить набор модификаторов на указанные в этой инструкции.  
 (Надо заметить, что по умолчанию при старте X сервера этот набор модификаторов пустой. Поэтому, имеют смысл только операции '+=' и '='. Причем разницы между ними нет.)
 
-### Начальное значение для набора ["управляющих флагов"](https://web.archive.org/web/20190511065228/http://pascal.tsu.ru/other/xkb/internals.html#controls).
+### Начальное значение для набора ["управляющих флагов"](http://pascal.tsu.ru/other/xkb/internals.html#controls).
 
 **controls** **\[ = | -= | += \]** флаг1 + флаг2 + ...
 
@@ -343,7 +343,7 @@ controls -= repeat);
 
 **mousekeys**
 
-включить [эмуляцию мыши](https://web.archive.org/web/20190511065228/http://pascal.tsu.ru/other/xkb/internals.html#mouse);
+включить [эмуляцию мыши](http://pascal.tsu.ru/other/xkb/internals.html#mouse);
 
 **mousekeysaccel**
 
@@ -352,7 +352,7 @@ controls -= repeat);
 **overlay1  
 overlay2**
 
-включить соответствующие ["перекрытия"](https://web.archive.org/web/20190511065228/http://pascal.tsu.ru/other/xkb/internals.html#overlay).
+включить соответствующие ["перекрытия"](http://pascal.tsu.ru/other/xkb/internals.html#overlay).
 
 **ignoregrouplock**
 
@@ -361,7 +361,7 @@ overlay2**
 **audiblebell**
 
 включить (выключить) звуковой сигнал.  
-(Напомню, что XKB может вместо звукового сигнала посылать [bell-event'ы](https://web.archive.org/web/20190511065228/http://pascal.tsu.ru/other/xkb/internals.html#bell) для проигрывания звуков или мелодий "звуковой приставкой". Если такая "приставка" у вас есть, то обычную "пищалку" можно и выключить.
+(Напомню, что XKB может вместо звукового сигнала посылать [bell-event'ы](http://pascal.tsu.ru/other/xkb/internals.html#bell) для проигрывания звуков или мелодий "звуковой приставкой". Если такая "приставка" у вас есть, то обычную "пищалку" можно и выключить.
 
 **accessxkeys  
 slowkeys  
@@ -370,7 +370,7 @@ stickykeys
 accessxtimeout  
 accessxfeedback**
 
-включение различных режимов [AccessX](https://web.archive.org/web/20190511065228/http://pascal.tsu.ru/other/xkb/internals.html#accessx) (для людей с "ограниченными физическими возможностями")
+включение различных режимов [AccessX](http://pascal.tsu.ru/other/xkb/internals.html#accessx) (для людей с "ограниченными физическими возможностями")
 
 ### Список модификаторов, которые игнорируются в режиме GrabKey
 
@@ -382,7 +382,7 @@ accessxfeedback**
 
 Это модификаторы, которые используются только внутри X сервера (для выбора "действия" клавиши, если таковое есть) и не сообщаются в клавиатурных event'ах, посылаемых приложениям.
 
-### ["Метод выравнивания"](https://web.archive.org/web/20190511065228/http://pascal.tsu.ru/other/xkb/internals.html#wrap) групп.
+### ["Метод выравнивания"](http://pascal.tsu.ru/other/xkb/internals.html#wrap) групп.
 
 **groups** = \[ **wrap** | **clamp** | число \] (или **outofrangegroups** ...)
 
@@ -426,7 +426,7 @@ accessxfeedback**
 промежуток времени (в секундах) после которого режим AccessX автоматически отключается. Имеет смысл только если установлен соответствующий флаг  
 (**controls += ... accessxtimeout ...**);
 
-### Параметры "ускорения" [курсора мыши](https://web.archive.org/web/20190511065228/http://pascal.tsu.ru/other/xkb/internals.html#mouse).
+### Параметры "ускорения" [курсора мыши](http://pascal.tsu.ru/other/xkb/internals.html#mouse).
 
 **mousekeysdelay** = число
 
@@ -449,7 +449,7 @@ accessxfeedback**
 "степень кривизны" кривой ускорения (в "режиме ускорения" скорость курсора нарастает от начального "смещения" до максимального не линейно, а пропорционально **X^(1 + curve/1000)**.  
 Если **mousekeyscurve** = 0, то зависимость линейная)
 
-### Включение/выключение отдельных событий [дополнительной звуковой индикации](https://web.archive.org/web/20190511065228/http://pascal.tsu.ru/other/xkb/internals.html#accessxfeedback) в AccessX
+### Включение/выключение отдельных событий [дополнительной звуковой индикации](http://pascal.tsu.ru/other/xkb/internals.html#accessxfeedback) в AccessX
 
 **accessxtimeoutctrlson** \[ -= | += | = \] событие1 + событие2 + ... (или **axtctrlson** ...) **accessxtimeoutctrlsoff** \[ -= | += | = \] событие1 + событие2 + ... (или **axtctrlsoff** ...)
 
@@ -458,28 +458,28 @@ accessxfeedback**
 Подробнее об этих событиях можно прочитать в документации (**XKBlib**), поставляемой в "исходниках" **XFree86**.Немного о "внутренностях" XKB.
 ------------------------------
 
-*   [Основные термины - коды и символы.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#codes)
-*   [Две части XKB и "проблема совместимости".](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#two-part)
-*   [Таблица символов](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#symbols)
-*   [Таблица действий.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#actions)
-*   [Состояние XKB: номер группы.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#state-group)
-*   [Метод выравнивания номера группы.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#wrap)
-*   [Модификаторы.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#mods)
-*   [Состояние XKB: модификаторы.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#state-mods)
-*   [Вычисление "уровня" (shift level). Типы клавиш.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#types)
-*   [Какая еще информация хранится для каждого скан-кода.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#key)
-    *   [Метод "выравнивания" номера группы.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#key-wrap)
-    *   ["Поведение" клавиши.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#key-behavior)
-    *   [Набор "исключений".](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#key-explicit)
-    *   [Реальный и виртуальный модификаторы.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#key-mods)
-*   [Состояние XKB: Набор управляющих флагов (XKB Controls).](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#controls)
-*   [Индикаторы.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#indicators)
-*   [Таблица "совместимости".](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#compat)
-*   [Радио-группы. (Radio Groups)](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#radio)
-*   [Перекрытия (Overlay).](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#overlay)
-*   [AccessX.Дополнительные услуги для людей с ограниченными физическими возможностями.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#accessx)
-*   [Эмуляция "мыши".](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#mouse)
-*   [Расширенные возможности "пищалки" (Bell).](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#bell)
+*   [Основные термины - коды и символы.](http://pascal.tsu.ru/other/xkb/internals.html#codes)
+*   [Две части XKB и "проблема совместимости".](http://pascal.tsu.ru/other/xkb/internals.html#two-part)
+*   [Таблица символов](http://pascal.tsu.ru/other/xkb/internals.html#symbols)
+*   [Таблица действий.](http://pascal.tsu.ru/other/xkb/internals.html#actions)
+*   [Состояние XKB: номер группы.](http://pascal.tsu.ru/other/xkb/internals.html#state-group)
+*   [Метод выравнивания номера группы.](http://pascal.tsu.ru/other/xkb/internals.html#wrap)
+*   [Модификаторы.](http://pascal.tsu.ru/other/xkb/internals.html#mods)
+*   [Состояние XKB: модификаторы.](http://pascal.tsu.ru/other/xkb/internals.html#state-mods)
+*   [Вычисление "уровня" (shift level). Типы клавиш.](http://pascal.tsu.ru/other/xkb/internals.html#types)
+*   [Какая еще информация хранится для каждого скан-кода.](http://pascal.tsu.ru/other/xkb/internals.html#key)
+    *   [Метод "выравнивания" номера группы.](http://pascal.tsu.ru/other/xkb/internals.html#key-wrap)
+    *   ["Поведение" клавиши.](http://pascal.tsu.ru/other/xkb/internals.html#key-behavior)
+    *   [Набор "исключений".](http://pascal.tsu.ru/other/xkb/internals.html#key-explicit)
+    *   [Реальный и виртуальный модификаторы.](http://pascal.tsu.ru/other/xkb/internals.html#key-mods)
+*   [Состояние XKB: Набор управляющих флагов (XKB Controls).](http://pascal.tsu.ru/other/xkb/internals.html#controls)
+*   [Индикаторы.](http://pascal.tsu.ru/other/xkb/internals.html#indicators)
+*   [Таблица "совместимости".](http://pascal.tsu.ru/other/xkb/internals.html#compat)
+*   [Радио-группы. (Radio Groups)](http://pascal.tsu.ru/other/xkb/internals.html#radio)
+*   [Перекрытия (Overlay).](http://pascal.tsu.ru/other/xkb/internals.html#overlay)
+*   [AccessX.Дополнительные услуги для людей с ограниченными физическими возможностями.](http://pascal.tsu.ru/other/xkb/internals.html#accessx)
+*   [Эмуляция "мыши".](http://pascal.tsu.ru/other/xkb/internals.html#mouse)
+*   [Расширенные возможности "пищалки" (Bell).](http://pascal.tsu.ru/other/xkb/internals.html#bell)
 
 ### Основные термины - коды и символы.
 
@@ -597,7 +597,7 @@ Cyrillic\_VE
 
 Поэтому одно из основных усовершенствований, которые были внесены при разработке XKB - большая гибкость в построении таблицы.
 
-*   Во-первых, в XKB колонки не связаны жестко с конкретными модификаторами. В одном из файлов конфигурации XKB описывается зависимость номера колонки от произвольного набора модификаторов. Естественно, эти зависимости можно изменять и добавлять простым редактированием соответствующего файла. (Подробнее о них смотри ниже: [Вычисление "уровня" (shift level). Типы клавиш.](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#types))
+*   Во-первых, в XKB колонки не связаны жестко с конкретными модификаторами. В одном из файлов конфигурации XKB описывается зависимость номера колонки от произвольного набора модификаторов. Естественно, эти зависимости можно изменять и добавлять простым редактированием соответствующего файла. (Подробнее о них смотри ниже: [Вычисление "уровня" (shift level). Типы клавиш.](http://pascal.tsu.ru/other/xkb/internals.html#types))
 *   Во-вторых, в одной и той же "раскладке клавиатуры" разные клавиши могут соответствовать разному количеству символов в зависимости от модификаторов. Например,
     *   клавиша **Enter** вообще не зависит от модификаторов, то есть в соответствующей строке имеет смысл только одна колонка;
     *   клавиша с символами '1' и '!' содержит две колонки, выбор конкретной зависит только от **Shift**,
@@ -615,7 +615,7 @@ Cyrillic\_VE
 
 *   Назначение некоторых клавиш (той же **Enter**) не меняется в разных алфавитах, поэтому для них не требуется деление таблицы на несколько отдельных групп.
 *   Даже в пределах одной группы (алфавита) разные клавиши могут иметь разное количество колонок. То есть, "ширина" таблицы меняется не только "от группы к группе" но и "от скан-кода к скан-коду". Поэтому удобнее описывать каждую отдельную группу для каждого отдельного скан-кода.
-*   И, наконец, с каждым скан-кодом связаны еще некоторые параметры (см. [ниже](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#key) ), которые не зависят от номера группы. Поэтому, если бы мы описывали один и тот же скан-код в разных таблицах-группах, эта информация могла бы оказаться противоречивой.
+*   И, наконец, с каждым скан-кодом связаны еще некоторые параметры (см. [ниже](http://pascal.tsu.ru/other/xkb/internals.html#key) ), которые не зависят от номера группы. Поэтому, если бы мы описывали один и тот же скан-код в разных таблицах-группах, эта информация могла бы оказаться противоречивой.
 
 Итак.
 
@@ -710,17 +710,17 @@ Greek\_ALPHA
 
 В отличие от таблицы символов, которая используется приложением (X-сервер ее только хранит, чтобы сообщить каждому вновь стартующему приложению), таблица действий используется самим сервером.
 
-В ее ячейках располагаются вызовы внутренних процедур XKB, которые меняют его состояние - текущую [группу](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#state-group), состояние [модификаторов](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#state-mods) и [внутренних флагов XKB](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#controls).
+В ее ячейках располагаются вызовы внутренних процедур XKB, которые меняют его состояние - текущую [группу](http://pascal.tsu.ru/other/xkb/internals.html#state-group), состояние [модификаторов](http://pascal.tsu.ru/other/xkb/internals.html#state-mods) и [внутренних флагов XKB](http://pascal.tsu.ru/other/xkb/internals.html#controls).
 
 Точнее - действия, выполняемые **actions**, не ограничиваются измениями состояния XKB. Они также используются для
 
-*   [эмуляции событий мыши](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#mouse) (перемещения указателя и нажатия mouse buttons)
+*   [эмуляции событий мыши](http://pascal.tsu.ru/other/xkb/internals.html#mouse) (перемещения указателя и нажатия mouse buttons)
 *   генерации специальных events для приложений
 *   переключения экранов
 *   выключения X-сервера
 *   и т.п.
 
-Немного подробнее о всех возможных **actions** написано в разделе [Описание действий](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/gram-actions.html).
+Немного подробнее о всех возможных **actions** написано в разделе [Описание действий](http://pascal.tsu.ru/other/xkb/gram-actions.html).
 
 Если на клавише для группы и позиции в группе определено действие, то для этой же группы и позиции в группе для той же клавиши должен быть определен символ (обычно служебный).
 
@@ -808,7 +808,7 @@ Greek\_ALPHA
 
 В этом случае эффективный номер группы может дополнительно "выравниваться", специально для данной клавиши.
 
-Возможные методы точно такие же, как и ["глобальные"](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#wrap). По умолчанию используется метод Wrap.
+Возможные методы точно такие же, как и ["глобальные"](http://pascal.tsu.ru/other/xkb/internals.html#wrap). По умолчанию используется метод Wrap.
 
 #### "Поведение" клавиши.
 
@@ -818,8 +818,8 @@ Greek\_ALPHA
 
 *   нужен ли "автоповтор" для этой клавиши (Строго говоря, флаг "автоповтор" хранится в другом месте, а не в переменной "поведение". Но в данном случае это не так уж важно.)
 *   обычная эта клавиша или "залипающая" (то есть, по первому нажатию клавша "залипает" и отпускается при повторном нажатии). При этом "залипание" клавиши может отрабатываться самим "железом" или эмулироваться модулем XKB.
-*   принадлежность этой клавиши к какой-нибудь ["радио-группе"](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#radio). При этом дополнительный аргумент указывает номер такой "радио-группы".
-*   принадлежит ли эта клавиша к ["перекрывающейся группе"](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#overlay) (**overlay**). Таких групп может быть всего две. Какая группа в данный момент активна, определяется ["управляющими флагами"](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#controls) **overlay1** и **overlay2**. Соответственно в "поведении клавиши" есть два флага которые и определяют принадлежность клавши к той или другой группе, а дополнительный аргумент указывает - какой скан-код должна эмулировать клавиша, если включен "режим перекрытия".
+*   принадлежность этой клавиши к какой-нибудь ["радио-группе"](http://pascal.tsu.ru/other/xkb/internals.html#radio). При этом дополнительный аргумент указывает номер такой "радио-группы".
+*   принадлежит ли эта клавиша к ["перекрывающейся группе"](http://pascal.tsu.ru/other/xkb/internals.html#overlay) (**overlay**). Таких групп может быть всего две. Какая группа в данный момент активна, определяется ["управляющими флагами"](http://pascal.tsu.ru/other/xkb/internals.html#controls) **overlay1** и **overlay2**. Соответственно в "поведении клавиши" есть два флага которые и определяют принадлежность клавши к той или другой группе, а дополнительный аргумент указывает - какой скан-код должна эмулировать клавиша, если включен "режим перекрытия".
 
 #### Набор "исключений".
 
@@ -857,12 +857,12 @@ Greek\_ALPHA
 В "управляющие флаги" входят все те "флажки", которые не попали в "набор модификаторов". Они не сообщаются приложению, а используются XKB для переключения его внутренних режимов.  
 Эти флаги управляют
 
-*   включением [режима перекрытия](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#overlay) для части клавиатуры;
-*   включением режима [эмуляции мыши](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#mouse).
-*   включением различных режимов подсистемы [AccessX](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#accessx).
+*   включением [режима перекрытия](http://pascal.tsu.ru/other/xkb/internals.html#overlay) для части клавиатуры;
+*   включением режима [эмуляции мыши](http://pascal.tsu.ru/other/xkb/internals.html#mouse).
+*   включением различных режимов подсистемы [AccessX](http://pascal.tsu.ru/other/xkb/internals.html#accessx).
 *   и некоторыми другими сойствами XKB.
 
-"Управляющие флаги" (как и номера групп и модификаторы) меняются соответствущими [действиями](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#actions), привязанными к подходящим клавишам.
+"Управляющие флаги" (как и номера групп и модификаторы) меняются соответствущими [действиями](http://pascal.tsu.ru/other/xkb/internals.html#actions), привязанными к подходящим клавишам.
 
 ### Индикаторы.
 
@@ -947,7 +947,7 @@ Greek\_ALPHA
     Кроме того заметьте, что этот режим сам может вызвать проблему если клавиша модификатор нажата по ошибке. Любое следующее нажатие вызовет не то действие, которое хотелось бы. Поэтому в режиме **StickyKeys** предусмотрена специальная задержка (это настраиваемый параметр) в течении которой XKB ждет следующую клавишу. Если за это время другого нажатия не последовало, то клавиша отпускается.
 *   "Дребезг" клавиши при нажатии. Для решения этой проблемы в XKB предусмотрен режим **BounceKeys** ("прыгающие клавиши"). В этом режиме после первого нажатия на клавишу XKB на некоторое время становится "нечувствительным", то есть не обращает внимание на изменение состяния клавиши и таким образом игнорирует лишние нажатия. Естественно интервал времени "нечувствительности" можно менять.
 *   Ошибочное "задевание" клавиш. Имеется ввиду, что человек при перемещении руки от одной клавиши к другой может случайно задеть несколько клавшь, которые нажимать не собирался. Для решения этой проблемы предусмотрен режим **SlowKeys** ("медленные клавиши"). Смысл его в том, что клавиша считается реально нажатой если она остается в таком состоянии некоторое время (опять же это время можно настраивать). Другими словами, если клавишу нажать и быстро отпустить, то XKB игнорирут такое скоротечное нажатие.
-*   Невозможность управлять "мышью". Для решения этой проблемы в XKB предусморена возможность эмулировать события мыши с помощью клавиатуры. Подробнее об этом режиме мы поговорим [ниже](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#mouse).
+*   Невозможность управлять "мышью". Для решения этой проблемы в XKB предусморена возможность эмулировать события мыши с помощью клавиатуры. Подробнее об этом режиме мы поговорим [ниже](http://pascal.tsu.ru/other/xkb/internals.html#mouse).
 
 Все эти режимы осуществляются частью XKB модуля, которая называется AccessX. Все режимы можно включать и выключать по отдельности изменяя состяние одноименных "управляющих флагов XKB" (XKB Controls).
 
@@ -972,7 +972,7 @@ Greek\_ALPHA
 
 XKB может эмулировать события мыши с помощью клавиатуры. То есть, его можно настроить так, что при нажатии определенных клавиш X-сервер будет посылать приложению сообщения (**events**) не о нажатии/отжатии кнопок, а о перемещении мыши и нажатии кнопок на мышке.
 
-Делается это с помощью соответсвующих [действий](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#actions) (**actions**) - перемещение мыши, нажатие кнопки мыши, выбор кнопки "по умолчанию".
+Делается это с помощью соответсвующих [действий](http://pascal.tsu.ru/other/xkb/internals.html#actions) (**actions**) - перемещение мыши, нажатие кнопки мыши, выбор кнопки "по умолчанию".
 
 Рассмотрим их немного подробнее.
 
@@ -993,7 +993,7 @@ XKB может эмулировать события мыши с помощью 
 
 По умолчанию используется именно режим с ускорением.
 
-Включение и выключение эмуляции мыши и выбор режима движения выбирается двумя [управляющими флагами XKB (XKB Controls)](https://web.archive.org/web/20190509083229/http://pascal.tsu.ru/other/xkb/internals.html#controls) - **MouseKeys** и **MouseKeysAccel**.
+Включение и выключение эмуляции мыши и выбор режима движения выбирается двумя [управляющими флагами XKB (XKB Controls)](http://pascal.tsu.ru/other/xkb/internals.html#controls) - **MouseKeys** и **MouseKeysAccel**.
 
 Надо заметить, что по умолчанию все нужные действия описаны и привязаны к кнопкам "дополнительной цифровой клавиатуры" (**NUMPAD**). Для включения и выключения режима эмуляции мыши используется комбинация **Shift+NumLock**.
 
@@ -1079,9 +1079,9 @@ replace "group(toggle)"
 
 Возможны три типа файлов конфигурации
 
-*   ["Простая" конфигурация](https://web.archive.org/web/20190519184541/http://pascal.tsu.ru/other/xkb/gram-file.html#simple)
-*   [Последовательность из "простых" блоков.](https://web.archive.org/web/20190519184541/http://pascal.tsu.ru/other/xkb/gram-file.html#blocks)
-*   [Последовательность из "составных" блоков.](https://web.archive.org/web/20190519184541/http://pascal.tsu.ru/other/xkb/gram-file.html#complex)
+*   ["Простая" конфигурация](http://pascal.tsu.ru/other/xkb/gram-file.html#simple)
+*   [Последовательность из "простых" блоков.](http://pascal.tsu.ru/other/xkb/gram-file.html#blocks)
+*   [Последовательность из "составных" блоков.](http://pascal.tsu.ru/other/xkb/gram-file.html#complex)
 
 ### "Простая" конфигурация
 
@@ -1178,10 +1178,10 @@ xkb\_keymap "complete" {  	xkb\_keycodes  {...};  	xkb\_types     {...};  	xkb\_
 
 В файле **xkb\_keycodes** могут встречаться четыре типа объявлений.
 
-*   [Объявление переменной.](https://web.archive.org/web/20190509144546/http://pascal.tsu.ru/other/xkb/gram-keycodes.html#var)
-*   [Объявление Имени Клавиши.](https://web.archive.org/web/20190509144546/http://pascal.tsu.ru/other/xkb/gram-keycodes.html#name)
-*   [Объявление Алиаса Клавиши.](https://web.archive.org/web/20190509144546/http://pascal.tsu.ru/other/xkb/gram-keycodes.html#alias)
-*   [Объявление Имени Индикатора.](https://web.archive.org/web/20190509144546/http://pascal.tsu.ru/other/xkb/gram-keycodes.html#indicator)
+*   [Объявление переменной.](http://pascal.tsu.ru/other/xkb/gram-keycodes.html#var)
+*   [Объявление Имени Клавиши.](http://pascal.tsu.ru/other/xkb/gram-keycodes.html#name)
+*   [Объявление Алиаса Клавиши.](http://pascal.tsu.ru/other/xkb/gram-keycodes.html#alias)
+*   [Объявление Имени Индикатора.](http://pascal.tsu.ru/other/xkb/gram-keycodes.html#indicator)
 
 ### Объявление Переменной.
 
@@ -1260,8 +1260,8 @@ default xkb\_keycodes "xfree86" { minimum= 8; maximum= 134; <TLDE> = 49; <AE01> 
 
 Итак. В файле **xkb\_types** могут встретиться объявления
 
-*   [Объявление виртуальных модификаторов.](https://web.archive.org/web/20190616124038/http://pascal.tsu.ru/other/xkb/gram-types.html#vmodDec)
-*   [Объявление типа.](https://web.archive.org/web/20190616124038/http://pascal.tsu.ru/other/xkb/gram-types.html#type)
+*   [Объявление виртуальных модификаторов.](http://pascal.tsu.ru/other/xkb/gram-types.html#vmodDec)
+*   [Объявление типа.](http://pascal.tsu.ru/other/xkb/gram-types.html#type)
 
 ### Объявление виртуальных модификаторов.
 
@@ -1294,10 +1294,10 @@ virtual\_modifiers NumLock, Alt;
 
 В описании типа могут всречаться инструкции
 
-*   [modifiers = ...;](https://web.archive.org/web/20190616124038/http://pascal.tsu.ru/other/xkb/gram-types.html#modifiers)
-*   [map\[...\] = ...;](https://web.archive.org/web/20190616124038/http://pascal.tsu.ru/other/xkb/gram-types.html#map)
-*   [level\_name\[...\] = ...;](https://web.archive.org/web/20190616124038/http://pascal.tsu.ru/other/xkb/gram-types.html#level_name)
-*   [preserve\[...\] = ...;](https://web.archive.org/web/20190616124038/http://pascal.tsu.ru/other/xkb/gram-types.html#preserve)
+*   [modifiers = ...;](http://pascal.tsu.ru/other/xkb/gram-types.html#modifiers)
+*   [map\[...\] = ...;](http://pascal.tsu.ru/other/xkb/gram-types.html#map)
+*   [level\_name\[...\] = ...;](http://pascal.tsu.ru/other/xkb/gram-types.html#level_name)
+*   [preserve\[...\] = ...;](http://pascal.tsu.ru/other/xkb/gram-types.html#preserve)
 
 #### modifiers
 
@@ -1383,7 +1383,7 @@ level\_name\[Level1\] = "Base";  level\_name\[Level2\] = "Shifted";
 
 Примеры описаний типов, можно посмотреть в соответствущих файлах в директории **{XKBROOT}/types/**, поэтому я здесь их приводить не буду.
 
-А пример составления нового типа и его использования можно посмотреть в разделе ["Примеры":"Новый тип для клавиши Enter"](https://web.archive.org/web/20190616124038/http://pascal.tsu.ru/other/xkb/example1.html).Файл, типа xkb\_compat.
+А пример составления нового типа и его использования можно посмотреть в разделе ["Примеры":"Новый тип для клавиши Enter"](http://pascal.tsu.ru/other/xkb/example1.html).Файл, типа xkb\_compat.
 -----------------------
 
 В этом файле описывается поведение клавиш модификаторов - какие изменения происходят в состоянии клавиатуры (изменения битов-модификаторов и "номера группы") при нажатии этих клавиш.
@@ -1398,11 +1398,11 @@ level\_name\[Level1\] = "Base";  level\_name\[Level2\] = "Shifted";
 
 В файле типа xkb\_compat могут встречаться объявления
 
-*   [Объявление виртуальных модификаторов.](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#vmodDec)
-*   [Описание "интерпретации".](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#interpt)
-*   [Объявление "отображения номера группы в модификатор".](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#group)
-*   [Описание поведения индикатора.](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#indicator)
-*   [Объявление "умолчания".](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#defaults)
+*   [Объявление виртуальных модификаторов.](http://pascal.tsu.ru/other/xkb/gram-compat.html#vmodDec)
+*   [Описание "интерпретации".](http://pascal.tsu.ru/other/xkb/gram-compat.html#interpt)
+*   [Объявление "отображения номера группы в модификатор".](http://pascal.tsu.ru/other/xkb/gram-compat.html#group)
+*   [Описание поведения индикатора.](http://pascal.tsu.ru/other/xkb/gram-compat.html#indicator)
+*   [Объявление "умолчания".](http://pascal.tsu.ru/other/xkb/gram-compat.html#defaults)
 
 ### Объявление виртуальных модификаторов.
 
@@ -1499,11 +1499,11 @@ interpt Any + Any {...};
 
 Внутри описания "интерпретации" могут быть строчки типа оператора присваивания
 
-*   [useModMapMods = ...; или useModMap = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#usemodmap)
-*   [repeat = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#repeat)
-*   [locking = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#repeat)
-*   [virtualModifier = ...; или virtualMod = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#vmod)
-*   [action = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#action)
+*   [useModMapMods = ...; или useModMap = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#usemodmap)
+*   [repeat = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#repeat)
+*   [locking = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#repeat)
+*   [virtualModifier = ...; или virtualMod = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#vmod)
+*   [action = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#action)
 
 #### useModMapMods
 
@@ -1531,7 +1531,7 @@ virtualModifier = AltGr;
 
 #### action
 
-Описывает "действие". Подробнее об этом читайте ["Описание действий"](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-action.html).  
+Описывает "действие". Подробнее об этом читайте ["Описание действий"](http://pascal.tsu.ru/other/xkb/gram-action.html).  
 Здесь замечу, что "действие" также может быть "пустым". Если "интерпретация" нужна для того, чтобы перенести не "действие", а только "флаги" или "виртуальный модификатор", то ее описание может выглядеть как
 
 interpt ... { repeat = False; locking = True; action = NoAction(); };
@@ -1583,14 +1583,14 @@ group 2 = AltGr;
 
 В этих "описаниях" могут встретиться строчки типа
 
-*   [modifiers = ...; или mods = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#mods-group-ctrl)
-*   [groups = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#mods-group-ctrl)
-*   [controls = ...; или ctrls = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#mods-group-ctrl)
-*   [whichModState = ...; или whichModifierState = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#which)
-*   [whichGroupState = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#which)
-*   [allowExplicit = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#explicit)
-*   [drivesKeyboard = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#driveskbd) (имеет кучу "синонимов", см. ниже)
-*   [index = ...;](https://web.archive.org/web/20190722040558/http://pascal.tsu.ru/other/xkb/gram-compat.html#index)
+*   [modifiers = ...; или mods = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#mods-group-ctrl)
+*   [groups = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#mods-group-ctrl)
+*   [controls = ...; или ctrls = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#mods-group-ctrl)
+*   [whichModState = ...; или whichModifierState = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#which)
+*   [whichGroupState = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#which)
+*   [allowExplicit = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#explicit)
+*   [drivesKeyboard = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#driveskbd) (имеет кучу "синонимов", см. ниже)
+*   [index = ...;](http://pascal.tsu.ru/other/xkb/gram-compat.html#index)
 
 #### modifiers, groups и controls
 
@@ -1690,27 +1690,27 @@ indicator.allowExplicit = False;
 *   **название "действия"**, встречающегося в описаниях **interpt** - задает "умолчание" для соответствующих полей "действия", которое может встретиться в дальнейших описаниях "интерпретаций".Описание "действий".
 --------------------
 
-*   [Описание "действий".](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#actions)
-*   [Действия, изменяющие состояние XKB.](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#state)
-    *   [Изменение набора модификаторов (modifiers).](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#mods)
-    *   [Изменение номер группы.](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#group)
-    *   [Изменение управляющих флагов (XKB Controls).](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#controls)
-    *   [Действие ISO\_Lock.](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#iso-lock)
-*   [Действия для эмуляции событий мыши](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#mouse)
-    *   [Движение курсора](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-move)
-    *   [Нажатие кнопок мыши](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-but)
-    *   [Нажатие и удержание кнопки мыши](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-but-lock)
-    *   [Определение "кнопки по умолчанию".](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-but-default)
-*   [Другие действия.](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#misc)
-    *   [Посылка сообщения.](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#message)
-    *   [Эмуляция нажатия другой клавиши.](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#key)
-    *   [Выключить X-сервер.](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#terminate)
-    *   [Переключение экранов (screen).](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#screen)
-    *   [Нажатие кнопок на другом устройстве обслуживаемом XKB.](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#device)
-*   [Действия "особого назначения".](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#spec)
-    *   ["Пустышка".](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#noaction)
-    *   ["Сырое" действие.](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#raw)
-*   [Объявление "умолчания".](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#defaults)
+*   [Описание "действий".](http://pascal.tsu.ru/other/xkb/gram-action.html#actions)
+*   [Действия, изменяющие состояние XKB.](http://pascal.tsu.ru/other/xkb/gram-action.html#state)
+    *   [Изменение набора модификаторов (modifiers).](http://pascal.tsu.ru/other/xkb/gram-action.html#mods)
+    *   [Изменение номер группы.](http://pascal.tsu.ru/other/xkb/gram-action.html#group)
+    *   [Изменение управляющих флагов (XKB Controls).](http://pascal.tsu.ru/other/xkb/gram-action.html#controls)
+    *   [Действие ISO\_Lock.](http://pascal.tsu.ru/other/xkb/gram-action.html#iso-lock)
+*   [Действия для эмуляции событий мыши](http://pascal.tsu.ru/other/xkb/gram-action.html#mouse)
+    *   [Движение курсора](http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-move)
+    *   [Нажатие кнопок мыши](http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-but)
+    *   [Нажатие и удержание кнопки мыши](http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-but-lock)
+    *   [Определение "кнопки по умолчанию".](http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-but-default)
+*   [Другие действия.](http://pascal.tsu.ru/other/xkb/gram-action.html#misc)
+    *   [Посылка сообщения.](http://pascal.tsu.ru/other/xkb/gram-action.html#message)
+    *   [Эмуляция нажатия другой клавиши.](http://pascal.tsu.ru/other/xkb/gram-action.html#key)
+    *   [Выключить X-сервер.](http://pascal.tsu.ru/other/xkb/gram-action.html#terminate)
+    *   [Переключение экранов (screen).](http://pascal.tsu.ru/other/xkb/gram-action.html#screen)
+    *   [Нажатие кнопок на другом устройстве обслуживаемом XKB.](http://pascal.tsu.ru/other/xkb/gram-action.html#device)
+*   [Действия "особого назначения".](http://pascal.tsu.ru/other/xkb/gram-action.html#spec)
+    *   ["Пустышка".](http://pascal.tsu.ru/other/xkb/gram-action.html#noaction)
+    *   ["Сырое" действие.](http://pascal.tsu.ru/other/xkb/gram-action.html#raw)
+*   [Объявление "умолчания".](http://pascal.tsu.ru/other/xkb/gram-action.html#defaults)
 
 Описание "действий" (**actions**) используются в файлах типа **xkb\_symbols**, где они "привязываются" к скан-кодам клавиш, и в файлах типа **xkb\_compat**, где они "привязываются" к управляющим символам. (Напомню, что в **xkb\_compat**, описываются "интерпретации" - таблички, которые помогают менять привязку "действия" к скан-кодам, когда прикладные программы меняют привязку соответствующих "управляющих символов").
 
@@ -1769,7 +1769,7 @@ SomeAction(..., SomeFlag=no, ...); SomeAction(..., SomeFlag=off, ...); SomeActio
 Действия, изменяющие состояние XKB.
 -----------------------------------
 
-Напомню, что в состояние XKB входят - [текущий набор модификаторов](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/internals.html#state-mods), [текущий номер группы](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/internals.html#state-group) и ["набор управляющих флагов"](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/internals.html#controls) (XKB Controls).  
+Напомню, что в состояние XKB входят - [текущий набор модификаторов](http://pascal.tsu.ru/other/xkb/internals.html#state-mods), [текущий номер группы](http://pascal.tsu.ru/other/xkb/internals.html#state-group) и ["набор управляющих флагов"](http://pascal.tsu.ru/other/xkb/internals.html#controls) (XKB Controls).  
 Причем и набор модификаторов и номер группы распределены по трем переменным, значение которых может меняться независимо. Поэтому существует три действия для изменения модификаторов (каждое действие меняет свою переменную) и три действия для изменения номера группы.
 
 ### Изменение набора модификаторов (modifiers).
@@ -1785,7 +1785,7 @@ SomeAction(..., SomeFlag=no, ...); SomeAction(..., SomeFlag=off, ...); SomeActio
 
 SetMods(mods=Shift+Control);
 
-Вместо названия модификатора можно указать специальное значение **UseModMapMods** (или просто **ModMapMods**). Это будет означать, что сами модификаторы надо взять из списка виртуальных модификаторов, связаных с этой клавишей ([modmap и vmodmap](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/internals.html#key-mods)).
+Вместо названия модификатора можно указать специальное значение **UseModMapMods** (или просто **ModMapMods**). Это будет означать, что сами модификаторы надо взять из списка виртуальных модификаторов, связаных с этой клавишей ([modmap и vmodmap](http://pascal.tsu.ru/other/xkb/internals.html#key-mods)).
 
 Надо также заметить, что эти три действия отличаются не только тем, какую переменную они меняют. Они по разному работают в момент нажатия и в момент отпускания клавиши. Вспомните как отличается работа клавиш **Shift** и **CapsLock**. Первая должна действовать только пока ее удерживают в нажатом состоянии, то есть при ее нажатии модификатор **Shift** должен появиться, а при отпускании - автоматически исчезнуть. А вот **CapsLock** должна действовать долговременно - при первом нажатии ее модификатор должен стать активным и оставаться в таком состоянии даже после того как вы отпустите клавишу. А вот по повторному нажатию/отпусканию - убраться.
 
@@ -1830,7 +1830,7 @@ SetMods(mods=Shift+Control);
 
 ### Изменение номер группы.
 
-Так же как и набор модификаторов, номер группы "размазан" по трем переменным - **base group, latched group** и **locked group**. Для получения реального или действующего номера группы значения этих переменных складываются. Если получившаяся сумма выходит за допустимые границы (количество групп реально существующих в раскладке клавиатуры) она выравнивается по одному из [трех алгоритмов](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/internals.html#wrap). Кстати и значения каждой из трех переменных тоже выравниваются по тому же алгоритму при каждом изменении переменной.
+Так же как и набор модификаторов, номер группы "размазан" по трем переменным - **base group, latched group** и **locked group**. Для получения реального или действующего номера группы значения этих переменных складываются. Если получившаяся сумма выходит за допустимые границы (количество групп реально существующих в раскладке клавиатуры) она выравнивается по одному из [трех алгоритмов](http://pascal.tsu.ru/other/xkb/internals.html#wrap). Кстати и значения каждой из трех переменных тоже выравниваются по тому же алгоритму при каждом изменении переменной.
 
 Дествия меняющие номер группы очень похожи на действия меняющие набор модификаторов:
 
@@ -1902,17 +1902,17 @@ LockGroup(group=+1);
 Список "управляющих флагов", которые можно менять этими действиями:
 
 *   **RepeatKeys**, или **Repeat**, или **AutoRepeat** - включение автоповтора для всех клавиш (по умолчанию он включен)
-*   **AccessXKeys** - включение распознавания "магических последовательностей" [AccessX](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/internals.html#accessx).
+*   **AccessXKeys** - включение распознавания "магических последовательностей" [AccessX](http://pascal.tsu.ru/other/xkb/internals.html#accessx).
 *   **SlowKeys** - режим SlowKeys
 *   **BounceKeys** - режим BounceKeys
 *   **StickyKeys** - режим StickyKeys
 *   **AccessXTimeout** - режим выключения AccessX по таймауту.
 *   **AccessXFeedback** - "дополнительная звуковая индикация" различных режимов AccessX
-*   **MouseKeys** - включение режима [эмуляции событий мыши](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/internals.html#mouse)
+*   **MouseKeys** - включение режима [эмуляции событий мыши](http://pascal.tsu.ru/other/xkb/internals.html#mouse)
 *   **MouseKeysAccel** - режим движения "с ускорением" курсора мыши (имеет смысл только при включеном MouseKeys)
-*   **Overlay1** - включить первую [группу перекрытий](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/internals.html#overlay)
-*   **Overlay2** - включить вторую [группу перекрытий](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/internals.html#overlay)
-*   **AudibleBell** - включить "пищалку" (по умолчанию включена). Напомню, что XKB может вместо обычного "писка" посылать [специальные event'ы](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/internals.html#bell) приложениям. Если этот режим используется, то обычную "пищалку" имеет смысл выключить.
+*   **Overlay1** - включить первую [группу перекрытий](http://pascal.tsu.ru/other/xkb/internals.html#overlay)
+*   **Overlay2** - включить вторую [группу перекрытий](http://pascal.tsu.ru/other/xkb/internals.html#overlay)
+*   **AudibleBell** - включить "пищалку" (по умолчанию включена). Напомню, что XKB может вместо обычного "писка" посылать [специальные event'ы](http://pascal.tsu.ru/other/xkb/internals.html#bell) приложениям. Если этот режим используется, то обычную "пищалку" имеет смысл выключить.
 *   **IgnoreGroupLock** - управляет содержимым клавиатурных event в режиме GrabKey. Если этот флаг установлен, то в event'ах не указывается содержимое **locked group**.
 *   **all** - установить все управляющие флаги
 *   **none** - никаких управляющих флагов
@@ -1922,7 +1922,7 @@ LockGroup(group=+1);
 Называется: **ISOLock**.  
 Это действие является дополнительным к перечисленным выше. Она служит для изменения действия других клавиш - превращает их из обычных в "локирующиеся".
 
-То есть вы можете нажать **ISO\_Lock** и удерживая ее нажатой нажать какую-нибудь из клавиш c действиями типа **SetMods, SetGroup, SetControls** или **PointerButton** (смотри [ниже](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/gram-action.html#ptrbtn)) при этом их действие меняется на **LockMods, LockGroup, LockControls** или **LockPointerButton** соответственно.
+То есть вы можете нажать **ISO\_Lock** и удерживая ее нажатой нажать какую-нибудь из клавиш c действиями типа **SetMods, SetGroup, SetControls** или **PointerButton** (смотри [ниже](http://pascal.tsu.ru/other/xkb/gram-action.html#ptrbtn)) при этом их действие меняется на **LockMods, LockGroup, LockControls** или **LockPointerButton** соответственно.
 
 Основной аргумент: **affect**. Он позволяет отфильтровать действия, подлежащие изменению. Его возможные значения:
 
@@ -2065,7 +2065,7 @@ Message(data\[0\]=123, data\[0\]=0, data\[0\]=200, data\[0\]=255, ...);
 ### Эмуляция нажатия другой клавиши.
 
 Это действие позволяет изобразить нажатие клавиши с другим скан-кодом (**keycode**). Оно может оказаться полезным на "сокращенных" клавиатурах, которые не имеют всех нужных физических клавиш.  
-В общем-то ту же проблему можно решить с помощью [перекрытий (overlay)](https://web.archive.org/web/20190720005502/http://pascal.tsu.ru/other/xkb/internals.html#overlay). Так что эти механизмы во многом дублируют друг друга.
+В общем-то ту же проблему можно решить с помощью [перекрытий (overlay)](http://pascal.tsu.ru/other/xkb/internals.html#overlay). Так что эти механизмы во многом дублируют друг друга.
 
 Существенное отличие этого механизма (с помощью действий) в том, что кроме собственно **keycode** можно сразу указать и набор модификаторов, которые будут в сообщении о нажатии/отпускании эмулируемой клавиши взамен текущих.
 
@@ -2158,8 +2158,9 @@ setMods.clearLock = True;
 
 latchMods.clearLock = True; latchMods.latchToLock = True;
 
-во всех дальнейших описаниях **LatchMods**, добавляются флаги **clearLock** и **latchToLock**.Примеры изменения конфигурации XKB.
------------------------------------
+во всех дальнейших описаниях **LatchMods**, добавляются флаги **clearLock** и **latchToLock**.
+
+# Примеры изменения конфигурации XKB.
 
 Прежде всего, хочу заметить, что все решения, рассмотренные в примерах, не претендуют на "правильность".
 
@@ -2194,7 +2195,7 @@ xkb\_types { include "basic+pc+мои\_типы+еще\_один\_полезны
 
 Хотя, в некоторых случаях (особенно это касается добавлений в **xkb\_symbols**), боле эффективным может оказаться не "приплюсовывание", а объявление добавляемого файла отдельной инструкцией - replace.
 
-Напомню, что "плюсик" в инструкции **include** означает, что инструкции из файла будут добавляться в режиме override (см ["Способ добавления"](https://web.archive.org/web/20190712065656/http://pascal.tsu.ru/other/xkb/gram-common.html#merge).). А при переопределении клавиш часто требуется способ replace.  
+Напомню, что "плюсик" в инструкции **include** означает, что инструкции из файла будут добавляться в режиме override (см ["Способ добавления"](http://pascal.tsu.ru/other/xkb/gram-common.html#merge).). А при переопределении клавиш часто требуется способ replace.  
 Поэтому, при добавлении в **xkb\_symbols**, вместо одного длинного **include** лучше использовать конструкцию типа
 
 xkb\_symbols { include "en\_US(pc104)" replace "my.symbols" replace "one\_another\_symbol" };
@@ -2208,7 +2209,7 @@ xkbcomp ... :0.0
 
 А вот первым аргументом должен быть файл с описанием одного или нескольких компонентов настройки. Для того, чтобы одной командой загружать все необходимые компоненты настройки, давайте сначала составим файл с полным описанием всех компонентов, соответствующий вашей текущей конфигурации.
 
-Это совсем не сложно, но зависит от того - какой способ задания полной конфигурации используется у вас в XF86Config (см. ["Настройка XKB"](https://web.archive.org/web/20190712065656/http://pascal.tsu.ru/other/xkb/setup.html))  
+Это совсем не сложно, но зависит от того - какой способ задания полной конфигурации используется у вас в XF86Config (см. ["Настройка XKB"](http://pascal.tsu.ru/other/xkb/setup.html))  
 (Надеюсь, что у вас используется один из способов "в чистом виде", а не "каша" из всех возможных инструкций).
 
 ### "Первый способ"
@@ -2323,10 +2324,10 @@ xkb\_keymap { xkb\_keycodes { include "xfree86" }; xkb\_types { include "complet
 Итак. Примеры изменения конфигурации XKB.
 -----------------------------------------
 
-*   [Новый тип для клавиши Enter.](https://web.archive.org/web/20190712065656/http://pascal.tsu.ru/other/xkb/example1.html)
-*   [Добавляем новую "старую" раскладку клавиатуры.](https://web.archive.org/web/20190712065656/http://pascal.tsu.ru/other/xkb/example2.html)
-*   ["Вариации на тему" переключатели "рус/лат" (и еще раз - "рус").](https://web.archive.org/web/20190712065656/http://pascal.tsu.ru/other/xkb/example3.html)
-*   [Еще несколько "переключателей".](https://web.archive.org/web/20190712065656/http://pascal.tsu.ru/other/xkb/example4.html)Новый тип для клавиши Enter.
+*   [Новый тип для клавиши Enter.](http://pascal.tsu.ru/other/xkb/example1.html)
+*   [Добавляем новую "старую" раскладку клавиатуры.](http://pascal.tsu.ru/other/xkb/example2.html)
+*   ["Вариации на тему" переключатели "рус/лат" (и еще раз - "рус").](http://pascal.tsu.ru/other/xkb/example3.html)
+*   [Еще несколько "переключателей".](http://pascal.tsu.ru/other/xkb/example4.html)Новый тип для клавиши Enter.
 ----------------------------
 
 Рассмотрим пример - для чего может понадобится новый тип. И что нужно сделать.
@@ -2372,7 +2373,7 @@ key <RTRN> { type="PC\_BREAK", \[ Return, Linefeed \] };Добавляем но�
 
 Зачем это может понадобится?
 
-Ну, например, проблема (описанная в ["Почему руссификация не работает?"](https://web.archive.org/web/20190621182120/http://pascal.tsu.ru/other/xkb/problems.html)) - у вас есть программы, в "бинарниках", статически слинкованные, которые напрочь отказываются понимать коды типа **Cyrillic\_\***. Можно специально для них изготовить раскладку, в которой будут не двубайтные коды русских букв, а однобайтные коды **KOI8-R**.
+Ну, например, проблема (описанная в ["Почему руссификация не работает?"](http://pascal.tsu.ru/other/xkb/problems.html)) - у вас есть программы, в "бинарниках", статически слинкованные, которые напрочь отказываются понимать коды типа **Cyrillic\_\***. Можно специально для них изготовить раскладку, в которой будут не двубайтные коды русских букв, а однобайтные коды **KOI8-R**.
 
 Возможно, вам захочется добавить раскладку в кодировке **cp1251** или еще какой-нибудь, которая отличается от стандартной расположением русских букв.
 
@@ -2410,7 +2411,7 @@ xkb\_symbols "toggle" {...}; xkb\_symbols "shift\_toggle" {...}; xkb\_symbols "b
 
 Обычно, если у вас в полной конфигурации указан просто файл **ru**, загружается первый блок. И переключателем "рус/лат" становится клавиша **CapsLock**.
 
-Во-первых, для нашей задачи это очень плохо (то, как описаны символы для этой конопки). Но об этом поговорим немного [позже](https://web.archive.org/web/20190621182120/http://pascal.tsu.ru/other/xkb/example2.html#Lock).
+Во-первых, для нашей задачи это очень плохо (то, как описаны символы для этой конопки). Но об этом поговорим немного [позже](http://pascal.tsu.ru/other/xkb/example2.html#Lock).
 
 А сейчас я предлагаю просто выкинуть ("вычистить") два первых блока и оставить только блок "**basic**". А переключатель допишем потом прямо в блок "**basic**", или "приплюсуем" подходящий блок из файла **symbols/group** (в нем описано аж шесть разных способов переключения).
 
@@ -2431,11 +2432,11 @@ key <AB01> { \[ z, Z \], \[ 0xd1, 0xf1 \], \[ Cyrillic\_ya, Cyrillic\_YA \] };
 
 Поэтому, можно взять файл, в котором описываются числовые значения для кодов типа **Cyrillic\_\*** - это файл **/usr/X11R6/include/X11/keysymdef.h**. И списать соответствующие коды оттуда, отбрасывая первую шестерку.
 
-Особо ленивые могут взять готовый файл [здесь](https://web.archive.org/web/20190621182120/http://pascal.tsu.ru/other/xkb/ru-koi-3gr).
+Особо ленивые могут взять готовый файл [здесь](http://pascal.tsu.ru/other/xkb/ru-koi-3gr).
 
 Итак, мы составили новый файл описания клавиатуры, в котором теперь три группы. Надо не забыть о переключателе меджу группами.
 
-Во-первых, надо заметить, что все варианты переключателей используют для своих целей специальный символ - **ISO\_Next\_Group**, а его семантика, описанная в **xkb\_compat** такова, что он просто перебирает все возможные группы. То есть, при нажатии клавиши (или комбинации клавиш) с таким символом просто текущее значение группы увеличивается на единицу, а когда счетчик доходит до последней группы, он просто возвращается на первую (см. ["Внутренности":"Методы выравнивания номера группы"](https://web.archive.org/web/20190621182120/http://pascal.tsu.ru/other/xkb/internals.html#wrap)).
+Во-первых, надо заметить, что все варианты переключателей используют для своих целей специальный символ - **ISO\_Next\_Group**, а его семантика, описанная в **xkb\_compat** такова, что он просто перебирает все возможные группы. То есть, при нажатии клавиши (или комбинации клавиш) с таким символом просто текущее значение группы увеличивается на единицу, а когда счетчик доходит до последней группы, он просто возвращается на первую (см. ["Внутренности":"Методы выравнивания номера группы"](http://pascal.tsu.ru/other/xkb/internals.html#wrap)).
 
 Таким образом тем же самым перключателем "рус/лат" мы можем последовательно перебирать все три группы.
 
@@ -2469,13 +2470,13 @@ key <CAPS> { \[ISO\_Next\_Group\] };
 
 А вот о том, как сделать переключение между тремя (и больше) группами более приятным, мы рассмотрим в следующем примере -
 
-### ["Вариации на тему" - переключатели "рус/лат" (и еще раз - "рус").](https://web.archive.org/web/20190621182120/http://pascal.tsu.ru/other/xkb/example3.html)"Вариации на тему" переключатели "рус/лат" (и еще раз - "рус").
+### ["Вариации на тему" - переключатели "рус/лат" (и еще раз - "рус").](http://pascal.tsu.ru/other/xkb/example3.html)"Вариации на тему" переключатели "рус/лат" (и еще раз - "рус").
 ---------------------------------------------------------------
 
-*   [Первый способ - простой и неудобный.](https://web.archive.org/web/20190622030203/http://pascal.tsu.ru/other/xkb/example3.html#1)
-*   [Второй способ (через модификатор).](https://web.archive.org/web/20190622030203/http://pascal.tsu.ru/other/xkb/example3.html#2)
-*   [Третий способ (через дополнительную переменную номера группы).](https://web.archive.org/web/20190622030203/http://pascal.tsu.ru/other/xkb/example3.html#3)
-*   ["Заключительный аккорд" - "отцепляемся" от скан-кодов.](https://web.archive.org/web/20190622030203/http://pascal.tsu.ru/other/xkb/example3.html#final)
+*   [Первый способ - простой и неудобный.](http://pascal.tsu.ru/other/xkb/example3.html#1)
+*   [Второй способ (через модификатор).](http://pascal.tsu.ru/other/xkb/example3.html#2)
+*   [Третий способ (через дополнительную переменную номера группы).](http://pascal.tsu.ru/other/xkb/example3.html#3)
+*   ["Заключительный аккорд" - "отцепляемся" от скан-кодов.](http://pascal.tsu.ru/other/xkb/example3.html#final)
 
 Предположим, что вы выполнили предыдущий пример или еще откуда-нибудь взяли (сделали) раскладку клавиатуры с тремя группами.
 
@@ -2604,7 +2605,7 @@ key <MENU> { virtualMods = LevelThree, \[ NoSymbol\], actions\[Group1\]=\[ LockM
 
 Напомню, что номер группы может храниться в трех внутренних переменных XKB - **locked, latched** и **base group**, значение которых можно менять независимо. Причем для выбора символа у клавиши используется суммарное значение этих переменных - **effective group**.
 
-Напомню также, что благодаря "методу выравнивания номера группы" (см. ["Внутренности":Метод выравнивания..."](https://web.archive.org/web/20190622030203/http://pascal.tsu.ru/other/xkb/internals.html#wrap)), если суммарное значение окажется больше, чем количество существующих групп на единицу, то опять получится первая группа и т.д.
+Напомню также, что благодаря "методу выравнивания номера группы" (см. ["Внутренности":Метод выравнивания..."](http://pascal.tsu.ru/other/xkb/internals.html#wrap)), если суммарное значение окажется больше, чем количество существующих групп на единицу, то опять получится первая группа и т.д.
 
 Таким образом, можно заставить дополнительный переключатель "запоминать" номер "альтернативной" группы в дополнительной "групповой" переменной, например - **base group**. А основной переключатель пусть манипулирует значением в другой переменной, например - **locked group**.
 
@@ -2747,7 +2748,7 @@ key <CAPS> { \[ ISO\_Next\_Group\_Lock \], \[ ISO\_First\_Group\_Lock \], \[ ISO
 На этом наши эксперименты на тему переключателей не заканчиваются.  
 Дальше мы рассмотрим еще более сложный случай (и другие механизмы) -
 
-### [Еще несколько "переключателей".](https://web.archive.org/web/20190622030203/http://pascal.tsu.ru/other/xkb/example4.html)Еще несколько "переключателей".
+### [Еще несколько "переключателей".](http://pascal.tsu.ru/other/xkb/example4.html)Еще несколько "переключателей".
 -------------------------------
 
 Предположим, что у вас раскладка с четырьмя группами (больше вам не позволит XKB).
@@ -2762,8 +2763,8 @@ key <CAPS> { \[ ISO\_Next\_Group\_Lock \], \[ ISO\_First\_Group\_Lock \], \[ ISO
 
 #### Как это можно сделать?
 
-*   [Вариант первый - "выделенные скан-коды".](https://web.archive.org/web/20190622051303/http://pascal.tsu.ru/other/xkb/example4.html#1)
-*   [Вариант второй - "перекрытия".](https://web.archive.org/web/20190622051303/http://pascal.tsu.ru/other/xkb/example4.html#2)
+*   [Вариант первый - "выделенные скан-коды".](http://pascal.tsu.ru/other/xkb/example4.html#1)
+*   [Вариант второй - "перекрытия".](http://pascal.tsu.ru/other/xkb/example4.html#2)
 
 Прежде всего, хочу заметить, что я не могу предложить вам раскладку с четырьмя группами (откуда я знаю - что вы в них хотите "вложить").
 
@@ -2822,7 +2823,7 @@ key <CAPS> { \[NoSymbol\], \[NoSymbol\], \[NoSymbol\], \[NoSymbol\], actions\[Gr
 
 Аналогично должна работать и третья кнопка (из дополнительных переключателей).
 
-Но то, что я только что описал, точь в точь описывает поведение кнопок, принадлежащих одной ["радио-группе"](https://web.archive.org/web/20190622051303/http://pascal.tsu.ru/other/xkb/internals.html#radio).
+Но то, что я только что описал, точь в точь описывает поведение кнопок, принадлежащих одной ["радио-группе"](http://pascal.tsu.ru/other/xkb/internals.html#radio).
 
 Ну и отлично! Объединим наши три дополнительных переключателя в радио-группу, подвесим на них **SetGroup** с соответствующими аргументами, и... все.
 
@@ -2856,7 +2857,7 @@ key <FK10> { radiogroup=2, \[NoSymbol\], actions\[Group1\]=\[ SetGroup(group=2) 
 
 Хотя это и звучит как пустые фантазии, но не лишено смысла. Конечно, новую физическую кнопку мы на клавиатуре не сделаем, но вот скан-кодов к существующим кнопкам добавить можем.
 
-Напомню, что если кнопка принадлежит к ["группе перекрытия"](https://web.archive.org/web/20190622051303/http://pascal.tsu.ru/other/xkb/internals.html#overlay) (**overlay**), она может эмулировать нажатие другой кнопки (с другим скан-кодом), естественно, эта другая кнопка не обязана физически присутствовать на клавиатуре и може быть вполне "виртуальной". К тому же, та кнопка, которая будет эмулировать "виртуальную" не обязана заниматься этим все время. Для того, чтобы он перешла в такой режим, нужно "поднять" ["управляющий флаг"](https://web.archive.org/web/20190622051303/http://pascal.tsu.ru/other/xkb/internals.html#controls) **Overlay1** ( или **Overlay2**), а все остальное время она может ваполнять свои "основные обязанности".
+Напомню, что если кнопка принадлежит к ["группе перекрытия"](http://pascal.tsu.ru/other/xkb/internals.html#overlay) (**overlay**), она может эмулировать нажатие другой кнопки (с другим скан-кодом), естественно, эта другая кнопка не обязана физически присутствовать на клавиатуре и може быть вполне "виртуальной". К тому же, та кнопка, которая будет эмулировать "виртуальную" не обязана заниматься этим все время. Для того, чтобы он перешла в такой режим, нужно "поднять" ["управляющий флаг"](http://pascal.tsu.ru/other/xkb/internals.html#controls) **Overlay1** ( или **Overlay2**), а все остальное время она может ваполнять свои "основные обязанности".
 
 В свою очередь, "управляющий флаг" можно "выставить" с помощью специального "действия" (такого же как **SetGroup** или **SetMods**), причем можно сделать так, чтобы этот флаг "держался" только пока нажата соответствующая кнопка.
 
@@ -2899,18 +2900,18 @@ key <MENU> { \[NoSymbol\], actions\[Group1\]=\[ SetControls(controls=overlay1) \
 Но, основные механизмы (и "подводные камни") я описал. Все остальное зависит от вашей фантазии.Почему руссификация через XKB не работает?
 ------------------------------------------
 
-*   [Кто виноват?](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems.html#who)
-    *   [Что такое "русские буквы"?](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems.html#codes)
-    *   [Процедуры Xlib для преобразования кодов.](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems.html#LookupString)
-    *   [Что значит - "установить locale"?](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems.html#locale)
-    *   ["Иксовая" setlocale().](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems.html#Xsetlocale)
-    *   [Программы "правильные" и "неправильные".](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems.html#programms)
-    *   [Почему работают другие способы руссификации?](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems.html#other)
-    *   [Почему иногда вводятся "не те буквы"?](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems.html#wrong)
-*   [Что делать?](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems.html#What)
-    *   [Настройка системы.](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems.html#What-system)
-    *   [Что делать с "неправильными" программами?](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems1.html#What-programs)
-    *   [Методы "грубого хака".](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems1.html#hack)
+*   [Кто виноват?](http://pascal.tsu.ru/other/xkb/problems.html#who)
+    *   [Что такое "русские буквы"?](http://pascal.tsu.ru/other/xkb/problems.html#codes)
+    *   [Процедуры Xlib для преобразования кодов.](http://pascal.tsu.ru/other/xkb/problems.html#LookupString)
+    *   [Что значит - "установить locale"?](http://pascal.tsu.ru/other/xkb/problems.html#locale)
+    *   ["Иксовая" setlocale().](http://pascal.tsu.ru/other/xkb/problems.html#Xsetlocale)
+    *   [Программы "правильные" и "неправильные".](http://pascal.tsu.ru/other/xkb/problems.html#programms)
+    *   [Почему работают другие способы руссификации?](http://pascal.tsu.ru/other/xkb/problems.html#other)
+    *   [Почему иногда вводятся "не те буквы"?](http://pascal.tsu.ru/other/xkb/problems.html#wrong)
+*   [Что делать?](http://pascal.tsu.ru/other/xkb/problems.html#What)
+    *   [Настройка системы.](http://pascal.tsu.ru/other/xkb/problems.html#What-system)
+    *   [Что делать с "неправильными" программами?](http://pascal.tsu.ru/other/xkb/problems1.html#What-programs)
+    *   [Методы "грубого хака".](http://pascal.tsu.ru/other/xkb/problems1.html#hack)
 
 К сожалению, настроить XKB с "русской" раскладкой клавиатуры - это еще "полдела".  
 Очень часто при этом русские буквы вообще "не вводятся" или вводятся, но "не те", или вводятся, но "не везде" (не во всех программах).
@@ -2956,7 +2957,7 @@ key <MENU> { \[NoSymbol\], actions\[Group1\]=\[ SetControls(controls=overlay1) \
 
 Так вот. Для того, чтобы избежать путаницы в алфавитах, обе эти процедуры ориентируются на "текущую locale" (которая, в частности, определяет "национальный" алфавит с которым в данный момент работает система).
 
-Если вы не знаете - что такое locale, могу порекомендовать сайт - ["Locale AS IS"](https://web.archive.org/web/20190720144918/http://www.sensi.org/%7Ealec/locale/), где это об этом рассказано достаточно подробно (и по русски!).
+Если вы не знаете - что такое locale, могу порекомендовать сайт - ["Locale AS IS"](http://www.sensi.org/%7Ealec/locale/), где это об этом рассказано достаточно подробно (и по русски!).
 
 Здесь замечу только, что ...
 
@@ -2989,7 +2990,7 @@ key <MENU> { \[NoSymbol\], actions\[Group1\]=\[ SetControls(controls=overlay1) \
 
 ### Что значит - "установить locale"?
 
-Конечно, об этом лучше прочитать в man'ах или уже упомянутой ["Locale AS IS"](https://web.archive.org/web/20190720144918/http://www.sensi.org/%7Ealec/locale/).  
+Конечно, об этом лучше прочитать в man'ах или уже упомянутой ["Locale AS IS"](http://www.sensi.org/%7Ealec/locale/).  
 Но я постараюсь вкратце описать основные моменты этого действа.
 
 Во-первых, надо заметить, что существует "системная" locale (или "libc'ишная"), которая влияет на работу процедур **libc**, а не "иксов".
@@ -3107,7 +3108,7 @@ key <MENU> { \[NoSymbol\], actions\[Group1\]=\[ SetControls(controls=overlay1) \
 
 Не полагайтесть на результаты выдачи команды **locale**. В некоторых случаях она может показывать не совсем то, что и процедура **setlocale()** вызываемая внутри прикладных программ.
 
-Если будут проблемы, можете воспользоваться моей тестовой программкой [testXlc.](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/testXlc.tgz)  
+Если будут проблемы, можете воспользоваться моей тестовой программкой [testXlc.](http://pascal.tsu.ru/other/xkb/testXlc.tgz)  
 Она определяет
 
 *   "системную" locale,
@@ -3154,7 +3155,7 @@ Keypss event, serial 21, synthetic NO, window 0x5800001, root 0x25, subw 0x0, ti
 
 А вот что делать с "неправильными" программами - разговор отдельный...
 
-### [Что делать с "неправильными" программами?](https://web.archive.org/web/20190720144918/http://pascal.tsu.ru/other/xkb/problems1.html)
+### [Что делать с "неправильными" программами?](http://pascal.tsu.ru/other/xkb/problems1.html)
 
 * * *
 
@@ -3165,9 +3166,9 @@ Keypss event, serial 21, synthetic NO, window 0x5800001, root 0x25, subw 0x0, ti
 
 Прежде чем пытаться давать какие-то рецепты, я хотел бы поделить все "неправильные" программы на несколько категорий.
 
-*   [Программы "в исходниках".](https://web.archive.org/web/20190722064441/http://pascal.tsu.ru/other/xkb/problems1.html#prog-src)
-*   [Мультиязыковые программы.](https://web.archive.org/web/20190722064441/http://pascal.tsu.ru/other/xkb/problems1.html#prog-multi)
-*   [Программы "в бинарниках".](https://web.archive.org/web/20190722064441/http://pascal.tsu.ru/other/xkb/problems1.html#prog-bin)
+*   [Программы "в исходниках".](http://pascal.tsu.ru/other/xkb/problems1.html#prog-src)
+*   [Мультиязыковые программы.](http://pascal.tsu.ru/other/xkb/problems1.html#prog-multi)
+*   [Программы "в бинарниках".](http://pascal.tsu.ru/other/xkb/problems1.html#prog-bin)
 
 #### Программы в "исходниках".
 
@@ -3185,7 +3186,7 @@ Keypss event, serial 21, synthetic NO, window 0x5800001, root 0x25, subw 0x0, ti
 
 Например. Своя собственная процедура для установки locale в приложении имеется в библиотеке **Xt**, которая работает "поверх" **Xlib** и, в свою очередь, является основой для популярных "тулкитов" **Xaw\*** и **Motif** (**lesstif**).
 
-Поэтому, как сказано в документации Андрея Чернова ([о "коификации" всего и вся](https://web.archive.org/web/20190722064441/http://nagual.pp.ru/%7Eache/koi8.html)):
+Поэтому, как сказано в документации Андрея Чернова ([о "коификации" всего и вся](http://nagual.pp.ru/%7Eache/koi8.html)):
 
 Если программа использует один из перечисленных "тулкитов" (**Xt, Xaw\*, Motif/lesstif**), то для ее исправления лучше вставить вызов процедуры **XtSetLanguageProc**, например в таком виде
 
@@ -3219,10 +3220,10 @@ XtSetLanguageProc(NULL, NULL, NULL);
 
 Некоторые решения можно найти ...
 
-*   "Лечение" xemacs можно найти на сайте Алексея Выскубова - [emacs.zip](https://web.archive.org/web/20190722064441/http://woe.transas.com/penguin/emacs.zip) .
-*   То же самое для Lyx (и некоторых других программ) на сайте ["Пингвин при галстуке"](https://web.archive.org/web/20190722064441/http://ppg.ice.ru/) .
+*   "Лечение" xemacs можно найти на сайте Алексея Выскубова - [emacs.zip](http://woe.transas.com/penguin/emacs.zip) .
+*   То же самое для Lyx (и некоторых других программ) на сайте ["Пингвин при галстуке"](http://ppg.ice.ru/) .
 
-Кстати, исправления для популярного "тулкита" **Tcl/Tk** можно найти на сайте Виктора Вагнера - [http://www.ice.ru/~vitus/tcl/locale-tcl.html](https://web.archive.org/web/20190722064441/http://www.ice.ru/%7Evitus/tcl/locale-tcl.html).
+Кстати, исправления для популярного "тулкита" **Tcl/Tk** можно найти на сайте Виктора Вагнера - [http://www.ice.ru/~vitus/tcl/locale-tcl.html](http://www.ice.ru/%7Evitus/tcl/locale-tcl.html).
 
 #### Программы в "бинарниках".
 
@@ -3240,7 +3241,7 @@ XtSetLanguageProc(NULL, NULL, NULL);
 
 Можно "откатиться" к методам, которые использует **xmodmap**.
 
-Для этого в раскладке клавиатуры Cyrillic коды надо заменить на однобайтные коды **koi8-r** (раскладку можно взять [здесь](https://web.archive.org/web/20190722064441/http://pascal.tsu.ru/other/xkb/ru-koi-2gr)). При этом "неправильные" программы начнут их воспринимать, принимая за "западноевропейские" символы.
+Для этого в раскладке клавиатуры Cyrillic коды надо заменить на однобайтные коды **koi8-r** (раскладку можно взять [здесь](http://pascal.tsu.ru/other/xkb/ru-koi-2gr)). При этом "неправильные" программы начнут их воспринимать, принимая за "западноевропейские" символы.
 
 А чтобы "правильные" программы их не "давили", нужно "испортить" **XLC\_LOCALE** для **koi8**. Для этого достаточно "закомментарить" (или вообще выкинуть) строчку с **encoding\_name** в файле **koi8-r/XLC\_LOCALE**.
 
@@ -3266,25 +3267,25 @@ C                        ru\_RU.KOI8-R
 
 #### Третий способ - самый правильный.
 
-Еще один способ описан в ["Примеры: Новая 'старая' раскладка"](https://web.archive.org/web/20190722064441/http://pascal.tsu.ru/other/xkb/example2.html).  
+Еще один способ описан в ["Примеры: Новая 'старая' раскладка"](http://pascal.tsu.ru/other/xkb/example2.html).  
 В нем вводятся две русские раскладки - одна для "неправильных" программ, другая - для "правильных".
 
-[Эту раскладку](https://web.archive.org/web/20190722064441/http://pascal.tsu.ru/other/xkb/ru-koi-3gr) можно положить в **X11R6/lib/X11/xkb/symbols**, переименовав ее в **ru** (или подправить название русской раскладки в других файлах конфигурации **XKB**).
+[Эту раскладку](http://pascal.tsu.ru/other/xkb/ru-koi-3gr) можно положить в **X11R6/lib/X11/xkb/symbols**, переименовав ее в **ru** (или подправить название русской раскладки в других файлах конфигурации **XKB**).
 
-Тогда клавиша "переключатель групп" будет циклически перебирать три группы, что конечно же не очень-то удобно в работе. Чтобы "облегчить жизнь", можно воспользоваться моим индикатором-переключателем клавиатуры [xxkb](https://web.archive.org/web/20190722064441/http://www.tsu.ru/%7Epascal/other/xxkb/) . (Для работы с тремя раскладками надо немного изменить настройки **xxkb**. Об этом подробно написано в соответствующей [инструкции](https://web.archive.org/web/20190722064441/http://www.tsu.ru/%7Epascal/other/xxkb/3gr.html) .)
+Тогда клавиша "переключатель групп" будет циклически перебирать три группы, что конечно же не очень-то удобно в работе. Чтобы "облегчить жизнь", можно воспользоваться моим индикатором-переключателем клавиатуры [xxkb](http://www.tsu.ru/%7Epascal/other/xxkb/) . (Для работы с тремя раскладками надо немного изменить настройки **xxkb**. Об этом подробно написано в соответствующей [инструкции](http://www.tsu.ru/%7Epascal/other/xxkb/3gr.html) .)
 
 Как я уже заметил, этот способ - самый правильный. "Правильные" программы будут работать с "правильной" раскладкой (если вы настроите **xxkb**, то эта раскладка будет включаться "по умолчанию"), а для "неправильных" программ вам придется при старте такой программы выбрать "неправильную" раскладку. В этом есть, конечно, некоторые неудобства, но **xxkb** сведет их к минимуму.Программы, имеющие отношение к XKB.
 -----------------------------------
 
-*   [xkbcomp](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/programs.html#xkbcomp)
-*   [setxkbmap](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/programs.html#setxkbmap)
-*   [xmodmap](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/programs.html#xmodmap)
-*   [xkbwatch](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/programs.html#xkbwatch)
-*   [xkbvleds и mxkbledpanel](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/programs.html#xkbvleds)
-*   [xkbevd и xkbbell](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/programs.html#xkbevd)
-*   [xkbprint](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/programs.html#xkbprint)
-*   [Программа для редактирования раскладки - xkeycaps.](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/programs.html#editor)
-*   [Индикаторы-переключатели.](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/programs.html#indicators)
+*   [xkbcomp](http://pascal.tsu.ru/other/xkb/programs.html#xkbcomp)
+*   [setxkbmap](http://pascal.tsu.ru/other/xkb/programs.html#setxkbmap)
+*   [xmodmap](http://pascal.tsu.ru/other/xkb/programs.html#xmodmap)
+*   [xkbwatch](http://pascal.tsu.ru/other/xkb/programs.html#xkbwatch)
+*   [xkbvleds и mxkbledpanel](http://pascal.tsu.ru/other/xkb/programs.html#xkbvleds)
+*   [xkbevd и xkbbell](http://pascal.tsu.ru/other/xkb/programs.html#xkbevd)
+*   [xkbprint](http://pascal.tsu.ru/other/xkb/programs.html#xkbprint)
+*   [Программа для редактирования раскладки - xkeycaps.](http://pascal.tsu.ru/other/xkb/programs.html#editor)
+*   [Индикаторы-переключатели.](http://pascal.tsu.ru/other/xkb/programs.html#indicators)
 
 ### xkbcomp
 
@@ -3319,7 +3320,7 @@ xkbcomp xkbfile :0
 
 Кстати, эти файлы **xkbcomp** ищет сначала в текущей директории и, если не находит, то в "базе данных" конфигураций (**X11R6/lib/X11/xkb/**).
 
-Примеры составления своих файлов конфигурации для "подсовывания" их **xkbcomp** можно посмотреть в ["Примеры изменения конфигурации XKB: Где будем экспериментировать."](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/examples.html)
+Примеры составления своих файлов конфигурации для "подсовывания" их **xkbcomp** можно посмотреть в ["Примеры изменения конфигурации XKB: Где будем экспериментировать."](http://pascal.tsu.ru/other/xkb/examples.html)
 
 ### setxkbmap
 
@@ -3353,7 +3354,7 @@ setxkbmap -?
 
 Естественно, используя **xmodmap**, вы лишаетесь всех дополнительных возможностей XKB. Но для простейших исправлений раскладки клавиатуры ее вполне можно использовать.
 
-Единственное, что я бы не советовал - использовать широкораспростаненные файлы для руссификации клавиатуры в формате **xmodmap** (.Xmodmap). Почему этого делать не стоит, написано в ["Почему руссификация через XKB не работает"](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/problems.html).
+Единственное, что я бы не советовал - использовать широкораспростаненные файлы для руссификации клавиатуры в формате **xmodmap** (.Xmodmap). Почему этого делать не стоит, написано в ["Почему руссификация через XKB не работает"](http://pascal.tsu.ru/other/xkb/problems.html).
 
 Подробности об этой программа читайте в соответствующем **man**'е. (Но если вы не знаете - что такое **xmodmap**, то ... лучше и не знать :-).
 
@@ -3481,15 +3482,15 @@ Shift
 
 Эта утилита имеет более "человеческое лицо". Все индикаторы на ней подписаны (естественно - те, которые реально используются; напомню, что в XKB может быть до 32 виртуальных индикаторов, но это не значит, что все они задействованы в конкретной конфигурации).
 
-Кроме того, эта программа позволяет осуществлять и "обратную связь", если это предусмотренно в конфигурации (подробнее - смотрите в ["Немного о внутренностях XKB":"Индикаторы"](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/internals.html#indicators) и ["Описание поведения индикатора"](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/gram-compat.html#indicator):drivesKeyboard). То есть, "щелкая мышью" по индикатору можно включать/выключать его и таким образом менять соответствующее состояние XKB. (Кстати, благодаря этому, **mxkbledpanel** может служит простейшим индикатором-переключателем "РУС/ЛАТ").
+Кроме того, эта программа позволяет осуществлять и "обратную связь", если это предусмотренно в конфигурации (подробнее - смотрите в ["Немного о внутренностях XKB":"Индикаторы"](http://pascal.tsu.ru/other/xkb/internals.html#indicators) и ["Описание поведения индикатора"](http://pascal.tsu.ru/other/xkb/gram-compat.html#indicator):drivesKeyboard). То есть, "щелкая мышью" по индикатору можно включать/выключать его и таким образом менять соответствующее состояние XKB. (Кстати, благодаря этому, **mxkbledpanel** может служит простейшим индикатором-переключателем "РУС/ЛАТ").
 
-Недостатки этой программы в том, что она во-первых требует для сборки Motif (хотя должно хватить и lesstif'а), а во-вторых - не входит в дистрибутивы XFree. Найти ее можно, например, на - [ftp://ftp.x.org/pub/unsupported/Motif/mxkbledpanel/](https://web.archive.org/web/20190720052135/ftp://ftp.x.org/pub/unsupported/Motif/mxkbledpanel/)
+Недостатки этой программы в том, что она во-первых требует для сборки Motif (хотя должно хватить и lesstif'а), а во-вторых - не входит в дистрибутивы XFree. Найти ее можно, например, на - [ftp://ftp.x.org/pub/unsupported/Motif/mxkbledpanel/](ftp://ftp.x.org/pub/unsupported/Motif/mxkbledpanel/)
 
 ### xkbevd и xkbbell
 
 Судя по названию, **xkbevd** - "XKB event daemon". Как сказано в **man xkbevd**, "эта команда очень 'сырая'... мы предлагаем ее скорее как 'черновой прототип' для разработчиков, а не как инструмент для 'конечных юзеров'".
 
-В основном она принимает **bell event**'ы и может служить "музыкальной приставкой" (подробнее смотрите в ["Внутренности XKB: Расширенные возможности 'пищалки'"](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/internals.html#bell)).
+В основном она принимает **bell event**'ы и может служить "музыкальной приставкой" (подробнее смотрите в ["Внутренности XKB: Расширенные возможности 'пищалки'"](http://pascal.tsu.ru/other/xkb/internals.html#bell)).
 
 Правда сам **xkbevd** звуки не воспроизводит. В его конфигурационном файле можно указать имя программы для воспроизведения звуков и соответствия между "именем звука" и аудио-файлом, который надо передать в качестве аргумента этой программе.
 
@@ -3512,9 +3513,9 @@ Shift
 
 Вообще-то, нормальной программы для создания/редактирования раскладок клавиатур в формате XKB - не существует.
 
-Но при желании, для этой цели можно использовать "редактор xmodmap'ов" - [xkeycaps](https://web.archive.org/web/20190720052135/http://www.jwz.org/xkeycaps/). Обратите внимание, что она позволяет на каждую клавишу "подвешивать" до 8-и символов. Что вполне соответствует "четырем группам по два уровня" в терминах XKB.
+Но при желании, для этой цели можно использовать "редактор xmodmap'ов" - [xkeycaps](http://www.jwz.org/xkeycaps/). Обратите внимание, что она позволяет на каждую клавишу "подвешивать" до 8-и символов. Что вполне соответствует "четырем группам по два уровня" в терминах XKB.
 
-И хотя она и сохраняет результат вашей работы в формате **xmodmap**, преобразовать его в формат файла типа **xkb\_symbols** достаточно просто. Можете воспользоваться моим "скриптом" [modmap2xkb](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/modmap2xkb), который делает это автоматически (конечно, программка очень "сырая". Если у кого-то есть желание ее улучшить - welcome).
+И хотя она и сохраняет результат вашей работы в формате **xmodmap**, преобразовать его в формат файла типа **xkb\_symbols** достаточно просто. Можете воспользоваться моим "скриптом" [modmap2xkb](http://pascal.tsu.ru/other/xkb/modmap2xkb), который делает это автоматически (конечно, программка очень "сырая". Если у кого-то есть желание ее улучшить - welcome).
 
 Не могу не заметить, что **xkeycaps** в нынешнем виде - довольно плохой редактор. И дело даже не в том, что она не работает с файлами XKB и, соответственно, не может использоваться для редактирования **xkb\_types, xkb\_compat** и т.п. и, кроме того, не использует "геометрию" из **xkb\_geometry** (все "геометрии" "зашиты" в самой программе).
 
@@ -3536,15 +3537,15 @@ Shift
 Что же из таких программ можно посоветовать для работы "в паре с XKB"?
 
 Надо заметить, что популярные "переключалки" типа **xruskb, xes, cyrx, kikbd** (кого я еще забыл упомянуть?) для этого плохо подходят.  
-Во-первых, они используют раскладки "в старом стиле", то есть не с кодами Cyrillic, а "западноевропейскими" буквами. А это вызывает проблемы у "правильных" программ при корректно установленной locale (подробнее об этом в ["Почему руссификация через XKB не работает?"](https://web.archive.org/web/20190720052135/http://pascal.tsu.ru/other/xkb/problems.html)).  
+Во-первых, они используют раскладки "в старом стиле", то есть не с кодами Cyrillic, а "западноевропейскими" буквами. А это вызывает проблемы у "правильных" программ при корректно установленной locale (подробнее об этом в ["Почему руссификация через XKB не работает?"](http://pascal.tsu.ru/other/xkb/problems.html)).  
 А во-вторых, все они не используют возможности XKB для переключения раскладок, и "на каждое телодвижение" сами перезагружают раскладки в X-сервер.
 
 "Настоящими" XKB-переключателями являются -
 
-*   **kkb** - [http://www.logic.ru/peter](https://web.archive.org/web/20190720052135/http://www.logic.ru/peter)
-*   **FvwmKb** - [http://linuxfan.com/~sparrow/software/](https://web.archive.org/web/20190720052135/http://linuxfan.com/%7Esparrow/software/)
-*   **fookb** - [http://linux.piter-press.ru/fookb/](https://web.archive.org/web/20190720052135/http://linux.piter-press.ru/fookb/)
-*   **xxkb** - [http://www.tsu.ru/~pascal/other/xxkb/](https://web.archive.org/web/20190720052135/http://www.tsu.ru/%7Epascal/other/xxkb/)
+*   **kkb** - [http://www.logic.ru/peter](http://www.logic.ru/peter)
+*   **FvwmKb** - [http://linuxfan.com/~sparrow/software/](http://linuxfan.com/%7Esparrow/software/)
+*   **fookb** - [http://linux.piter-press.ru/fookb/](http://linux.piter-press.ru/fookb/)
+*   **xxkb** - [http://www.tsu.ru/~pascal/other/xxkb/](http://www.tsu.ru/%7Epascal/other/xxkb/)
 
 Не желая никого обидеть :-), все-таки выскажу некоторые замечания относительно этих программ (возможно - несколько запоздалые).
 

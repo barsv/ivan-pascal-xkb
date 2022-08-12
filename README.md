@@ -48,8 +48,10 @@ The XKB configuration database consists of 5 components:
 
 tables that define symbolic names for key scan-codes  
 For example  
+``` 
 \<TLDE>= 49;  
 \<AE01> = 10;
+```
 
 **types**
 
@@ -71,7 +73,9 @@ All these components correcpond to subdirectories in directory **{XROOT}/lib/X11
 
 It must be mentioned that every such directory has several files (sometimes many) with different settings. Each file can contain several sections (parts, blocks) like
 
+```
 component\_type "section\_name" {........};
+```
 
 So to specify a single setting one has to write something like  
 **file\_name(section\_name)**  
@@ -80,7 +84,9 @@ for example
 
 At the same time usually one of sections in such file is marked with 'flag' **default**. For example
 
+```
 xkb_symbols "pc101" {...}; default xkb_symbols "pc101euro" {...}; xkb_symbols "pc102" {...}; xkb_symbols "pc102euro" {...};
+```
 
 This means that if one specifies only a file name, this section from the file will be used.
 
@@ -258,7 +264,7 @@ XkbOptions "grp:caps\_toggle"
 
 ### And finally the first method - by separate XKB components (keycodes, compat, types, symbols, geometry).
 
-If you don't know how to begin, you can look at any appropriate component set in a **keymap** file. Or try to figure it out from **rules/model/layout**. (For more details about such 'computation' see ["Examples: Where we will make our experiments?"](https://web.archive.org/web/20190727020850/http://www.tsu.ru/%7Epascal/en/xkb/examples.html))
+If you don't know how to begin, you can look at any appropriate component set in a **keymap** file. Or try to figure it out from **rules/model/layout**. (For more details about such 'computation' see ["Examples: Where we will make our experiments?"](./README-ru.md#примеры-изменения-конфигурации-xkb))
 
 I can suggest you
 
@@ -327,7 +333,7 @@ They describe the same options that in general Xserver configure file (**XF86Con
 
 Remind that 'additional configuration file' can be composed for each display separately. So it makes sense to use here components (or **rules/model/layout/**etc.) that for this display are differ from 'general' (from **XF86Config**). Of course all such options here have bigger priority and overrides corresponding options from Xserver configuration file.
 
-## Initial value for [modifiers](https://web.archive.org/web/20190718063330/http://pascal.tsu.ru/en/xkb/internals.html#mods) set.
+## Initial value for [modifiers](http://pascal.tsu.ru/en/xkb/internals.html#mods) set.
 
 **modifiers** **\[ = | -= | += \]** modifier1 + modifier2 + ...
 
@@ -336,7 +342,7 @@ Where 'modifier\*' is name of one of 'real modifiers' - **shift, lock, control**
 As I told above in this statement 'variants of assignment' can be used - '**\-=**' - remove modifier(s), '**+=**' - add modifier(s), '**\=**' - replace modifier set by specified one in statement.  
 (It need to be mentioned that by default at server start this modifiers set is empty. So operation '+=' or '=' only makes sense. And their actions in this case have no differences.)
 
-## Initial value for ["control flags"](https://web.archive.org/web/20190718063330/http://pascal.tsu.ru/en/xkb/internals.html#controls) set.
+## Initial value for ["control flags"](http://pascal.tsu.ru/en/xkb/internals.html#controls) set.
 
 **controls** **\[ = | -= | += \]** flag1 + flag2 + ...
 
@@ -361,7 +367,7 @@ switch on 'accelerated mode' for mouse cursor movement
 **overlay1  
 overlay2**
 
-switch on corresponding ['overlays'](https://web.archive.org/web/20190718063330/http://pascal.tsu.ru/en/xkb/internals.html#overlay).
+switch on corresponding ['overlays'](http://pascal.tsu.ru/en/xkb/internals.html#overlay).
 
 **ignoregrouplock**
 
@@ -370,7 +376,7 @@ to ignore 'current group' in GrabKey mode
 **audiblebell**
 
 switch on (off) keyboard bell.  
-(Remind that XKB can send [bell-events](https://web.archive.org/web/20190718063330/http://pascal.tsu.ru/en/xkb/internals.html#bell) to 'juke-box' (that will play sounds or music) instead of ordinar 'cheep'. If you system have such 'juke-box' you can switch of keyboard bell.
+(Remind that XKB can send [bell-events](http://pascal.tsu.ru/en/xkb/internals.html#bell) to 'juke-box' (that will play sounds or music) instead of ordinar 'cheep'. If you system have such 'juke-box' you can switch of keyboard bell.
 
 **accessxkeys  
 slowkeys  
@@ -391,7 +397,7 @@ switch on several modes of AccessX (for Physically Impaired Persons).
 
 This is modifiers set that must be used inside Xserver (for 'action' selection if exists) and must not be reported to client applications in keyboard events
 
-## Group ['adjust method'](https://web.archive.org/web/20190718063330/http://pascal.tsu.ru/en/xkb/internals.html#wrap).
+## Group ['adjust method'](http://pascal.tsu.ru/en/xkb/internals.html#wrap).
 
 **groups** = \[ **wrap** | **clamp** | number \] (or **outofrangegroups** ...)
 
@@ -469,28 +475,28 @@ For more details about these modes see documentation (**XKBlib**) from **XFree86
 # The XKB internals
 Some words about XKB internals.
 
-*   [The basic terms - codes and symbols.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#codes)
-*   [Two parts of XKB and compatibility problem.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#two-part)
-*   [Symbols table.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#symbols)
-*   [Actions table.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#actions)
-*   [XKB state: current group number.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#state-group)
-*   ["Keeping in range" methods for group number.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#wrap)
-*   [Modifiers.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#mods)
-*   [XKB state: current modifiers set.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#state-mods)
-*   [Shift level calculation. Key types.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#types)
-*   [What other data each keycode description has.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#key)
-    *   [Keep group number in range method.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#key-wrap)
-    *   [Key behavior.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#key-behavior)
-    *   [Exceptions set.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#key-explicit)
-    *   [Real and virtual modifiers.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#key-mods)
-*   [XKB state: control flags (XKB Controls).](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#controls)
-*   [Indicators.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#indicators)
-*   [Compatibility table.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#compat)
-*   [Radio Groups](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#radio)
-*   [Overlays.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#overlay)
-*   [AccessX. Additional services for physically impaired persons.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#accessx)
-*   [Mouse events emulation.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#mouse)
-*   [Bell features extension.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#bell)
+*   [The basic terms - codes and symbols.](http://pascal.tsu.ru/en/xkb/internals.html#codes)
+*   [Two parts of XKB and compatibility problem.](http://pascal.tsu.ru/en/xkb/internals.html#two-part)
+*   [Symbols table.](http://pascal.tsu.ru/en/xkb/internals.html#symbols)
+*   [Actions table.](http://pascal.tsu.ru/en/xkb/internals.html#actions)
+*   [XKB state: current group number.](http://pascal.tsu.ru/en/xkb/internals.html#state-group)
+*   ["Keeping in range" methods for group number.](http://pascal.tsu.ru/en/xkb/internals.html#wrap)
+*   [Modifiers.](http://pascal.tsu.ru/en/xkb/internals.html#mods)
+*   [XKB state: current modifiers set.](http://pascal.tsu.ru/en/xkb/internals.html#state-mods)
+*   [Shift level calculation. Key types.](http://pascal.tsu.ru/en/xkb/internals.html#types)
+*   [What other data each keycode description has.](http://pascal.tsu.ru/en/xkb/internals.html#key)
+    *   [Keep group number in range method.](http://pascal.tsu.ru/en/xkb/internals.html#key-wrap)
+    *   [Key behavior.](http://pascal.tsu.ru/en/xkb/internals.html#key-behavior)
+    *   [Exceptions set.](http://pascal.tsu.ru/en/xkb/internals.html#key-explicit)
+    *   [Real and virtual modifiers.](http://pascal.tsu.ru/en/xkb/internals.html#key-mods)
+*   [XKB state: control flags (XKB Controls).](http://pascal.tsu.ru/en/xkb/internals.html#controls)
+*   [Indicators.](http://pascal.tsu.ru/en/xkb/internals.html#indicators)
+*   [Compatibility table.](http://pascal.tsu.ru/en/xkb/internals.html#compat)
+*   [Radio Groups](http://pascal.tsu.ru/en/xkb/internals.html#radio)
+*   [Overlays.](http://pascal.tsu.ru/en/xkb/internals.html#overlay)
+*   [AccessX. Additional services for physically impaired persons.](http://pascal.tsu.ru/en/xkb/internals.html#accessx)
+*   [Mouse events emulation.](http://pascal.tsu.ru/en/xkb/internals.html#mouse)
+*   [Bell features extension.](http://pascal.tsu.ru/en/xkb/internals.html#bell)
 
 ## The basic terms - codes and symbols.
 
@@ -606,7 +612,7 @@ Lets return to XKB module. You can see that the main disadvantage of traditional
 
 Therefore one of the basic improvements brought by XKB is large flexibility in the table construction.
 
-*   First of all in XKB columns aren't strongly bound to concrete modifiers. One of XKB configuration file describes column number dependence on any modifiers set. Of course you can add or change such dependence by editing of this file. (More detaily about it see below: [Shift level calculation. Key types.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#types))
+*   First of all in XKB columns aren't strongly bound to concrete modifiers. One of XKB configuration file describes column number dependence on any modifiers set. Of course you can add or change such dependence by editing of this file. (More detaily about it see below: [Shift level calculation. Key types.](http://pascal.tsu.ru/en/xkb/internals.html#types))
 *   The second one: in the same keyboard map different keys can contain different number of symbols and their dependence on modifiers. For example
     *   **Enter** key doesn't depend on any modifiers state so in table its row has only one column.
     *   key with symbols '1' and '!' has in table two columns and column choice depends on only **Shift** state.
@@ -624,7 +630,7 @@ Becouse...
 
 *   Some keys meaning (**Enter** for example) is the same for all alphabets. So they need not table division to separate groups.
 *   Even inside one group (alphabed) different keys can have different number of columns. It means that the table width varies not only "from group to group" but also "from keycode to keycode". So it is more convenient to describe each separate group for each separate keycode.
-*   And finally each keycode also has some other data (see [below](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#key) ) that doesn't depends on group number. So if we would have some "global" tables and would describe such data for the same key in different tables then this information could be inconsistent.
+*   And finally each keycode also has some other data (see [below](http://pascal.tsu.ru/en/xkb/internals.html#key) ) that doesn't depends on group number. So if we would have some "global" tables and would describe such data for the same key in different tables then this information could be inconsistent.
 
 So...
 
@@ -719,17 +725,17 @@ Besides "symbols table" keycode can have bound "**actions** table". This table a
 
 Unlike symbols table that is used by application (X-server only keeps it) actions table is used by server itself.
 
-This table cells contains pointers to XKB internal procedures that changes "XKB state" - current [group](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#state-group), current [modifiers set](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#state-mods) and [internal control flags set](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#controls).
+This table cells contains pointers to XKB internal procedures that changes "XKB state" - current [group](http://pascal.tsu.ru/en/xkb/internals.html#state-group), current [modifiers set](http://pascal.tsu.ru/en/xkb/internals.html#state-mods) and [internal control flags set](http://pascal.tsu.ru/en/xkb/internals.html#controls).
 
 But it's more correctly to say that the **actions** functions isn't limited by XKB state changing. They also are used for:
 
-*   [mouse events emulation](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#mouse) (pointer movement and mouse buttons press)
+*   [mouse events emulation](http://pascal.tsu.ru/en/xkb/internals.html#mouse) (pointer movement and mouse buttons press)
 *   special events generation
 *   screen switching
 *   X-server termination
 *   etc.
 
-More detaily about all possible **actions** you can read in [Actions description](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/gram-actions.html).
+More detaily about all possible **actions** you can read in [Actions description](http://pascal.tsu.ru/en/xkb/gram-actions.html).
 
 It is important that if some cell (defined by **group** and **shift level**)in action table is filled with **action** so corresponded cell in symbols table must exist and be filled with symbol (usually it's "control symbol").
 
@@ -814,7 +820,7 @@ Besides symbols and actions tables each keycode description has some other varia
 Since different keys can have different number of groups it can occur that the **effective group** value legal for whole keyboard map is too big for some particilar keys.  
 In such case effective group must be corrected especially for current key.
 
-Possible methods are the same as ["global" ones](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#wrap). By default **Wrap** method is used.
+Possible methods are the same as ["global" ones](http://pascal.tsu.ru/en/xkb/internals.html#wrap). By default **Wrap** method is used.
 
 ### Key behavior.
 
@@ -824,14 +830,14 @@ These flags defines:
 
 *   need this key "autorepeat" or not. (To say correctly this flag is stored in another place but it make no sense for our consideration.)
 *   must this key be "lockable" (it means that after first press/release this key stay logicaly pressed and will be unpressed after next press/release.) Such locking can be performed by hardware or emulated by XKB module.
-*   is this key the member of any [radio group](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#radio). For this flag additional argument means radio group identifier.
-*   is this key the member of any [overlay group](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#overlay) There can be only two such group. What group is active in current time can be managed by one of two [XKB control flags](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#controls) (names of flags are **Overlay1** and **Overlay2**). So there are two flags in **key behavior** - "is it the member of the first overlay group" and "is it the member of the second overlay group". The additional argument means keycode which will replace this key keycode if the corresponded overlay group is active.
+*   is this key the member of any [radio group](http://pascal.tsu.ru/en/xkb/internals.html#radio). For this flag additional argument means radio group identifier.
+*   is this key the member of any [overlay group](http://pascal.tsu.ru/en/xkb/internals.html#overlay) There can be only two such group. What group is active in current time can be managed by one of two [XKB control flags](http://pascal.tsu.ru/en/xkb/internals.html#controls) (names of flags are **Overlay1** and **Overlay2**). So there are two flags in **key behavior** - "is it the member of the first overlay group" and "is it the member of the second overlay group". The additional argument means keycode which will replace this key keycode if the corresponded overlay group is active.
 
 ### Exceptions set.
 
 It is bit mask that defines what keycode related data is "specified explicitly" and must not be changed in some cases. The thing is that the X-protocol include commands that allow application change symbol\_to\_keycode binding in keyboard map inside X-server. Of course these commands changes symbols placement only but doesn't change other data such as **action**, key behavior or key bound modifiers.
 
-To allow XKB to move this data at symbol moving there is special mechanism - symbol [interpretation](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#compat). Useing this mechanism XKB can move non-symbol data bound to keycode when application requests the symbol moving.
+To allow XKB to move this data at symbol moving there is special mechanism - symbol [interpretation](http://pascal.tsu.ru/en/xkb/internals.html#compat). Useing this mechanism XKB can move non-symbol data bound to keycode when application requests the symbol moving.
 
 But in some cases such changes can be considered as unwanted. So **exceptions set** can protect keycode related data against such implicit changes.  
 If application uses special XKB-protocol requests this protection is unneeded.
@@ -863,12 +869,12 @@ Besides group number and modifiers set there is another one set of bit flags in 
 Control flags set contain flags that are used for switching XKB modes and isn't reported to application.  
 These flags are used for
 
-*   switching [overlay mode](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#overlay) for keyboard parts;
-*   switching [mouse events emulation](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#mouse) modes.
-*   switching [AccessX](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#accessx) subsystem modes.
+*   switching [overlay mode](http://pascal.tsu.ru/en/xkb/internals.html#overlay) for keyboard parts;
+*   switching [mouse events emulation](http://pascal.tsu.ru/en/xkb/internals.html#mouse) modes.
+*   switching [AccessX](http://pascal.tsu.ru/en/xkb/internals.html#accessx) subsystem modes.
 *   and some other XKB properties.
 
-XKB controls (like group number and modifers) can be changed by appropriate [action](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#actions) bound to some keys.
+XKB controls (like group number and modifers) can be changed by appropriate [action](http://pascal.tsu.ru/en/xkb/internals.html#actions) bound to some keys.
 
 ## Indicators.
 
@@ -947,7 +953,7 @@ The problems can occur are:
     On the other hand this mode itself can cause problem if modifier key was pressed by a mistake. Therefore **StickyKeys** mode has special delay time when the XKB waits another key. After this time expire key become logicaly unpressed.
 *   Some user can accedentally "bounce" key when he press or release it. To avoid such "bounce effect" the XKB has **BounceKeys** mode. This mode means that after first physical key press this key become "insensible" and so will ignore other press/release at some time.
 *   Some user can accidenally bump unneeded key while moving hand from key to key. To solve this problem the XKB has **SlowKeys** mode. In this mode each key is considered as pressed if it is physically pressed while some time. In the other words if you will press key and then release it quickly the XKB will ignore such short term press.
-*   It can be hard or impssible to move mouse device. To solve this problem the XKB can emulate mouse events by keyboard. More detaily about this mode see [below](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#mouse).
+*   It can be hard or impssible to move mouse device. To solve this problem the XKB can emulate mouse events by keyboard. More detaily about this mode see [below](http://pascal.tsu.ru/en/xkb/internals.html#mouse).
 
 All these modes are performed by part of XKB module that has name AccessX. Each mode can be switched on/off by change of XKB control flags with the same names.
 
@@ -972,7 +978,7 @@ This mode as the other modes can be switched on/off by corresponded XKB control 
 
 The XKB can emulate mouse events by keyboard. It means that it can be configured to produce events about mouse movement and mouse button pressing instead of key press events.
 
-It can be done by corresponded [actions](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#actions) such as "pointer movement", "mouse button press", "mouse mouse button choice".
+It can be done by corresponded [actions](http://pascal.tsu.ru/en/xkb/internals.html#actions) such as "pointer movement", "mouse button press", "mouse mouse button choice".
 
 Some details:
 
@@ -993,7 +999,7 @@ This acceleration process has some additional parameters that are saved in XKB i
 
 By deafult accelerated mode is active.
 
-Mouse emulation switching on/off and movement mode choice can be performed by two [XKB control flags](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#controls) - **MouseKeys** and **MouseKeysAccel**.
+Mouse emulation switching on/off and movement mode choice can be performed by two [XKB control flags](http://pascal.tsu.ru/en/xkb/internals.html#controls) - **MouseKeys** and **MouseKeysAccel**.
 
 I should note that by default all needed actions are described in the XKB configuration and are bound to **NUMPAD** keys. To switch on/off the mouse emulation mode you can use **Shift+NumLock** keys combination.
 
@@ -1079,9 +1085,9 @@ You guess it means that all decalration from **"group(toggle)"** section must be
 
 The XKB configuration file can have one of three forms:
 
-*   [Simple configuration.](https://web.archive.org/web/20190724011542/http://pascal.tsu.ru/en/xkb/gram-file.html#simple)
-*   [Set of simple sections.](https://web.archive.org/web/20190724011542/http://pascal.tsu.ru/en/xkb/gram-file.html#blocks)
-*   [Set of complex sections.](https://web.archive.org/web/20190724011542/http://pascal.tsu.ru/en/xkb/gram-file.html#complex)
+*   [Simple configuration.](http://pascal.tsu.ru/en/xkb/gram-file.html#simple)
+*   [Set of simple sections.](http://pascal.tsu.ru/en/xkb/gram-file.html#blocks)
+*   [Set of complex sections.](http://pascal.tsu.ru/en/xkb/gram-file.html#complex)
 
 ## Simple configuration.
 
@@ -1181,8 +1187,8 @@ Then these types are used in **xkb_symbols** type files where for each group tab
 
 The **xkb_types** type files can contain records:
 
-*   [Virtual modifiers declaration.](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#vmodDec)
-*   [Key type description.](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#type)
+*   [Virtual modifiers declaration.](http://pascal.tsu.ru/en/xkb/gram-types.html#vmodDec)
+*   [Key type description.](http://pascal.tsu.ru/en/xkb/gram-types.html#type)
 
 ## Virtual modifiers declaration.
 
@@ -1215,10 +1221,10 @@ And **Instructions** are some records that looks like value to variable assignme
 
 Instruction inside key type description can be:
 
-*   [modifiers = ...;](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#modifiers)
-*   [map\[...\] = ...;](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#map)
-*   [level\_name\[...\] = ...;](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#level_name)
-*   [preserve\[...\] = ...;](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#preserve)
+*   [modifiers = ...;](http://pascal.tsu.ru/en/xkb/gram-types.html#modifiers)
+*   [map\[...\] = ...;](http://pascal.tsu.ru/en/xkb/gram-types.html#map)
+*   [level\_name\[...\] = ...;](http://pascal.tsu.ru/en/xkb/gram-types.html#level_name)
+*   [preserve\[...\] = ...;](http://pascal.tsu.ru/en/xkb/gram-types.html#preserve)
 
 ### modifiers
 
@@ -1299,7 +1305,7 @@ Therefore althogh you can redefine any of "predefined" types (changing modifiers
 
 Examples of key type description you can find in files from **{XKBROOT}/types/** directory.
 
-And one example of new type invention and usage you can see in section [Examples:New type for the Enter key."](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/example1.html).
+And one example of new type invention and usage you can see in section [Examples:New type for the Enter key."](http://pascal.tsu.ru/en/xkb/example1.html).
 
 
 # The xkb_compat type files.
@@ -1316,11 +1322,11 @@ And the **Xkb Compability Map** is used for this problem solution.
 
 The xkb_compat type files can contain records:
 
-*   [Virtual modifier declarstion.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#vmodDec)
-*   [Interpretation desctription.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#interpret)
-*   [Group number to modifier mapping.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#group)
-*   [Indicator behavior description.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#indicator)
-*   [Defaults declaration.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#defaults)
+*   [Virtual modifier declarstion.](http://pascal.tsu.ru/en/xkb/gram-compat.html#vmodDec)
+*   [Interpretation desctription.](http://pascal.tsu.ru/en/xkb/gram-compat.html#interpret)
+*   [Group number to modifier mapping.](http://pascal.tsu.ru/en/xkb/gram-compat.html#group)
+*   [Indicator behavior description.](http://pascal.tsu.ru/en/xkb/gram-compat.html#indicator)
+*   [Defaults declaration.](http://pascal.tsu.ru/en/xkb/gram-compat.html#defaults)
 
 ## Virtual modifier declaration.
 
@@ -1411,11 +1417,11 @@ interpret Num\_Lock {...}; interpret ISO\_Level2 + Shift {...}; interpret ISO\_L
 
 Instructions inside interpretation description looks like assignment instruction:
 
-*   [useModMapMods = ...; or useModMap = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#usemodmap)
-*   [repeat = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#repeat)
-*   [locking = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#repeat)
-*   [virtualModifier = ...; or virtualMod = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#vmod)
-*   [action = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#action)
+*   [useModMapMods = ...; or useModMap = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#usemodmap)
+*   [repeat = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#repeat)
+*   [locking = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#repeat)
+*   [virtualModifier = ...; or virtualMod = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#vmod)
+*   [action = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#action)
 
 ### useModMapMods
 
@@ -1443,7 +1449,7 @@ virtualModifier = AltGr;
 
 ### action
 
-This instruction describes an **action**. More details about format of action description you can read in [Actions description](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-action.html).  
+This instruction describes an **action**. More details about format of action description you can read in [Actions description](http://pascal.tsu.ru/en/xkb/gram-action.html).  
 Here I only note that the **action** field can be empty. If **interpretation** is needed for binding flags or virtual modifiers only its description can looks like:
 
 interpret ... { repeat = False; locking = True; action = NoAction(); };
@@ -1495,14 +1501,14 @@ And **description** consists of instructions that looks like assignment instruct
 
 They can be one of:
 
-*   [modifiers = ...; or mods = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#mods-group-ctrl)
-*   [groups = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#mods-group-ctrl)
-*   [controls = ...; or ctrls = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#mods-group-ctrl)
-*   [whichModState = ...; or whichModifierState = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#which)
-*   [whichGroupState = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#which)
-*   [allowExplicit = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#explicit)
-*   [drivesKeyboard = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#driveskbd) (has lot of synonyms, see below)
-*   [index = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#index)
+*   [modifiers = ...; or mods = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#mods-group-ctrl)
+*   [groups = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#mods-group-ctrl)
+*   [controls = ...; or ctrls = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#mods-group-ctrl)
+*   [whichModState = ...; or whichModifierState = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#which)
+*   [whichGroupState = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#which)
+*   [allowExplicit = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#explicit)
+*   [drivesKeyboard = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#driveskbd) (has lot of synonyms, see below)
+*   [index = ...;](http://pascal.tsu.ru/en/xkb/gram-compat.html#index)
 
 ### modifiers, groups � controls
 
@@ -1600,7 +1606,7 @@ The first word in left side (before period sign) must be
     
     SetMod.clearLock = True;
     
-    (more details about action description and posible fields see in [Actions description.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-action.html))
+    (more details about action description and posible fields see in [Actions description.](http://pascal.tsu.ru/en/xkb/gram-action.html))
     
 
 # The xkb_symbols type file.
@@ -1618,7 +1624,7 @@ Before considering this file grammar lets remember what other data (description 
 Each scan-code description have
 
 *   common **key type** - types are described in **xkb\_types** type files and define dependence of **shift level** on modifiers state. Note that each group sub-table can have own **type**. But if all groups for this key have the same **type** it can be specified once as common for all groups.
-*   **adjustment method** for group number - remind that some keys can have number of groups less then other keys have. The XKB adjusts group number if it comes out of bounds but the bounds in this case means maximum value of group number used in all key descriptions. Therefore at pressing such few-group key it is possible that for this key even adjusted number is 'out-of-bounds'. In this case the number must be adjusted additionaly specialy for this key. The methods itsel are the same as 'global' ones (see [The XKB internals:"Keep in range" methods...](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/internals.html#wrap) ).
+*   **adjustment method** for group number - remind that some keys can have number of groups less then other keys have. The XKB adjusts group number if it comes out of bounds but the bounds in this case means maximum value of group number used in all key descriptions. Therefore at pressing such few-group key it is possible that for this key even adjusted number is 'out-of-bounds'. In this case the number must be adjusted additionaly specialy for this key. The methods itsel are the same as 'global' ones (see [The XKB internals:"Keep in range" methods...](http://pascal.tsu.ru/en/xkb/internals.html#wrap) ).
 *   **autorepeat** - a boolean flag that defines - need it key autorepeating or no;
 *   **key 'behavior'** - it is set of flags and one additional argument that defines ...
     *   **locking** - if key is lockable it means that after the first press/release the key stays logicaly down (and keyboard emits key press event only) and after second press it become released and keyboard emits key release event only.
@@ -1635,11 +1641,11 @@ Each scan-code description have
 
 The records in such type file can be:
 
-*   [Virtual modifier declaration.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#vmodDec)
-*   [Group name declaration.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#name)
-*   [Key description.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#key)
-*   [Real modifier to key binding.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#modmap)
-*   [Defaults declaration.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#defaults)
+*   [Virtual modifier declaration.](http://pascal.tsu.ru/en/xkb/gram-symbols.html#vmodDec)
+*   [Group name declaration.](http://pascal.tsu.ru/en/xkb/gram-symbols.html#name)
+*   [Key description.](http://pascal.tsu.ru/en/xkb/gram-symbols.html#key)
+*   [Real modifier to key binding.](http://pascal.tsu.ru/en/xkb/gram-symbols.html#modmap)
+*   [Defaults declaration.](http://pascal.tsu.ru/en/xkb/gram-symbols.html#defaults)
 
 ## Virtual modifier declaration.
 
@@ -1680,20 +1686,20 @@ The 'descriptions' inside figure brackets are devided by comma. Note that it is 
 
 The 'description' can be
 
-*   [type = ..., or type\[...\] = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#type)
-*   [locks = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#locks) (**locking** is synonym)
-*   [repeat = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#repeat) (**repeats, repeating** are synonyms)
-*   [groupswrap, or warpgroups,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#wrap)
-*   [groupsclanp, or clampgroups,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#wrap)
-*   [groupsredirect = ..., or redirectgroups = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#wrap)
-*   [radiogroup = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#radiogroup)
-*   [allownone = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#radiogroup)
-*   [overlay1 = ..., or overlay2 = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#overlay)
-*   [permanent...](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#permanent)
-*   [vmods = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#vmods) (**virtualmods, virtualmodifiers** are synonyms)
-*   [symbols\[...\] = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#symbols)
-*   [actions\[...\] = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#actions)
-*   [\[...\]](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#brackets) only.
+*   [type = ..., or type\[...\] = ...,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#type)
+*   [locks = ...,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#locks) (**locking** is synonym)
+*   [repeat = ...,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#repeat) (**repeats, repeating** are synonyms)
+*   [groupswrap, or warpgroups,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#wrap)
+*   [groupsclanp, or clampgroups,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#wrap)
+*   [groupsredirect = ..., or redirectgroups = ...,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#wrap)
+*   [radiogroup = ...,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#radiogroup)
+*   [allownone = ...,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#radiogroup)
+*   [overlay1 = ..., or overlay2 = ...,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#overlay)
+*   [permanent...](http://pascal.tsu.ru/en/xkb/gram-symbols.html#permanent)
+*   [vmods = ...,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#vmods) (**virtualmods, virtualmodifiers** are synonyms)
+*   [symbols\[...\] = ...,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#symbols)
+*   [actions\[...\] = ...,](http://pascal.tsu.ru/en/xkb/gram-symbols.html#actions)
+*   [\[...\]](http://pascal.tsu.ru/en/xkb/gram-symbols.html#brackets) only.
 
 ### type
 
@@ -1713,7 +1719,7 @@ type = "ALPHABETIC",
 
 I should note that all keys have the 'deafult group' value. So generally the type is not specified in key description.
 
-At the same time there is one point (can be considered as bug) in these defaults. There is two similar types with two levels each - "TWO\_LEVEL" and "ALPHABETIC". Both types imply two levels and the levels choice depends on Shift modifier. But the "ALPHABETIC" type keys also depends on CapsLock key (I hope everybody know what such dependences means). But by default only first group of each 'alphabetic' key have "ALPHABETIC" type. If you will have made symbols map with any national alphabet (for exapmle some kind of Cyrillic) placed into second group this second group will have "TWO\_LEVEL" type. It means such key will depend on CapsLock when the keyboard is switched to the first group but the CapsLock will not have any effect for the same key when you will switch to your national alphabet. So in this case you need to specify the type for second group explicitly. (But you need not do it in each key description but can use 'defaults declaration'. See [below](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#defaults).)
+At the same time there is one point (can be considered as bug) in these defaults. There is two similar types with two levels each - "TWO\_LEVEL" and "ALPHABETIC". Both types imply two levels and the levels choice depends on Shift modifier. But the "ALPHABETIC" type keys also depends on CapsLock key (I hope everybody know what such dependences means). But by default only first group of each 'alphabetic' key have "ALPHABETIC" type. If you will have made symbols map with any national alphabet (for exapmle some kind of Cyrillic) placed into second group this second group will have "TWO\_LEVEL" type. It means such key will depend on CapsLock when the keyboard is switched to the first group but the CapsLock will not have any effect for the same key when you will switch to your national alphabet. So in this case you need to specify the type for second group explicitly. (But you need not do it in each key description but can use 'defaults declaration'. See [below](http://pascal.tsu.ru/en/xkb/gram-symbols.html#defaults).)
 
 ### locks
 
@@ -1739,7 +1745,7 @@ As for previous flag (**lock**) you can note that some keys don't generates auto
 
 ### groupswrap, groupsclamp, groupsredirect
 
-These words defines "keeping in range" method for group number (see [The XKB internals:"Keeping in range" method](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/internals.html#wrap) ). Each word means own method and it makes sense to specify only one of them.
+These words defines "keeping in range" method for group number (see [The XKB internals:"Keeping in range" method](http://pascal.tsu.ru/en/xkb/internals.html#wrap) ). Each word means own method and it makes sense to specify only one of them.
 
 Flags **groupswrap** and **groupsclamp** are simple boolean variables. Therefore they can be specified as assignment with some logical value (**true, yes, on** or **false, no, off** in the right side) or in short form  
 **groupswrap,** - implies "**\= True**"  
@@ -1816,7 +1822,7 @@ For example:
 
 actions\[Group1\] = \[ SetGroup(group=2), SetGroup(group=1) \],
 
-Detail description of possible actions and their arguments you can read in [Actions description.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-action.html).
+Detail description of possible actions and their arguments you can read in [Actions description.](http://pascal.tsu.ru/en/xkb/gram-action.html).
 
 I mention only here that if one of levels don't need any actions you can use a special name for 'empty action' - **NoAction()**.
 
@@ -1897,7 +1903,7 @@ The first word (before period sign) in the left side must be "**key**" and the s
 
 Of course, this default value will be actual until another deafult declaration for the same parameter will occur in the text. And if the corresponded parameter doesn't specified in the key description body explicitly.
 
-Also the default declaration can be used for arguments in the **action** descriptions (details read in the [Actions description](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-action.html)). In this case the first word is the action name, for example
+Also the default declaration can be used for arguments in the **action** descriptions (details read in the [Actions description](http://pascal.tsu.ru/en/xkb/gram-action.html)). In this case the first word is the action name, for example
 
 SetMods.clearLocks = True;
 
@@ -1912,27 +1918,27 @@ means the tenth radio-group has this flag.
 
 # Actions description.
 
-*   [Actions description in common.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#actions)
-*   [Actions for the XKB state change.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#state)
-    *   [Modifiers change.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#mods)
-    *   [Group number change.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#group)
-    *   [Control flags (XKB Controls) change.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#controls)
-    *   [The ISO\_Lock action.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#iso-lock)
-*   [Actions for mouse events emulation.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#mouse)
-    *   [Cursor movement.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#mouse-move)
-    *   [Mouse buttons press.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#mouse-but)
-    *   [Mouse buttons press with locking.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#mouse-but-lock)
-    *   [A "defaul button" choice.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#mouse-but-default)
-*   [Other action.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#misc)
-    *   [Message sending.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#message)
-    *   [Another key press emulation.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#key)
-    *   [X-server termination.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#terminate)
-    *   [Screens switching.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#screen)
-    *   [Pressing buttons of another device served by XKB.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#device)
-*   ["Special" actions.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#spec)
-    *   ["Empty action".](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#noaction)
-    *   ["Raw" action.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#raw)
-*   [Defaults declaration.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#defaults)
+*   [Actions description in common.](http://pascal.tsu.ru/en/xkb/gram-action.html#actions)
+*   [Actions for the XKB state change.](http://pascal.tsu.ru/en/xkb/gram-action.html#state)
+    *   [Modifiers change.](http://pascal.tsu.ru/en/xkb/gram-action.html#mods)
+    *   [Group number change.](http://pascal.tsu.ru/en/xkb/gram-action.html#group)
+    *   [Control flags (XKB Controls) change.](http://pascal.tsu.ru/en/xkb/gram-action.html#controls)
+    *   [The ISO\_Lock action.](http://pascal.tsu.ru/en/xkb/gram-action.html#iso-lock)
+*   [Actions for mouse events emulation.](http://pascal.tsu.ru/en/xkb/gram-action.html#mouse)
+    *   [Cursor movement.](http://pascal.tsu.ru/en/xkb/gram-action.html#mouse-move)
+    *   [Mouse buttons press.](http://pascal.tsu.ru/en/xkb/gram-action.html#mouse-but)
+    *   [Mouse buttons press with locking.](http://pascal.tsu.ru/en/xkb/gram-action.html#mouse-but-lock)
+    *   [A "defaul button" choice.](http://pascal.tsu.ru/en/xkb/gram-action.html#mouse-but-default)
+*   [Other action.](http://pascal.tsu.ru/en/xkb/gram-action.html#misc)
+    *   [Message sending.](http://pascal.tsu.ru/en/xkb/gram-action.html#message)
+    *   [Another key press emulation.](http://pascal.tsu.ru/en/xkb/gram-action.html#key)
+    *   [X-server termination.](http://pascal.tsu.ru/en/xkb/gram-action.html#terminate)
+    *   [Screens switching.](http://pascal.tsu.ru/en/xkb/gram-action.html#screen)
+    *   [Pressing buttons of another device served by XKB.](http://pascal.tsu.ru/en/xkb/gram-action.html#device)
+*   ["Special" actions.](http://pascal.tsu.ru/en/xkb/gram-action.html#spec)
+    *   ["Empty action".](http://pascal.tsu.ru/en/xkb/gram-action.html#noaction)
+    *   ["Raw" action.](http://pascal.tsu.ru/en/xkb/gram-action.html#raw)
+*   [Defaults declaration.](http://pascal.tsu.ru/en/xkb/gram-action.html#defaults)
 
 Actions decsriptions are used in the **xkb_symbols** type file where an **action** can be bound to scan-code and in the **xkb_compat** type file where the **action** can be bound to control symbols. (Remind that the **xkb_compat** file contains "interpretations" that are special tables which helps to change actions-to-keycode binding when control symbols-to-keycode binding has been changed).
 
@@ -1991,7 +1997,7 @@ But note that every flag has some default value so in mant cases it is not neede
 Actions for the XKB state change.
 ---------------------------------
 
-I should remind that the XKB state includes [current modifiers set](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#state-mods), [current group number](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#state-group) and ["set of control flags"](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#controls) (XKB Controls).  
+I should remind that the XKB state includes [current modifiers set](http://pascal.tsu.ru/en/xkb/internals.html#state-mods), [current group number](http://pascal.tsu.ru/en/xkb/internals.html#state-group) and ["set of control flags"](http://pascal.tsu.ru/en/xkb/internals.html#controls) (XKB Controls).  
 And it being known that the modifiers set and the group number are distributed into three variables which value can be changed independly. Threrfore there are three action for modifiers change (each action changes own variable) and three actions for the group number change.
 
 ## Modifiers change.
@@ -2007,7 +2013,7 @@ The main argument for all three actions is - **modifiers** (or shortly - **mods*
 
 SetMods(mods=Shift+Control);
 
-Instead of modifier names a special word **UseModMapMods** (or **ModMapMods**) can be used here. It means that modifiers itself must be taken from the 'virtual modifiers' field which is part of the key description (see [Internals: modmap and vmodmap](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#key-mods)).
+Instead of modifier names a special word **UseModMapMods** (or **ModMapMods**) can be used here. It means that modifiers itself must be taken from the 'virtual modifiers' field which is part of the key description (see [Internals: modmap and vmodmap](http://pascal.tsu.ru/en/xkb/internals.html#key-mods)).
 
 Also it must be mentioned that these three action have some other differences besides different variables them change. They perform different tasks at keypress and key release time. Lets remember what is different in **Shift** and **CapsLock** keys action. The first one has to affect other keys while it stais pressed only. It means at moment when it is pressed the **Shift** modifier must appear ant this modifier must disappear automatically when the key will be released.  
 But the **CapsLock** must affect long time, at the first press of the key its modifier must become active and stais in such state even after you release the key. But after the second press/release the modifier must become unactive.
@@ -2053,7 +2059,7 @@ Adds modifiers to **latched modifiers**
 
 ## Group number change.
 
-Like the modifiers set the group number is distributed to three variables - a **base group**, a **latched group** and a **locked group**. The real or effective group number is sum of these three varibales. If the sum result (it can be negative too) is out of bounds (less than first group or more than number of groups really used in keyboard map ) it will be adjusted using one of three [adjusting methods](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#wrap). By the way, the value of each variable also must be adjusted with the same method at every time the value is changed.
+Like the modifiers set the group number is distributed to three variables - a **base group**, a **latched group** and a **locked group**. The real or effective group number is sum of these three varibales. If the sum result (it can be negative too) is out of bounds (less than first group or more than number of groups really used in keyboard map ) it will be adjusted using one of three [adjusting methods](http://pascal.tsu.ru/en/xkb/internals.html#wrap). By the way, the value of each variable also must be adjusted with the same method at every time the value is changed.
 
 Actions for group number change are similar to actions for modifier set change:
 
@@ -2125,17 +2131,17 @@ These actions have not any flags.
 'Control flags' that can be changed by these actions are:
 
 *   **RepeatKeys**, or **Repeat**, or **AutoRepeat** - switch on/off autorepeat for all keys (it is switched on by default)
-*   **AccessXKeys** - switch on/off a '[AccessX](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#accessx) magic sequences' recognizing (key sequences that switches on/off other AccessX modes).
+*   **AccessXKeys** - switch on/off a '[AccessX](http://pascal.tsu.ru/en/xkb/internals.html#accessx) magic sequences' recognizing (key sequences that switches on/off other AccessX modes).
 *   **SlowKeys** - switch on/off SlowKeys mode
 *   **BounceKeys** - switch on/off BounceKeys mode
 *   **StickyKeys** - switch on/off StickyKeys mode
 *   **AccessXTimeout** - automatical deactivation of AccessX modes after timeout.
 *   **AccessXFeedback** - 'additional sound indication' for AccessX modes.
-*   **MouseKeys** - switch on/off [mouse events emulation](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#mouse)
+*   **MouseKeys** - switch on/off [mouse events emulation](http://pascal.tsu.ru/en/xkb/internals.html#mouse)
 *   **MouseKeysAccel** - accelerated mouse cursor movement (makes sense when MouseKeys mode is active).
-*   **Overlay1** - switch on/off the first [overlay group](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#overlay)
-*   **Overlay2** - switch on/off the second [overlay group](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#overlay)
-*   **AudibleBell** - switch on/off 'beeper' (is 'on' by default). Remind that the XKB can send special [sound events](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#bell) instead of ordinary 'cheep'. If these events are used (it means that there is some application running which uses such events) it makes sense to switch off the 'cheeper'.
+*   **Overlay1** - switch on/off the first [overlay group](http://pascal.tsu.ru/en/xkb/internals.html#overlay)
+*   **Overlay2** - switch on/off the second [overlay group](http://pascal.tsu.ru/en/xkb/internals.html#overlay)
+*   **AudibleBell** - switch on/off 'beeper' (is 'on' by default). Remind that the XKB can send special [sound events](http://pascal.tsu.ru/en/xkb/internals.html#bell) instead of ordinary 'cheep'. If these events are used (it means that there is some application running which uses such events) it makes sense to switch off the 'cheeper'.
 *   **IgnoreGroupLock** - partial control for 'state' field in key event message in the GrabKey mode. If this flag is set the **locked group** value will not be included to event message.
 *   **all** - to set all flags
 *   **none** - none of control flags
@@ -2145,7 +2151,7 @@ These actions have not any flags.
 Its name is **ISOLock**.  
 This action is additional one for described abowe actions. It changes behavior of other actions making them 'lockable'.
 
-It means you can press **ISO\_Lock** and keeping it pressed press some of key with actions such as **SetMods, SetGroup, SetControls** or **PointerButton** (about this action see [below](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#ptrbtn)) so their behavior becomes the same as **LockMods, LockGroup, LockControls** or **LockPointerButton** respectively.
+It means you can press **ISO\_Lock** and keeping it pressed press some of key with actions such as **SetMods, SetGroup, SetControls** or **PointerButton** (about this action see [below](http://pascal.tsu.ru/en/xkb/gram-action.html#ptrbtn)) so their behavior becomes the same as **LockMods, LockGroup, LockControls** or **LockPointerButton** respectively.
 
 The main argument is **affect**. It allows to filter actions must be changed. Possible values are:
 
@@ -2292,7 +2298,7 @@ The **genkeyevent** flag defines - has this key to generate the ordinary key eve
 ## Another key press emulation.
 
 This action allow to emulate a pressing of key with anothe scan-code (**keycode**). It can be usefull for 'redused' keyboard that have not all needed physical keys.  
-The same problem can be silved using [overlay groups](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#overlay). So these two mechanisms are similar and partialy duplicates each other functionality.
+The same problem can be silved using [overlay groups](http://pascal.tsu.ru/en/xkb/internals.html#overlay). So these two mechanisms are similar and partialy duplicates each other functionality.
 
 Significant difference of this method (using action) is that besides the **keycode** itself you can specify the set of modifiers that will be included into the key event message instead of the current modifiers set.
 
