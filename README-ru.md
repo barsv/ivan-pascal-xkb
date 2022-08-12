@@ -3,11 +3,11 @@ X Keyboard Extension
 
 [English version](README.md)
 
-*   [Настройка XKB.](#настройкаxkb)
-*   [Еще один способ описания конфигурации XKB.](http://pascal.tsu.ru/other/xkb/config.html)
-*   [Немного о "внутренностях" XKB.](http://pascal.tsu.ru/other/xkb/internals.html)
+*   [Настройка XKB.](#настройка-xkb)
+*   [Еще один способ описания конфигурации XKB.](#еще-один-способ-описания-конфигурации-xkb)
+*   [Немного о "внутренностях" XKB.](#немного-о-"внутренностях"-xkb)
 *   Файлы конфигурации XKB
-    *   [Общие замечания о языке файлов конфигурации XKB.](http://pascal.tsu.ru/other/xkb/gram-common.html)
+    *   [Общие замечания о языке файлов конфигурации XKB.](#общие-замечания-о-языке-файлов-конфигурации-xkb)
     *   [Общее строение файлов конфигурации XKB](http://pascal.tsu.ru/other/xkb/gram-file.html).
     *   [Файл типа xkb_keycodes.](http://pascal.tsu.ru/other/xkb/gram-keycodes.html)
     *   [Файл типа xkb_types.](http://pascal.tsu.ru/other/xkb/gram-types.html)
