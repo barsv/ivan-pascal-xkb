@@ -1,23 +1,31 @@
-X Keyboard Extension
---------------------
+# About
 
-*   [How to configure XKB.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/setup.html)
-*   [One another way to describe a XKB configuration.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/config.html)
-*   [The XKB internals.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/internals.html)
+This XKB documentation is extracted from https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/
+It was originally created by Ivan Pascal. But looks like he doesn't maintain it anymore. I was just reading his explanations on XKB and found them to be the easiest to understand one among other docs. I wanted to fix few typos hence I created this repo. 
+
+# X Keyboard Extension
+
+## Contents
+
+*   [How to configure XKB.](#how-to-configure-xkb)
+*   [One another way to describe a XKB configuration.](#one-another-way-to-describe-xkb-configuration)
+*   [The XKB internals.](#the-xkb-internals)
 *   XKB configuration files.
-    *   [Common notes about XKB configuration files language.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/gram-common.html)
-    *   [Common structure of XKB configuration files.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/gram-file.html)
-    *   The xkb\_keycodes type file.
-    *   [The xkb\_types type file.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/gram-types.html)
-    *   [The xkb\_compat type file.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/gram-compat.html)
-    *   [The xkb\_symbols type file.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/gram-symbols.html)
+    *   [Common notes about XKB configuration files language.](#common-notes-about-xkb-configuration-files-language)
+    *   [Common structure of XKB configuration files.](#common-structure-of-xkb-configuration-files)
+    *   The xkb_keycodes type file.
+    *   [The xkb_types type file.](#the-xkbtypes-type-file)
+    *   [The xkb_compat type file.](#the-xkbcompat-type-files)
+    *   [The xkb_symbols type file.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/gram-symbols.html)
     *   ["Actions" description.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/gram-action.html)
 *   Some examples.
     *   New type for Enter key.
     *   Group number switchers.
 *   Why national language input doesn't work?
     *   What to do with 'incorrect' applications?
-*   XKB related utilites.How to configure XKB.
+*   XKB related utilites.
+
+## How to configure XKB.
 ---------------------
 
 *   [The XKB 'database'](https://web.archive.org/web/20190727020850/http://pascal.tsu.ru/en/xkb/setup.html#database)
@@ -73,7 +81,7 @@ for example
 
 At the same time usually one of sections in such file is marked with 'flag' **default**. For example
 
-xkb\_symbols "pc101" {...}; default xkb\_symbols "pc101euro" {...}; xkb\_symbols "pc102" {...}; xkb\_symbols "pc102euro" {...};
+xkb_symbols "pc101" {...}; default xkb_symbols "pc101euro" {...}; xkb_symbols "pc102" {...}; xkb_symbols "pc102euro" {...};
 
 This means that if one specifies only a file name, this section from the file will be used.
 
@@ -113,7 +121,7 @@ You can specify the full set of components by one name. Such components sets are
 
 Usually every **keymap** section contains 'include' instructions only that define from which files XKB has to get every component. (In the most general case it can contain a full description of every component.) For example
 
-xkb\_keymap "ru" { xkb\_keycodes { include "xfree86" }; xkb\_types { include "default" }; xkb\_compatibility { include "default" }; xkb\_symbols { include "en\_US(pc105)+ru" }; xkb\_geometry { include "pc(pc102)" }; };
+xkb_keymap "ru" { xkb_keycodes { include "xfree86" }; xkb_types { include "default" }; xkb_compatibility { include "default" }; xkb_symbols { include "en\_US(pc105)+ru" }; xkb_geometry { include "pc(pc102)" }; };
 
 Note that one **include** instruction can contain several files (sections) separated by "+" signs. Of course it means that all these sections must be inserted sequentially.
 
@@ -227,9 +235,9 @@ XkbKeymap "xfree86(ru)"
 
 Unfortunately some time ago russian full keymap had a 'default group\_swither' inside **symbols** file, but frome some XFree version this switcher was removed from **symbols** (it is right because an 'alphabetical' symbols map is not the appropriate place for such keys). But at the same time such switcher was not added in any place in any russian **keymap**. Therefore if you choose this method, you can't switch on Russian language anyway.
 
-The only way to add this group\_switcher is to edit **{XKBROOT}/keymap/xfree86** file. You can find this file in your system, then go to section "ru" in this file and add to line **xkb\_symbols** appropriate switcher name. For **CapsLock** key it is **group(caps\_toggle)**. It means that this line must look like
+The only way to add this group\_switcher is to edit **{XKBROOT}/keymap/xfree86** file. You can find this file in your system, then go to section "ru" in this file and add to line **xkb_symbols** appropriate switcher name. For **CapsLock** key it is **group(caps\_toggle)**. It means that this line must look like
 
-xkb\_symbols { include "en\_US(pc105)+ru+group(caps\_toggle)"};
+xkb_symbols { include "en\_US(pc105)+ru+group(caps\_toggle)"};
 
 #### If you want to use the third method - by Rules, Model, Layout
 
@@ -272,7 +280,9 @@ XkbKeycodes "xfree86" XkbTypes "complete" XkbCompat "complete" XkbSymbols "en\_U
 
 If you additionally want to change the behavior of other control keys (that in third method was defined by **XkbOptions**), you can find appropriate addition in **{XKBROOT}/rules/xfree86.lst** file. Then you have to 'plus' it to the **XkbSymbols** line. For example
 
-XkbSymbols "en\_US(pc101)+ru+group(shift\_toggle)+ctrl(ctrl\_ac)"One another way to describe XKB configuration.
+XkbSymbols "en\_US(pc101)+ru+group(shift\_toggle)+ctrl(ctrl\_ac)"
+
+## One another way to describe XKB configuration.
 ----------------------------------------------
 
 There are one another way to describe XKB configuration. But in XFree it isn't used and isn't described. At the same time it allow
@@ -287,7 +297,7 @@ where <digit> is display number (usualy - **X0-config.keyboard**)
 
 First of all note all statements in this file looks like C language assignment statement
 
-XKB\_option = expression ;
+xkb_option = expression ;
 
 If statement is one per line then '**;**' sign at the end is unneeded. In any line (any place in line) comments can be inserted. Comments must begin from '**#**' or '**//**'.
 
@@ -456,8 +466,10 @@ If **mousekeyscurve** = 0 than growth is linear)
 
 here 'options' can be - **slowkeyspress, slowkeysaccept, feature, slowwarn, indicator, stickykeys, slowkeysrelease, slowkeysreject, bouncekeysreject, dumbbell.**
 
-For more details about these modes see documentation (**XKBlib**) from **XFree86** distributive.Some words about XKB internals.
--------------------------------
+For more details about these modes see documentation (**XKBlib**) from **XFree86** distributive.
+
+# The XKB internals
+Some words about XKB internals.
 
 *   [The basic terms - codes and symbols.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#codes)
 *   [Two parts of XKB and compatibility problem.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#two-part)
@@ -1003,8 +1015,9 @@ Therefore XKB **bell events** contains not sound parameters but simply some "sou
 
 So application working with XKB can request not simple bell but any sound specifying its name. Note that XKB doesn't perform any check of such sound names but simply retranslate them to juke-box.
 
-Of course XKB not only retranslates "sound requests" from applications to juke-box but can request sound for own needs (when it changes own state).Common notes about XKB configuration files language.
-----------------------------------------------------
+Of course XKB not only retranslates "sound requests" from applications to juke-box but can request sound for own needs (when it changes own state).
+
+## Common notes about XKB configuration files language.
 
 For a configuration description XKB uses a language similar to **C** program language.
 
@@ -1037,14 +1050,14 @@ Of course, all words in such string (concatenated with plus sign) must be names 
 
 Before each single section there can be additional words that defines 'how to add' this section to a common configuration. Their name is **merge mode**.
 
-That mode defines what a program has to do if a similar section already presents in the common configuration and a new declaration conflicts with a previous one. For example such declaration can be a keycode name definition (**xkb\_symbols** type section) for scan-code that is already defined (and named) or a modifier behavior description (**xkb\_compat** type) for a modifier that is already described.
+That mode defines what a program has to do if a similar section already presents in the common configuration and a new declaration conflicts with a previous one. For example such declaration can be a keycode name definition (**xkb_symbols** type section) for scan-code that is already defined (and named) or a modifier behavior description (**xkb_compat** type) for a modifier that is already described.
 
 Thus a merge mode can be one of
 
 *   **augment** if two declaration conflicts keep old declaration and ignore new one;
 *   **override** change old declaration to new one;
-*   **replace** in many cases is the same as **override** but for **xkb\_symbols** type section its meaning is slightly different. Since every keycode has whole array of posible values - keysyms (which value will be selected depends on a modifiers state), different declarations for the same keycode may describe values for a part of array cells only. If new declaration describes a few sells only and merge mode is **override** it means that these a few cells must be overriden but all other cells must be unchanged. But if a merge mode is **replace** it means that the whole old array must be removed and replaced by array from the new declaration (even if it is incomplete).
-*   **alternate** is allowed for **xkb\_keycodes** type sections and means that if a new keycode name conflicts with an old one, consider it as a 'keycode alias' (another one name for the same keycode).
+*   **replace** in many cases is the same as **override** but for **xkb_symbols** type section its meaning is slightly different. Since every keycode has whole array of posible values - keysyms (which value will be selected depends on a modifiers state), different declarations for the same keycode may describe values for a part of array cells only. If new declaration describes a few sells only and merge mode is **override** it means that these a few cells must be overriden but all other cells must be unchanged. But if a merge mode is **replace** it means that the whole old array must be removed and replaced by array from the new declaration (even if it is incomplete).
+*   **alternate** is allowed for **xkb_keycodes** type sections and means that if a new keycode name conflicts with an old one, consider it as a 'keycode alias' (another one name for the same keycode).
 
 ### More details about 'include' statement.
 
@@ -1062,8 +1075,9 @@ replace "group(toggle)"
 
 statement.
 
-You guess it means that all decalration from **"group(toggle)"** section must be inserted in the current section but merge mode for all declaration from new section must be **replace** (not **override** as by default).Common structure of XKB configuration files.
---------------------------------------------
+You guess it means that all decalration from **"group(toggle)"** section must be inserted in the current section but merge mode for all declaration from new section must be **replace** (not **override** as by default).
+
+## Common structure of XKB configuration files.
 
 The XKB configuration file can have one of three forms:
 
@@ -1079,7 +1093,7 @@ If file contain the "simple configuration" there must begins from heading like
 
 after which instructions follows. For example:
 
-xkb\_key�odes <TLDE> = 49; <AE01> = 10; .......
+xkb_key�odes <TLDE> = 49; <AE01> = 10; .......
 
 ### Set of simple sections.
 
@@ -1091,17 +1105,17 @@ Each section has own heading the same as for "simple configuration" file.
 
 For example:
 
-xkb\_symbols "basic" {....}; xkb\_symbols "us" {....}; ....
+xkb_symbols "basic" {....}; xkb_symbols "us" {....}; ....
 
 ### File types.
 
 Both mentioned formats uses the same **File Types**. It can be one of five words:
 
-*   **xkb\_keycodes** - file (or section) that contains names to scan-code numeric values assignments.
-*   **xkb\_types** - file where **key types** are described (key type defines how many shift levels one key has in dependence on modifiers state).
-*   **xkb\_compat** - file that describe modifiers behavior.
-*   **xkb\_symbols** - keyboard map itself that describes all possible symbols for each keycode.
-*   **xkb\_geometry** - describes keys and indicators physical placement on keyboard.
+*   **xkb_keycodes** - file (or section) that contains names to scan-code numeric values assignments.
+*   **xkb_types** - file where **key types** are described (key type defines how many shift levels one key has in dependence on modifiers state).
+*   **xkb_compat** - file that describe modifiers behavior.
+*   **xkb_symbols** - keyboard map itself that describes all possible symbols for each keycode.
+*   **xkb_geometry** - describes keys and indicators physical placement on keyboard.
 
 Note that if file consists of some sections all sections must have the same type. But, of course, they have different names.
 
@@ -1122,10 +1136,10 @@ us(pc104)
 Each heading can contain some flags such as:
 
 *   **default** - this flag makes sense when file consists of more than one section. It marks one of sections (one only !) as "default section". It means that if somewhere this file name specified without section name namely this marked section has to be taken.
-*   **partial** - means that this section is not full description but some part only. For example it can be **xkb\_symbols** type section that contains only "numpad key" description or it can be **xkb\_geometry** type section that describes only indicators placement.
-*   **hidden** - means that definitions from this section are invisible in "normal state" and will become visible when XKB internal state will be changed. For example it can be **xkb\_symbols** type section that contains keypad symbols that will be generated when **Num\_Lock** modifier is set.
+*   **partial** - means that this section is not full description but some part only. For example it can be **xkb_symbols** type section that contains only "numpad key" description or it can be **xkb_geometry** type section that describes only indicators placement.
+*   **hidden** - means that definitions from this section are invisible in "normal state" and will become visible when XKB internal state will be changed. For example it can be **xkb_symbols** type section that contains keypad symbols that will be generated when **Num\_Lock** modifier is set.
 
-The next flags makes sense only for **xkb\_symbols** type files and sections. They only marks kind of symbols this section contains.
+The next flags makes sense only for **xkb_symbols** type files and sections. They only marks kind of symbols this section contains.
 
 *   **alphanumeric\_keys** - alphabetic and numeric keys,
 *   **modifier\_keys** - modifiers (Control, Shift, Alt, Meta, etc.),
@@ -1145,16 +1159,17 @@ And finally lets consider third type of configuration file that is sequence of "
 
 but contains not instruction but blocks of simple type sections. For example
 
-xkb\_keymap "complete" { xkb\_keycodes {...}; xkb\_types {...}; xkb\_compat {...}; xkb\_symbols {...}; xkb\_geometry {...}; };
+xkb_keymap "complete" { xkb_keycodes {...}; xkb_types {...}; xkb_compat {...}; xkb_symbols {...}; xkb_geometry {...}; };
 
 Like simple sections file this file can contain some sections of the same type but with different names (one of sections can be marked by **"default"** flag).
 
 There are three "complex types":
 
-*   **xkb\_semantics** - such section MUST contain **xkb\_compat** type section and CAN contain **xkb\_types** type section also.
-*   **xkb\_layout** - MUST contain **xkb\_keycodes**, **xkb\_types** and **xkb\_symbols** types sections and CAN contain **xkb\_geometry** type section.
-*   **xkb\_keymap** - most complete type, MUST contain all types that must contain both previous type sections (**xkb\_keycodes, xkb\_types, xkb\_compat xkb\_symbols**) and additionaly CAN contain types that are optional for both previous types sections (it is only **xkb\_geometry** type).The xkb\_types type file.
--------------------------
+*   **xkb_semantics** - such section MUST contain **xkb_compat** type section and CAN contain **xkb_types** type section also.
+*   **xkb_layout** - MUST contain **xkb_keycodes**, **xkb_types** and **xkb_symbols** types sections and CAN contain **xkb_geometry** type section.
+*   **xkb_keymap** - most complete type, MUST contain all types that must contain both previous type sections (**xkb_keycodes, xkb_types, xkb_compat xkb_symbols**) and additionaly CAN contain types that are optional for both previous types sections (it is only **xkb_geometry** type).
+
+## The xkb_types type file.
 
 This file contents describes rules of **shift level** computation that are used in symbols map.
 
@@ -1162,11 +1177,11 @@ I should remind that to each **keycode** (key scan-code) can be bound from one t
 
 Usualy different groups are used for different alphabets and different levels are used for small/capital letters. But note that XKB allow to have up to 64 **shift levels**.
 
-So the xkb\_types type file contents describes **shift level** dependence on state of modifier keys (**Shift, Control, Alt**, etc.). Strictly speaking this file describes **key types**. Each type has any name and type description consists of rules for level calculation.
+So the xkb_types type file contents describes **shift level** dependence on state of modifier keys (**Shift, Control, Alt**, etc.). Strictly speaking this file describes **key types**. Each type has any name and type description consists of rules for level calculation.
 
-Then these types are used in **xkb\_symbols** type files where for each group table bound to keycode its own **key type** can be specified. But note that for most groups there are "default types" already defined so in most symbols maps you will not find explicit key type spcifying.
+Then these types are used in **xkb_symbols** type files where for each group table bound to keycode its own **key type** can be specified. But note that for most groups there are "default types" already defined so in most symbols maps you will not find explicit key type spcifying.
 
-The **xkb\_types** type files can contain records:
+The **xkb_types** type files can contain records:
 
 *   [Virtual modifiers declaration.](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#vmodDec)
 *   [Key type description.](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#type)
@@ -1176,7 +1191,7 @@ The **xkb\_types** type files can contain records:
 Such record simply itemises virtual modifiers names that cam be met in followed key type descriptions.
 
 I should remind that there are eight "traditional" modifiers (**Shift, Lock, Control, Mod1-Mod5**) named in XKB as **real** modifiers. And additionaly XKB can have up to 16 own modifiers named as **virtual** modifiers. Usualy their names are **NumLock, ScrollLock, Alt, AltGr**, etc.  
-Modifiers are bound to keys in **xkb\_symbols** type files.
+Modifiers are bound to keys in **xkb_symbols** type files.
 
 Any key type description can use both real and virtual modifiers. Since real modifiers always has standard names it is not necessary to declare these names any where but virtual modifier name can be any so it can be declared before using in key type descriptions.
 
@@ -1196,7 +1211,7 @@ This records looks like:
 
 'type' TypeName '{' Instructions '};'  
 
-**Type name** is any STRING type constant (or string of symbols in double quotas). This name is used in **xkb\_symbols** files for key type specifying.
+**Type name** is any STRING type constant (or string of symbols in double quotas). This name is used in **xkb_symbols** files for key type specifying.
 
 And **Instructions** are some records that looks like value to variable assignment. Each single instruction must be termonated by semicolon.
 
@@ -1280,14 +1295,16 @@ The XKB module already has for key types defined as "default types":
 *   **"ALPHABETIC"** - for alphabetical keys. They has two levels (small and capital letters) but in difference from **"TWO\_LEVEL"** keys these keys depends on **Shift** state and on **Lock** state too.
 *   **"KEYPAD"** - **keypad** keys. Thses keys has two levels too. But they depends on **NumLock** and **Shift** modifiers state.
 
-Note that the number of cells in symbols table in key description (in **xkb\_symbols** file) has to be the same as number of levels in key type description for this key.
+Note that the number of cells in symbols table in key description (in **xkb_symbols** file) has to be the same as number of levels in key type description for this key.
 
 Therefore althogh you can redefine any of "predefined" types (changing modifiers or laevel names in description) but it's dangerous to change number of values in these types. If you need more levels for some keys you can invent new type for them.
 
 Examples of key type description you can find in files from **{XKBROOT}/types/** directory.
 
-And one example of new type invention and usage you can see in section [Examples:New type for the Enter key."](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/example1.html).The xkb\_compat type files.
----------------------------
+And one example of new type invention and usage you can see in section [Examples:New type for the Enter key."](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/example1.html).
+
+
+## The xkb_compat type files.
 
 This file contents describes modifier keys behavior. Or in the other words how keyboard state changes when you press such keys.
 
@@ -1299,7 +1316,7 @@ I should remind that the XKB module has internal tables named **Xkb Compability 
 An application can request X-server to change symbol to keycode binding. If the symbol is ordinar "printable" symbol there is no problem. But if it is "control" symbol that imply change of modifier, group number or XKB internal state the XKB module has to bind an "action" to corresponded place in keycode bound table. But "old standard" request has no information about "action" so XKB has to decide what action must be bound using own data.  
 And the **Xkb Compability Map** is used for this problem solution.
 
-The xkb\_compat type files can contain records:
+The xkb_compat type files can contain records:
 
 *   [Virtual modifier declarstion.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#vmodDec)
 *   [Interpretation desctription.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#interpret)
@@ -1309,7 +1326,7 @@ The xkb\_compat type files can contain records:
 
 ### Virtual modifier declaration.
 
-As in **xkb\_types** type files a virtual modifiers that can be used in followed inctructions must be declared here. A real modifiers that can be used doesn't need to be declared becouse they have standard names. But the virtual modifiers can have any names therefore parser program need to know these names before all other instruction will be parsed.
+As in **xkb_types** type files a virtual modifiers that can be used in followed inctructions must be declared here. A real modifiers that can be used doesn't need to be declared becouse they have standard names. But the virtual modifiers can have any names therefore parser program need to know these names before all other instruction will be parsed.
 
 Virtual modifier declaration looks like:
 
@@ -1451,13 +1468,13 @@ group 2 = AltGr;
 
 ### Indicator behavior description.
 
-Although indicators behavior has no relation to **compability map**, they also are described in **xkb\_compat** type files.
+Although indicators behavior has no relation to **compability map**, they also are described in **xkb_compat** type files.
 
 I should remind that the XKB can manage up to 32 indicators. The first 3-4 ones (in dependence on hardware type) match to real LEDs on keyboard. All other indicators are "virtual" and can be showed by spaecial programs.
 
-In **xkb\_keycodes** type file the a symbolic names are assigned to each used indicator (specified by number).
+In **xkb_keycodes** type file the a symbolic names are assigned to each used indicator (specified by number).
 
-And **xkb\_compat** type file describes how these indicators behave in dependence on keyboard state. Remind that ...  
+And **xkb_compat** type file describes how these indicators behave in dependence on keyboard state. Remind that ...  
 First of all, indicators can reflect state of
 
 *   modifiers,
@@ -1474,7 +1491,7 @@ The indicator behavior whole description looks like:
 
 'indicator' inducator\_name '{' description '};'
 
-Here **indicator\_name** is symbolic name (in double quotas) assigned to the indicator in **xkb\_keycodes** type file.
+Here **indicator\_name** is symbolic name (in double quotas) assigned to the indicator in **xkb_keycodes** type file.
 
 And **description** consists of instructions that looks like assignment instruction.
 
@@ -1563,7 +1580,7 @@ drivesKeyboard = False; (or simply - !drivesKeyboard;)
 
 #### index
 
-This instruction allow to specify number of indicator (physical or virtual one). Normally a relation between indicator name and its number is set up in the **xkb\_keycodes** type file. But you can specify it here.
+This instruction allow to specify number of indicator (physical or virtual one). Normally a relation between indicator name and its number is set up in the **xkb_keycodes** type file. But you can specify it here.
 
 ### Defaults declaration.
 
@@ -1585,7 +1602,10 @@ The first word in left side (before period sign) must be
     
     SetMod.clearLock = True;
     
-    (more details about action description and posible fields see in [Actions description.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-action.html))Actions description.
+    (more details about action description and posible fields see in [Actions description.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-action.html))
+    
+    
+## Actions description.
 --------------------
 
 *   [Actions description in common.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#actions)
@@ -1610,7 +1630,7 @@ The first word in left side (before period sign) must be
     *   ["Raw" action.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#raw)
 *   [Defaults declaration.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#defaults)
 
-Actions decsriptions are used in the **xkb\_symbols** type file where an **action** can be bound to scan-code and in the **xkb\_compat** type file where the **action** can be bound to control symbols. (Remind that the **xkb\_compat** file contains "interpretations" that are special tables which helps to change actions-to-keycode binding when control symbols-to-keycode binding has been changed).
+Actions decsriptions are used in the **xkb_symbols** type file where an **action** can be bound to scan-code and in the **xkb_compat** type file where the **action** can be bound to control symbols. (Remind that the **xkb_compat** file contains "interpretations" that are special tables which helps to change actions-to-keycode binding when control symbols-to-keycode binding has been changed).
 
 In common the action description looks like the function declaration in C language:
 
@@ -1976,7 +1996,7 @@ And the second difference is that the overlay group method 'redirects' the whole
 
 The action name is: **Redirect** or **RedirectKey**.  
 The main argument is: **keycode** (its other names are **key** or **kc**).  
-Its value must be a name (not a numeric code!) of **keycode** as it defined in **xkb\_keycodes** type file.
+Its value must be a name (not a numeric code!) of **keycode** as it defined in **xkb_keycodes** type file.
 
 Two other arguments serves for specifying the set of modifiers. Their names are **clearmodifiers** (or **clearmods**) and **modifiers** (or **mods**). As you can guess, the first one describes modifiers that must be cleaned from the current modifiers set and the second one describes modifiers must be added. Of course, both arguments are optional and if no one of them is specified the current modifiers set will be reported in the emulated key event.
 
@@ -2049,7 +2069,7 @@ Private(type=123, data\[1\]=0, data\[2\]=100, data\[3\]=12);
 Defaults declaration.
 ---------------------
 
-In files where actions descriptions can appear (**xkb\_compat** and **xkb\_symbols**) also instructions such as 'defaults declaration' can be used.
+In files where actions descriptions can appear (**xkb_compat** and **xkb_symbols**) also instructions such as 'defaults declaration' can be used.
 
 They looks like assignment some values to fields of structire in C language. It means that the left side is combination of two words separated by period sign.
 
