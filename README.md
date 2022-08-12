@@ -16,8 +16,8 @@ It was originally created by Ivan Pascal. But looks like he doesn't maintain it 
     *   The xkb_keycodes type file.
     *   [The xkb_types type file.](#the-xkbtypes-type-file)
     *   [The xkb_compat type file.](#the-xkbcompat-type-files)
-    *   [The xkb_symbols type file.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/gram-symbols.html)
-    *   ["Actions" description.](https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/gram-action.html)
+    *   [The xkb_symbols type file.](#the-xkbsymbols-type-file)
+    *   [Actions description.](#actions-description)
 *   Some examples.
     *   New type for Enter key.
     *   Group number switchers.
@@ -25,17 +25,16 @@ It was originally created by Ivan Pascal. But looks like he doesn't maintain it 
     *   What to do with 'incorrect' applications?
 *   XKB related utilites.
 
-## How to configure XKB.
----------------------
+# How to configure XKB.
 
-*   [The XKB 'database'](https://web.archive.org/web/20190727020850/http://pascal.tsu.ru/en/xkb/setup.html#database)
-*   [Three methods to describe XKB full configuration.](https://web.archive.org/web/20190727020850/http://pascal.tsu.ru/en/xkb/setup.html#setup)
-    *   [The first method.](https://web.archive.org/web/20190727020850/http://pascal.tsu.ru/en/xkb/setup.html#1)
-    *   [The second method.](https://web.archive.org/web/20190727020850/http://pascal.tsu.ru/en/xkb/setup.html#2)
-    *   [The third method.](https://web.archive.org/web/20190727020850/http://pascal.tsu.ru/en/xkb/setup.html#3)
-*   [Some suggestions.](https://web.archive.org/web/20190727020850/http://pascal.tsu.ru/en/xkb/setup.html#suggest)
+*   [The XKB 'database'](#the-xkb-database)
+*   [Three methods to describe XKB full configuration.](#three-methods-to-describe-xkb-full-configuration)
+    *   [The first method.](#the-first-method)
+    *   [The second method.](#the-second-method)
+    *   [The third method.](#the-third-method)
+*   [Some suggestions.](#some-suggestions)
 
-### The XKB 'database'
+## The XKB 'database'
 
 At the Xserver start its keyboard module XKB reads all needed data from text files that are the 'database' of the XKB configuration.
 
@@ -49,8 +48,8 @@ The XKB configuration database consists of 5 components:
 
 tables that define symbolic names for key scan-codes  
 For example  
-<TLDE>= 49;  
-<AE01> = 10;
+\<TLDE>= 49;  
+\<AE01> = 10;
 
 **types**
 
@@ -85,11 +84,11 @@ xkb_symbols "pc101" {...}; default xkb_symbols "pc101euro" {...}; xkb_symbols "p
 
 This means that if one specifies only a file name, this section from the file will be used.
 
-### Three methods to describe XKB full configuration.
+## Three methods to describe XKB full configuration.
 
 All components needed for XKB configuration can be described in the Keyboard section of the X server config file.
 
-#### The first method.
+### The first method.
 
 The first way is to specify explicitly every component. For example
 
@@ -115,7 +114,7 @@ That means (as you guess) that some other description must be inserted from spec
 
 So the full description can include data from many other files besides files you explicitly specify in the X server configuration file.
 
-#### The second method.
+### The second method.
 
 You can specify the full set of components by one name. Such components sets are named **keymaps** and like single components are placed in separate files (that can contain any number of sections) in **{XKBROOT}/keymap** directory.
 
@@ -135,7 +134,7 @@ Option "XkbKeymap" "xfree86(ru)"
 
 Unfortunately this method is very unflexible. Since XKB ignores all other options when an XkbKeymap option is found, you can't 'tune' a single component in the X server configuration file.
 
-#### The third method.
+### The third method.
 
 And here is the third method that differs from the two pvious methods.
 
@@ -199,13 +198,13 @@ that means XKB has to
 
 By the way, you can find descriptions - what meaning has what option and what Models and Layouts are defined in Rules (and what they mean) in **xfree86.lst** file (or another **\*.lst** file if you use no **xfree86** rules) that is placed in the same directory **{XKBROOT}/rules**.
 
-### Some suggestions.
+## Some suggestions.
 
 These suggestions were written for Russian users, so all examples assume that the needed language (alphabet) is Russian. Also note that the Cyrillic (Russian) alphabet is very different from Latin one, so in Russian 'symbols map' Latin and Cyrillic are placed in different XKB 'symbols group' and so russian users need a special 'group\_switch' key to switch between these groups.
 
 All examples are written for XFree 3.x version. If you use XFree 4.x I hope you understand how to change it.
 
-#### The simplest way is to use special program for X's configuration.
+### The simplest way is to use special program for X's configuration.
 
 In XFree86 this program has the name XF86Setup. It uses the third method for XKB configuration with rules (**XkbRules**) - xfree86. All you need is to choose 'Model' (**XkbModel**), 'Layout' (**XkbLayout**) and 'group\_switcher' ("Russian/Latin" switcher).
 
@@ -225,7 +224,7 @@ First of all note that 'key words' will be
 
 (If you have another architecture/hardware/alphabet you have to change these words accordingly.)
 
-#### Let's begin with the second method - full keymap.
+### Let's begin with the second method - full keymap.
 
 There are sets of full **keymaps**" for **xfree86** architecture (in XKB configuration files) that differ in language. They are all placed in **xfree86** file and the section names reflect names of languages (or alphabets) - **xfree86(us), xfree86(fr), xfree86(ru)** and so on. The full list of **keymaps** you can find in the **{XKBROOT}/keymap.dir** file.
 
@@ -239,7 +238,7 @@ The only way to add this group\_switcher is to edit **{XKBROOT}/keymap/xfree86**
 
 xkb_symbols { include "en\_US(pc105)+ru+group(caps\_toggle)"};
 
-#### If you want to use the third method - by Rules, Model, Layout
+### If you want to use the third method - by Rules, Model, Layout
 
 As I told above
 
@@ -257,7 +256,7 @@ Don't forget that in recent versions of XFree there is no 'default group\_switch
 
 XkbOptions "grp:caps\_toggle"
 
-#### And finally the first method - by separate XKB components (keycodes, compat, types, symbols, geometry).
+### And finally the first method - by separate XKB components (keycodes, compat, types, symbols, geometry).
 
 If you don't know how to begin, you can look at any appropriate component set in a **keymap** file. Or try to figure it out from **rules/model/layout**. (For more details about such 'computation' see ["Examples: Where we will make our experiments?"](https://web.archive.org/web/20190727020850/http://www.tsu.ru/%7Epascal/en/xkb/examples.html))
 
@@ -282,8 +281,7 @@ If you additionally want to change the behavior of other control keys (that in t
 
 XkbSymbols "en\_US(pc101)+ru+group(shift\_toggle)+ctrl(ctrl\_ac)"
 
-## One another way to describe XKB configuration.
-----------------------------------------------
+# One another way to describe XKB configuration.
 
 There are one another way to describe XKB configuration. But in XFree it isn't used and isn't described. At the same time it allow
 
@@ -293,7 +291,7 @@ There are one another way to describe XKB configuration. But in XFree it isn't u
 The additional configure file must be placed in **{XRoot}/lib/X11/xkb** directory and has name **X**<digit>**\-config.keyboard**  
 where <digit> is display number (usualy - **X0-config.keyboard**)
 
-### This file format.
+## This file format.
 
 First of all note all statements in this file looks like C language assignment statement
 
@@ -321,7 +319,7 @@ Also this file can use some variants of assignment statement. If statement defin
 
 In this file you can specify...
 
-### XKB configuration components.
+## XKB configuration components.
 
 **rules = "..." model = "..." layout = "..." variant = "..." options = "..." keymap = "..." keycodes = "..." geometry = "..." types = "..." compat = "..." symbols = "..."** (or **symbolstouse = "..."**)
 
@@ -329,7 +327,7 @@ They describe the same options that in general Xserver configure file (**XF86Con
 
 Remind that 'additional configuration file' can be composed for each display separately. So it makes sense to use here components (or **rules/model/layout/**etc.) that for this display are differ from 'general' (from **XF86Config**). Of course all such options here have bigger priority and overrides corresponding options from Xserver configuration file.
 
-### Initial value for [modifiers](https://web.archive.org/web/20190718063330/http://pascal.tsu.ru/en/xkb/internals.html#mods) set.
+## Initial value for [modifiers](https://web.archive.org/web/20190718063330/http://pascal.tsu.ru/en/xkb/internals.html#mods) set.
 
 **modifiers** **\[ = | -= | += \]** modifier1 + modifier2 + ...
 
@@ -338,13 +336,13 @@ Where 'modifier\*' is name of one of 'real modifiers' - **shift, lock, control**
 As I told above in this statement 'variants of assignment' can be used - '**\-=**' - remove modifier(s), '**+=**' - add modifier(s), '**\=**' - replace modifier set by specified one in statement.  
 (It need to be mentioned that by default at server start this modifiers set is empty. So operation '+=' or '=' only makes sense. And their actions in this case have no differences.)
 
-### Initial value for ["control flags"](https://web.archive.org/web/20190718063330/http://pascal.tsu.ru/en/xkb/internals.html#controls) set.
+## Initial value for ["control flags"](https://web.archive.org/web/20190718063330/http://pascal.tsu.ru/en/xkb/internals.html#controls) set.
 
 **controls** **\[ = | -= | += \]** flag1 + flag2 + ...
 
 As in prevous statement operation can be remove/add/replace (**'-='/'+='/'='**).
 
-#### "Flags" can be
+### "Flags" can be
 
 **repeat** (or **repeatkeys**)
 
@@ -383,17 +381,17 @@ accessxfeedback**
 
 switch on several modes of AccessX (for Physically Impaired Persons).
 
-### Modifiers that must be ignored in GrabKey mode
+## Modifiers that must be ignored in GrabKey mode
 
 **ignorelockmods** **\[ -= | += | = \]** modifier1 + modifier2 + ... (or **ignorelockmodifiers** ...)
 
-### List of 'internal modifiers'
+## List of 'internal modifiers'
 
 **internalmods** **\[ -= | += | = \]** modifier1 + modifier2 + ... (or **internalmodifiers** ...)
 
 This is modifiers set that must be used inside Xserver (for 'action' selection if exists) and must not be reported to client applications in keyboard events
 
-### Group ['adjust method'](https://web.archive.org/web/20190718063330/http://pascal.tsu.ru/en/xkb/internals.html#wrap).
+## Group ['adjust method'](https://web.archive.org/web/20190718063330/http://pascal.tsu.ru/en/xkb/internals.html#wrap).
 
 **groups** = \[ **wrap** | **clamp** | number \] (or **outofrangegroups** ...)
 
@@ -402,7 +400,7 @@ So **redirect** method can be specified in form
 
 **groups** = group\_number
 
-### Bell parameters.
+## Bell parameters.
 
 **bell** = number (or **bellvolume** = number ) **bellpitch** = number **bellduration** = number **click** = number (or **clickvolume** = number )
 
@@ -414,7 +412,7 @@ Statements **bell** and **click** also can looks like
 
 that means (as easy to guess) that these signals must be switched on/off. If command is "to switch on signal" without any volume the volume assumed 100.
 
-### Some timeouts.
+## Some timeouts.
 
 **repeatdelay** = number
 
@@ -437,7 +435,7 @@ in **bouncekeys** mode XKB temporary desible key after key press or release to a
 delay (in seconds) after what AccessX mode will be swithed off automaticaly. This parameter have sense if corresponding 'control flag' is up -  
 (**controls += ... accessxtimeout ...**);
 
-### Parameters of 'mouse cursor acceleration'.
+## Parameters of 'mouse cursor acceleration'.
 
 **mousekeysdelay** = number
 
@@ -460,7 +458,7 @@ how many repeats have to occur before speed reach max value;
 acceleration 'curve Factor' ( in accelerated mode cursor speed grows from initial value to maximun not linear but as **X^(1 + curve/1000)**.  
 If **mousekeyscurve** = 0 than growth is linear)
 
-### Switch on/off AccessX 'sound indication' modes
+## Switch on/off AccessX 'sound indication' modes
 
 **accessxtimeoutctrlson** \[ -= | += | = \] option1 + option2 + ... (or **axtctrlson** ...) **accessxtimeoutctrlsoff** \[ -= | += | = \] option1 + option2 + ... (or **axtctrlsoff** ...)
 
@@ -494,7 +492,7 @@ Some words about XKB internals.
 *   [Mouse events emulation.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#mouse)
 *   [Bell features extension.](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#bell)
 
-### The basic terms - codes and symbols.
+## The basic terms - codes and symbols.
 
 The main XKB module function is convertion of the pressed keys scan-codes to the symbol codes.
 
@@ -502,7 +500,7 @@ In the XKB documentation scan-codes are named **keycodes** and the symbols codes
 
 Of course the "symbols" term doesn't mean printable symbol codes only (letters, digits, punctuation, etc.). This term includes "control symbols" (such as Esc, Enter, Backspace, etc.) and codes that can influence to state of XKB itself and so to other symbols choice procedure (alphabet switcher, Control, Shift, Alt, etc.).
 
-### Two parts of XKB and compatibility problem.
+## Two parts of XKB and compatibility problem.
 
 First of all I should tell some words how scan-codes to symbols conversion occurs in the X Window System without XKB module.
 
@@ -529,7 +527,7 @@ But nobody forbids to use applications that was linked with old Xlib that doesn'
 Of course such communication is not limited with messages about key press or release. Xlib procedures can send to X-server some requests (for example get symbols map) and commands (for example change some symbol placement in this table).  
 And even working with old Xlib XKB must react to such requests and commands to allow application work as correctly as possible.
 
-### Symbols table.
+## Symbols table.
 
 What is simbols table that binds symbols with keycodes and modifiers state? Lets look for begining to "traditional" symbols table being used before XKB.
 
@@ -715,7 +713,7 @@ four columns
 
 And finally I should say that the number of groups can be from 1 to 4 and number of levels can be up to 64.
 
-### Actions table.
+## Actions table.
 
 Besides "symbols table" keycode can have bound "**actions** table". This table also can be devided to **group** sub-tables and **levels**.
 
@@ -737,7 +735,7 @@ It is important that if some cell (defined by **group** and **shift level**)in a
 
 Note that the old keyboard module has not actions mechanism.
 
-### XKB state: current group number.
+## XKB state: current group number.
 
 XKB keeps current group number in "internal state" table.  
 Strictly speaking, there are three internal variables for group number
@@ -750,7 +748,7 @@ These variables values can be changed by **actions** bound to appropriate keys (
 
 And there is term **effective group** that is sum of all three mentioned variables. This value XKB server part calculates at every key press or release and reports to application in **key event** to allow aplication choose needed symbol. (Of course the same value server uses for **action** choice.)
 
-### "Keeping in range" methods for group number.
+## "Keeping in range" methods for group number.
 
 Of course this sum can be bigger than number of groups are really used in keyboard map. To make from it some reasonable value XKB can use one of three methods:
 
@@ -758,7 +756,7 @@ Of course this sum can be bigger than number of groups are really used in keyboa
 *   **Clamp** - if sum is bigger than highest group it will be replaced with "last group number", if sum less than one the first group will be used.
 *   **Redirect** - if this method is used it need in XKB state one another value defined - number "where redirect to" (or "what replace with"). If sum is out of bounds this additional value will be used. By the way if this value also is out of bounds XKB will use first group.
 
-### Modifiers.
+## Modifiers.
 
 Besides group number variables "XKB state" contains variables for bit flags that are named modifiers. These flags changes own state when keys like **Shift, CapsLock, Alt, Control**, etc. are pressed or released.
 
@@ -778,7 +776,7 @@ Modifiers has some function:
 *   their state is used for indicators state calculation;
 *   and since they are used for **action** choice so they influence to all that the **actions** do - group number calculation, other modifiers state changing and so on.
 
-### XKB state: modifiers.
+## XKB state: modifiers.
 
 Like group number modifiers set inside XKB distributed to three variables
 
@@ -790,7 +788,7 @@ These variables values can be changed by **actions**.
 
 And as for group there is term **effective modifiers** that is boolean sum (bitwise OR) of three mentioned variables. Of course since it is boolean addition XKB needn't any additional acts to keep sum in range.
 
-### Shift level calculation. Key types.
+## Shift level calculation. Key types.
 
 XKB doesn't keep **shift level** like **group** number inside but calculates it from modifiers state every time when need it. And for each key level from modifiers dependence can be different.
 
@@ -802,7 +800,7 @@ When key is pressed XKB takes key type description from sub-table and useing thi
 
 I should note that though key type for each keycode sub-table can be changed flexibly XKB has "basic set" of key types and each keycode has any type as default. Therefore usually one needn't specify key types in keyboard map.
 
-### What other data each keycode description has.
+## What other data each keycode description has.
 
 Besides symbols and actions tables each keycode description has some other variables:
 
@@ -811,14 +809,14 @@ Besides symbols and actions tables each keycode description has some other varia
 *   exceptions set;
 *   real (modmap) and virtual (vmodmap) modifiers
 
-#### Keep group number in range method.
+### Keep group number in range method.
 
 Since different keys can have different number of groups it can occur that the **effective group** value legal for whole keyboard map is too big for some particilar keys.  
 In such case effective group must be corrected especially for current key.
 
 Possible methods are the same as ["global" ones](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#wrap). By default **Wrap** method is used.
 
-#### Key behavior.
+### Key behavior.
 
 This variable consists of two parts - boolean flags and additional argument. In most cases additional argument is not needed but some flags assume additional numeric value. Of course argument meaning depends on flag meaning.
 
@@ -829,7 +827,7 @@ These flags defines:
 *   is this key the member of any [radio group](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#radio). For this flag additional argument means radio group identifier.
 *   is this key the member of any [overlay group](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#overlay) There can be only two such group. What group is active in current time can be managed by one of two [XKB control flags](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#controls) (names of flags are **Overlay1** and **Overlay2**). So there are two flags in **key behavior** - "is it the member of the first overlay group" and "is it the member of the second overlay group". The additional argument means keycode which will replace this key keycode if the corresponded overlay group is active.
 
-#### Exceptions set.
+### Exceptions set.
 
 It is bit mask that defines what keycode related data is "specified explicitly" and must not be changed in some cases. The thing is that the X-protocol include commands that allow application change symbol\_to\_keycode binding in keyboard map inside X-server. Of course these commands changes symbols placement only but doesn't change other data such as **action**, key behavior or key bound modifiers.
 
@@ -846,7 +844,7 @@ This mask can forbid
     *   **autorepeat** or **lock** flags changes;
     *   keycode bound modifiers changes;
 
-#### Real and virtual modifiers.
+### Real and virtual modifiers.
 
 First of all note that there are two variables for each keycode (**modmap** and **vmodmap**) one variable for real modifier and anoter one for virtual modifiers.
 
@@ -858,7 +856,7 @@ But modifiers in the "emulated traditional modifiers set" changes automaticaly a
 
 Also these two variable are used for the virtual\_to\_real modifier mapping. Remember that the virtual modifier has not any effect while it is not mapped to any real modifier.
 
-### XKB state: control flags (XKB Controls).
+## XKB state: control flags (XKB Controls).
 
 Besides group number and modifiers set there is another one set of bit flags in XKB state. But in difference to group and modifiers that are distributed to three variables (**base, locked, latched**) this set occupate only one variable.
 
@@ -872,7 +870,7 @@ These flags are used for
 
 XKB controls (like group number and modifers) can be changed by appropriate [action](https://web.archive.org/web/20190718184358/http://pascal.tsu.ru/en/xkb/internals.html#actions) bound to some keys.
 
-### Indicators.
+## Indicators.
 
 You know that besides key keyboard has some indicator LEDs. These indicators management is XKB duty too.  
 XKB can have up to 32 indicators.  
@@ -888,7 +886,7 @@ Therefore each indicator description has some flags that defines:
 *   is this indicator bound to some keyboard state component or it is used by applications only;
 *   and finally, has this indicator "feedback". It means you can make indicator has influence to bound component and request to change indicator state will cause change of component state (modifer state or group number or control flag state).
 
-### Compatibility table.
+## Compatibility table.
 
 As I already mentioned above, XKB needs to solve the "compatibility problem" working with application that aren't XKB-aware and that use traditional protocol requests.
 
@@ -923,7 +921,7 @@ Of course XKB can process such requests but the problem is that the XKB has some
 Few other terms.
 ----------------
 
-### Radio Groups.
+## Radio Groups.
 
 XKB module allow to unite some keys to one radio-group. It means that all keys states in such group depends on each other. At one key press all other keys become unpressed.
 
@@ -933,13 +931,13 @@ In the same place you can specify one additional property for radio-group that d
 
 XKB allow to have up to 127 radio groups.
 
-### Overlay group.
+## Overlay group.
 
 XKB allow some keys to have alternative scan-code (keycode). It means that in normal state when such key is pressed and keyboard generates its scan-code XKB use this scan-code in usual way. But when overlay mode is switched on XKB replaces this scan-code by alternative one ant then deal with this new code.
 
 Such group of keys that has alternative keycodes is named "overlay group" (or simply **overlay**). There can be only two such group. The belonging of concrete key to overlay group and alternative keycode itself can be defined in "key behavior".
 
-### AccessX. Additional services for physically impaired persons.
+## AccessX. Additional services for physically impaired persons.
 
 There are people who has limited mobility of hands (fingers) or need to use some devices to access keyboard.
 
@@ -970,7 +968,7 @@ This automatical deactivation (as the other modes) can be switched on/off by cor
 And finally, AccessX has special mode of additional sound indication of all events such as several timeouts begin and end and LEDs switching. To allow users distinguish these events (especially when more then one AccessX mode is active) the XKB tries to make different sounds (in pitch and duration) for different events as far as hardware allow.  
 This mode as the other modes can be switched on/off by corresponded XKB control flag (**AccessXFeedback**). Also sound for separate events can be switched on/off seprately.
 
-### Mouse emulation.
+## Mouse emulation.
 
 The XKB can emulate mouse events by keyboard. It means that it can be configured to produce events about mouse movement and mouse button pressing instead of key press events.
 
@@ -999,7 +997,7 @@ Mouse emulation switching on/off and movement mode choice can be performed by tw
 
 I should note that by default all needed actions are described in the XKB configuration and are bound to **NUMPAD** keys. To switch on/off the mouse emulation mode you can use **Shift+NumLock** keys combination.
 
-### Bell features extension.
+## Bell features extension.
 
 It can seems that this part has not relation to keyboard.  
 Moreover, for users of computers where keyboard, display and "speaker" are independent devices such combination can looks very strange. But since in some hardware bell is placed in keyboard and produce **key\_click** sound at every key press so X's design consider that bell control is keyboard mode duty.
@@ -1017,7 +1015,7 @@ So application working with XKB can request not simple bell but any sound specif
 
 Of course XKB not only retranslates "sound requests" from applications to juke-box but can request sound for own needs (when it changes own state).
 
-## Common notes about XKB configuration files language.
+# Common notes about XKB configuration files language.
 
 For a configuration description XKB uses a language similar to **C** program language.
 
@@ -1038,7 +1036,7 @@ What statements are legal in particular file depengs on 'File Type' (or componen
 
 Though there are some words that can be used in files (sections) of any type.
 
-### 'include' statement.
+## 'include' statement.
 
 Of course, it means that some portion of text must be inserted into this section from other file (section). Note that argument of this statement can be not a single file (section) name but a more complex string. For example
 
@@ -1046,7 +1044,7 @@ Of course, it means that some portion of text must be inserted into this section
 
 Of course, all words in such string (concatenated with plus sign) must be names of existent files and their internal sections. And each such file must have a type the same as the current section (where 'include' statement occur) has.
 
-### Merge mode.
+## Merge mode.
 
 Before each single section there can be additional words that defines 'how to add' this section to a common configuration. Their name is **merge mode**.
 
@@ -1059,7 +1057,7 @@ Thus a merge mode can be one of
 *   **replace** in many cases is the same as **override** but for **xkb_symbols** type section its meaning is slightly different. Since every keycode has whole array of posible values - keysyms (which value will be selected depends on a modifiers state), different declarations for the same keycode may describe values for a part of array cells only. If new declaration describes a few sells only and merge mode is **override** it means that these a few cells must be overriden but all other cells must be unchanged. But if a merge mode is **replace** it means that the whole old array must be removed and replaced by array from the new declaration (even if it is incomplete).
 *   **alternate** is allowed for **xkb_keycodes** type sections and means that if a new keycode name conflicts with an old one, consider it as a 'keycode alias' (another one name for the same keycode).
 
-### More details about 'include' statement.
+## More details about 'include' statement.
 
 Lets return to **include** statement. If declaration from a section that must be inserted conflicts with existen declarations a merge mode **override** is assumed by default (if inside file this section is not 'marked' with another merge mode). The same defaults are used if in the **include** argument string there are more then one file and additional files are concatenated with plus sign.
 
@@ -1077,7 +1075,7 @@ statement.
 
 You guess it means that all decalration from **"group(toggle)"** section must be inserted in the current section but merge mode for all declaration from new section must be **replace** (not **override** as by default).
 
-## Common structure of XKB configuration files.
+# Common structure of XKB configuration files.
 
 The XKB configuration file can have one of three forms:
 
@@ -1085,7 +1083,7 @@ The XKB configuration file can have one of three forms:
 *   [Set of simple sections.](https://web.archive.org/web/20190724011542/http://pascal.tsu.ru/en/xkb/gram-file.html#blocks)
 *   [Set of complex sections.](https://web.archive.org/web/20190724011542/http://pascal.tsu.ru/en/xkb/gram-file.html#complex)
 
-### Simple configuration.
+## Simple configuration.
 
 If file contain the "simple configuration" there must begins from heading like
 
@@ -1095,7 +1093,7 @@ after which instructions follows. For example:
 
 xkb_key�odes <TLDE> = 49; <AE01> = 10; .......
 
-### Set of simple sections.
+## Set of simple sections.
 
 But often another form is used that is sequence of "simple sections". In such file all instruction are grouped to blocks or section that are bounded by figure brackets '**{...}**'. And each section must be terminated by semicolon sign '**;**'.
 
@@ -1107,7 +1105,7 @@ For example:
 
 xkb_symbols "basic" {....}; xkb_symbols "us" {....}; ....
 
-### File types.
+## File types.
 
 Both mentioned formats uses the same **File Types**. It can be one of five words:
 
@@ -1131,7 +1129,7 @@ for example:
 
 us(pc104)
 
-### Flags.
+## Flags.
 
 Each heading can contain some flags such as:
 
@@ -1151,7 +1149,7 @@ I should note that X-server (or **xkbcomp** program) can use only **default** fl
 
 By the way, complete list of all sections with their flags you can find in **\*.dir** files inside **{XROOT}/lib/X11/xkb** directory. These files names reflects XKB file types - **keycodes, types, symbols**, etc. Flags in these files are represented by one letter that is first letter in flag name.
 
-### Set of complex sections.
+## Set of complex sections.
 
 And finally lets consider third type of configuration file that is sequence of "complex sections". Each "Complex section" has form the same as "simple section":
 
@@ -1169,7 +1167,7 @@ There are three "complex types":
 *   **xkb_layout** - MUST contain **xkb_keycodes**, **xkb_types** and **xkb_symbols** types sections and CAN contain **xkb_geometry** type section.
 *   **xkb_keymap** - most complete type, MUST contain all types that must contain both previous type sections (**xkb_keycodes, xkb_types, xkb_compat xkb_symbols**) and additionaly CAN contain types that are optional for both previous types sections (it is only **xkb_geometry** type).
 
-## The xkb_types type file.
+# The xkb_types type file.
 
 This file contents describes rules of **shift level** computation that are used in symbols map.
 
@@ -1186,7 +1184,7 @@ The **xkb_types** type files can contain records:
 *   [Virtual modifiers declaration.](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#vmodDec)
 *   [Key type description.](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#type)
 
-### Virtual modifiers declaration.
+## Virtual modifiers declaration.
 
 Such record simply itemises virtual modifiers names that cam be met in followed key type descriptions.
 
@@ -1205,7 +1203,7 @@ virtual\_modifiers NumLock, Alt;
 
 means that besides real modifiers also virtual modifiers **NumLock** and **Alt** can be used in key type descriptions.
 
-### Key type description
+## Key type description
 
 This records looks like:
 
@@ -1222,7 +1220,7 @@ Instruction inside key type description can be:
 *   [level\_name\[...\] = ...;](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#level_name)
 *   [preserve\[...\] = ...;](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/gram-types.html#preserve)
 
-#### modifiers
+### modifiers
 
 This instruction simply itemise real and virtual modifiers that are used for level computation in this concrete type. If there are more that one modifier they are concatenated by plus sign.  
 For example:
@@ -1233,7 +1231,7 @@ or
 
 modifiers = Shift+Lock;  
 
-#### map\[...\]
+### map\[...\]
 
 Namely this instruction describes what level value match to each modifier or their combination. So inside squere brackets modifier or combination is specified and at right side of assignment corresponded level value is placed. For level value one can use "level names" (**Level1, Level2**, etc.) or simply numeric value. (The xkbcomp program undestand level names from **Level1** to **Level8** only. So if you need level value more than eight you need to specify it as number.)  
 Also as modifier name the special word "None" can be used. It means that this instruction defines what level value match to state where all modifiers are inactive.  
@@ -1254,7 +1252,7 @@ means that if both **Control** and **Alt** modifiers are active the Level3 value
 Note that in the last example it can be that each of **Control** and **Alt** modifiers separately doesn't match to any level value but only pressed together can change level. In such case instructions with **map\[Control\]** and **map\[Alt\]** will be absent.  
 But **map\[None\]** usualy presents in each key type description.
 
-#### level\_name\[...\]
+### level\_name\[...\]
 
 This instruction assigns any symbolic name to each level described in this key type. So inside squere brackets level value (**Level1, Level2**, etc.) must be specified and at right side any symbols string (in double quotas) must be placed.  
 For eaxmple,
@@ -1265,7 +1263,7 @@ level\_name\[Level1\] = "Base";  level\_name\[Level2\] = "Shifted";
 
 I should mention that for XKB work these names (and so these instructions) doesn't make sense. They can be used by application that shows keyboard state. But on the other hand X-server "don't like" incomplete description and outputs error messages if level names are absent in type description.
 
-#### preserve\[...\]
+### preserve\[...\]
 
 This instruction needs additional explanation.  
 Remind that X-server sends to application some message about key press or release event. This message contain keycode and "state" that is set of modidifiers.
@@ -1286,7 +1284,7 @@ But in right part there can be only part of modifiers (or only one modifier). It
 
 Also note that in right side as modifier name the "None" word can be used. It means that none of modifiers has to be preserved. But since it is deafault behavior (don't save any modifiers) such instructions doesn't make sense and can be ommited.
 
-### Predefined types.
+## Predefined types.
 
 The XKB module already has for key types defined as "default types":
 
@@ -1304,7 +1302,7 @@ Examples of key type description you can find in files from **{XKBROOT}/types/**
 And one example of new type invention and usage you can see in section [Examples:New type for the Enter key."](https://web.archive.org/web/20190724070654/http://pascal.tsu.ru/en/xkb/example1.html).
 
 
-## The xkb_compat type files.
+# The xkb_compat type files.
 
 This file contents describes modifier keys behavior. Or in the other words how keyboard state changes when you press such keys.
 
@@ -1324,7 +1322,7 @@ The xkb_compat type files can contain records:
 *   [Indicator behavior description.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#indicator)
 *   [Defaults declaration.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#defaults)
 
-### Virtual modifier declaration.
+## Virtual modifier declaration.
 
 As in **xkb_types** type files a virtual modifiers that can be used in followed inctructions must be declared here. A real modifiers that can be used doesn't need to be declared becouse they have standard names. But the virtual modifiers can have any names therefore parser program need to know these names before all other instruction will be parsed.
 
@@ -1336,7 +1334,7 @@ For example:
 
 virtual\_modifiers NumLock, AltGr ;
 
-### Interpretation description.
+## Interpretation description.
 
 Each **interpretation** defines relation between some control **symbol** code and an **action** that the XKB has to perform at key pressing.
 
@@ -1419,7 +1417,7 @@ Instructions inside interpretation description looks like assignment instruction
 *   [virtualModifier = ...; or virtualMod = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#vmod)
 *   [action = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#action)
 
-#### useModMapMods
+### useModMapMods
 
 Is used for specifying **LevelOneOnly** condition. If a word in right side is "**level1**" or "**levelone**" the condition has to be checked. But words "**anylevel**" or "**any**" means that the condition has to be ignored. By the way, by default this condition has to be ignored, so lines like
 
@@ -1427,14 +1425,14 @@ useModMapMods = anylevel;
 
 doesn't make sense.
 
-#### repeat and locking
+### repeat and locking
 
 These instruction are used for specifying "autorepeat" and "locking" flags. The word in right side must be name of logical value - **True** or **False**.  
 For example:
 
 repeat = True; locking = False;
 
-#### virtualModifier
+### virtualModifier
 
 This instruction defines a virtual modifier for keycode. Since such modifier is attribute of keycode (not of particular symbol), the interpretation with **virtualModifier** usualy uses **LevelOneOnly** condition.
 
@@ -1443,14 +1441,14 @@ For example:
 
 virtualModifier = AltGr;
 
-#### action
+### action
 
 This instruction describes an **action**. More details about format of action description you can read in [Actions description](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-action.html).  
 Here I only note that the **action** field can be empty. If **interpretation** is needed for binding flags or virtual modifiers only its description can looks like:
 
 interpret ... { repeat = False; locking = True; action = NoAction(); };
 
-### Group number to modifier mapping.
+## Group number to modifier mapping.
 
 I should remind that group number occupates two bit field in XKB internal state and in key event meassage. But old application know nothing about XKB groups and this two bit field in event. Such application decides that group (remind that old keyboard module has two "group" too) is changed using one of modifier.
 
@@ -1466,7 +1464,7 @@ For example:
 
 group 2 = AltGr;
 
-### Indicator behavior description.
+## Indicator behavior description.
 
 Although indicators behavior has no relation to **compability map**, they also are described in **xkb_compat** type files.
 
@@ -1506,7 +1504,7 @@ They can be one of:
 *   [drivesKeyboard = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#driveskbd) (has lot of synonyms, see below)
 *   [index = ...;](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-compat.html#index)
 
-#### modifiers, groups � controls
+### modifiers, groups � controls
 
 These ones define what "state components" the indicator has to reflect.  
 Thus, value in right side must be
@@ -1522,7 +1520,7 @@ Note that the group number can be specified ...
 *   as special word **none** (0) and **all** (0xFF);
 *   and finally, as simple math expression, for example **All-1** ("all except the first one").
 
-#### whichModState and whichGroupState
+### whichModState and whichGroupState
 
 Since modifiers set and group number are distributed to three separate variable (**base, locked, latched**) these instructions are needed to specify which variable state must be reflected by indicator.
 
@@ -1537,7 +1535,7 @@ The word in the left part can be
 
 By default (if **which...State** isn't specified) **effective** value implied.
 
-#### allowExplicit
+### allowExplicit
 
 It is logical flag that allow/disallow applications switch on/off indicator. The point is that any application (for example, **xset** with **led** option) can send request to change state of indicator. And this flag is used for set/unset the indicator protection against such changes.
 
@@ -1557,7 +1555,7 @@ or
 
 By default its value is **True**. It means that all application is allowed to change indicators.
 
-#### drivesKeyboard
+### drivesKeyboard
 
 It has many synonyms - **drivesKbd, ledDrivesKbd, ledDrivesKkeyboard, indicatorDrivesKbd, indicatorDrivesKeyboard**.
 
@@ -1578,11 +1576,11 @@ or
 
 drivesKeyboard = False; (or simply - !drivesKeyboard;)
 
-#### index
+### index
 
 This instruction allow to specify number of indicator (physical or virtual one). Normally a relation between indicator name and its number is set up in the **xkb_keycodes** type file. But you can specify it here.
 
-### Defaults declaration.
+## Defaults declaration.
 
 This declaration is optional and allow specify some field (instruction) for all next record such as **interpret** or **indicator**. Usualy such declaration are placed at the begin of file or begin of separate section.
 
@@ -1604,9 +1602,315 @@ The first word in left side (before period sign) must be
     
     (more details about action description and posible fields see in [Actions description.](https://web.archive.org/web/20190723235757/http://pascal.tsu.ru/en/xkb/gram-action.html))
     
+
+# The xkb_symbols type file.
+
+It is main part of the XKB configuration description. Namely these files contain a 'symbols map' for keyboard. It means that such file defines for each physical key (its scan-code) a set of all possible symbols (keysyms) that can be emited in dependence on current 'keyboard' state (group number and state of modifiers).
+
+Remind that each key has a symbols table. Such table is devided to **group** sub-tables that will be chosen in dependence on current **group number** in keyboard state. Each group sub-table in own turn is devided to a **shift level** and the level choise depends on key **type** and modififiers state.
+
+Remind also that differnt keys can have different number of groups and differntt groups of the same key can have different number of levels.
+
+Besides symbol table some of keys can have analogous table of **actions**. Although usually **actions** are bound not to keys itself but to special symbols (in **xkb\_compat** type files).
+
+Before considering this file grammar lets remember what other data (description fields) besides **simbols** and **actions** can be bound to key scan-code. Generally all these fields have values for default so usually you will not find their specification inside the **xkb\_symbols**file. But if you need you can specify them here explicitly.
+
+Each scan-code description have
+
+*   common **key type** - types are described in **xkb\_types** type files and define dependence of **shift level** on modifiers state. Note that each group sub-table can have own **type**. But if all groups for this key have the same **type** it can be specified once as common for all groups.
+*   **adjustment method** for group number - remind that some keys can have number of groups less then other keys have. The XKB adjusts group number if it comes out of bounds but the bounds in this case means maximum value of group number used in all key descriptions. Therefore at pressing such few-group key it is possible that for this key even adjusted number is 'out-of-bounds'. In this case the number must be adjusted additionaly specialy for this key. The methods itsel are the same as 'global' ones (see [The XKB internals:"Keep in range" methods...](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/internals.html#wrap) ).
+*   **autorepeat** - a boolean flag that defines - need it key autorepeating or no;
+*   **key 'behavior'** - it is set of flags and one additional argument that defines ...
+    *   **locking** - if key is lockable it means that after the first press/release the key stays logicaly down (and keyboard emits key press event only) and after second press it become released and keyboard emits key release event only.
+    *   **radio-group** - the key belongs to some radio-group and 'additional' argument in this case is radio-group number. Remind that all keys in one radio-group are interdependent. It means that at press one of such keys it become 'locked' but all other become released.
+    *   **allow release all keys (allow none)** - this flag makes sense for radio-group members. Without this flag at least one of radio-group members must be in pressed state and to release it you need to press another one key from the radio-group which in own turn become pressed. But with this flag you can release key simple pressing it second time. Tust such mode **allow none** of radio-group members is in pressed state.
+    *   **Overlay 1** - defines that key belongs to overlay group of keys. If in the XKB 'control flags' a **Overlay1** flag is active so this key generates another scan-code (**keycode**) which specified by 'additional argument'.
+    *   **Overlay 2** - the same as previous flag but the behavior of key with this flag depends on **Overlay2** 'control flag'.
+    *   **permanent** - this flag can be combined with any other flag and means that corresponded behavior is supported by hardware and the XKB module don't need to emulate it. (For example, some keyboard allow to forbid autorepeat for separate key. In this case the XKB has to send special command to hardware at symbols map loading and then don't care about supress unneeded key press events.)
+*   **virtual modifier** - this modifier can be used as argument for an **action** bound to the key (of course, if key has any actions). I should note that genarally these **virtual modifiers** are specified not in the **xkb\_symbols** file but in **xkb\_compat** ones (where **actions** are specified).
+*   **'Exceptions set'** - it is set of flags that protects the key description against **interpretation** performing (changing **actions** binding when symbols-to-keycodes binding was changed). By these flags one can forbid the whole interpreatation or some its parts performing - changes of virtual modifier, 'autorepeat' flag or 'lock' flag.
+*   and the last, in a separate table one can specify binding of **real modifiers** to scan-codes. If the real modifier (one of 'core protocol' modifiers) is bound to some key its state will be changed automaticaly (none **actions** are needed) at key press/release. Also real modifiers-to-scan-code binding can be used by XKB when it search appropriate key for the **interpretation** applying.
+
+## Declaration in xkb\_symbols type file.
+
+The records in such type file can be:
+
+*   [Virtual modifier declaration.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#vmodDec)
+*   [Group name declaration.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#name)
+*   [Key description.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#key)
+*   [Real modifier to key binding.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#modmap)
+*   [Defaults declaration.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#defaults)
+
+## Virtual modifier declaration.
+
+This instruction sipmply declare list of virtual modifiers names which can be met in any next records.
+
+It looks like
+
+**'virtual\_modifiers'** list of modifiers **';'**
+
+Remind that virtual modifiers can be used in the **action** description or as attribute of the key description. At the same time usually neither action description nor 'virtual modifier field' are specified in the **xkb\_symbols** type files (generally they are specified in the **xkb\_compat** type file). So your will hardly find such instruction in any 'standard' xkb\_symbols file.
+
+## Group name declaration.
+
+This instruction assigns to group some symbolic name. The name of group is short description of group map content. For the XKB itself this name is not needed but can be used by some special application that draws keyboard image or shows 'keyboard state'.
+
+The instruction looks like
+
+**'name\['** group **'\]='** group name **';'**
+
+For example,
+
+name\[Group1\] = "English" ; name\[Group2\] = "Russian" ;
+
+## Key description.
+
+This is the main type of records in xkb\_symbols type files. Namely this record describes symbols table (and action table if needed) bound to scan-kode.
+
+It looks like
+
+**'key'** scan-code\_name **'{'** descriptions **'};'**
+
+Remind that the 'scan-code\_names' are declared in **xkb\_keycodes** type files and it is string of any printable symbols (but no longer than four symbols) bounded by 'angle brackets'.  
+For example,
+
+key <LCTL> {...};
+
+The 'descriptions' inside figure brackets are devided by comma. Note that it is namely comma but not semicolon that is used in other type records or files.
+
+The 'description' can be
+
+*   [type = ..., or type\[...\] = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#type)
+*   [locks = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#locks) (**locking** is synonym)
+*   [repeat = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#repeat) (**repeats, repeating** are synonyms)
+*   [groupswrap, or warpgroups,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#wrap)
+*   [groupsclanp, or clampgroups,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#wrap)
+*   [groupsredirect = ..., or redirectgroups = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#wrap)
+*   [radiogroup = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#radiogroup)
+*   [allownone = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#radiogroup)
+*   [overlay1 = ..., or overlay2 = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#overlay)
+*   [permanent...](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#permanent)
+*   [vmods = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#vmods) (**virtualmods, virtualmodifiers** are synonyms)
+*   [symbols\[...\] = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#symbols)
+*   [actions\[...\] = ...,](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#actions)
+*   [\[...\]](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#brackets) only.
+
+### type
+
+It defines key **type**. The word in the right side must be name of one of types desribed in the **xkb\_types** type file.
+
+Note that since differnt **groups** table of the same key can have different types (remind, the type defines number of **shift levels** inside the **group**) this description in common case must looks like
+
+type\[ group \] = type\_name,
+
+for example,
+
+type\[ Group1 \] = "ONE\_LEVEL", type\[ Group2 \] = "ALPHABETIC",
+
+But if all groups have the same number of levels and belong to the same type the group specification (together with square brackets) can be ommited. For example:
+
+type = "ALPHABETIC",
+
+I should note that all keys have the 'deafult group' value. So generally the type is not specified in key description.
+
+At the same time there is one point (can be considered as bug) in these defaults. There is two similar types with two levels each - "TWO\_LEVEL" and "ALPHABETIC". Both types imply two levels and the levels choice depends on Shift modifier. But the "ALPHABETIC" type keys also depends on CapsLock key (I hope everybody know what such dependences means). But by default only first group of each 'alphabetic' key have "ALPHABETIC" type. If you will have made symbols map with any national alphabet (for exapmle some kind of Cyrillic) placed into second group this second group will have "TWO\_LEVEL" type. It means such key will depend on CapsLock when the keyboard is switched to the first group but the CapsLock will not have any effect for the same key when you will switch to your national alphabet. So in this case you need to specify the type for second group explicitly. (But you need not do it in each key description but can use 'defaults declaration'. See [below](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-symbols.html#defaults).)
+
+### locks
+
+It is boolean flag that defines must be this key 'lockable' or not.
+
+Since it is boolean flag the word in the right side must be 'boolean value'. It can be **true, yes, on** if you need this key lockable or **false, no, off** otherwise.
+
+Remind that this word can be combined with word **permanent**. It makes sense when keyboard hardware itself can make separate key lockable. In this case the XKB only sends special command to keyboard at the map loading and then do nothing with such key.
+
+By default all keys are not localble.
+
+NOTE: You can answer that keys such as CapsLock, NumLock or ScrollLock behaves as lockable by default. It is right. But they use another mechanism. The point is that some **actions** behaves as lockable. It means that the key sends to the XKB both events - key press and key release. But if a symbol bound to this key is Caps\_Lock, Num\_Lock, etc. the XKB has to perform the corresponded action which filters out the release event at the first press and ignores the key press event at the second one. Thus this key behavior looks like 'lock key'. At the same time this key can have some other symbols that will be chosen if the key is pressed with some other 'modifier key'. In this case the key will not behave as lockable one. But if you specify 'lockability' in the key description it means that the XKB will filter out unneded events (release event at the first press and press event at the second time) before any action processing and for any symbols (independly on any modifiers state).
+
+### repeat
+
+It is bboolean flag that defines need this key autorepeat or not. As for previous flag the value in the right side can be **true, yes, on** if you desire autorepeat for the key and **false, no, off** otherwise.
+
+Also the value can be **default**. The thing is that usually hardware performs autorepeat. So the XKB must not cary about emulate repeated events but more often it need to discard unnecessary events coming from keyboard for some separate keys. The **default** value means that the XKB has to leave autorepeat for hardware and do nothing (neither generate repeat events nor discard them).
+
+By default all keys have value for **autorepeat** as **default**.
+
+As for previous flag (**lock**) you can note that some keys don't generates autorepeat events even with default values. It is right too. And as in previous case another mechanism is working here. If key has any real modifier bound to the key the autorepeat events for this keys will be discarded (even before the XKB module) by keyboard 'core driver'. Thus you can remember it as simple rule - all modifier keys (Shift, Alt, Ctrl, etc.) are non-autorepeatable independly on what you specify in the key description.
+
+### groupswrap, groupsclamp, groupsredirect
+
+These words defines "keeping in range" method for group number (see [The XKB internals:"Keeping in range" method](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/internals.html#wrap) ). Each word means own method and it makes sense to specify only one of them.
+
+Flags **groupswrap** and **groupsclamp** are simple boolean variables. Therefore they can be specified as assignment with some logical value (**true, yes, on** or **false, no, off** in the right side) or in short form  
+**groupswrap,** - implies "**\= True**"  
+���  
+**!groupswrap,** - implies "**\= False**"
+
+But the **groupsredirect** method needs one additional argument which means "what number redirect to". Therefore this method specification always looks like assignment where the right side part is group number. For example:
+
+groupsredirect = 1,
+
+By default all keys have method 'Wrap' (**groupswrap**).
+
+### radiogroup and allownone
+
+The first word being used in the key description means that the key is radio-group member. The number in the left side of assignment means number of such radio-group.
+
+The radio-group number can be any in range 1-128.  
+WARNING: Old version of XFree86 (and probably other vendors X-servers) has bug in XKB that disallow to use 1 as radio-group number. It means that you can specify such number but it leads to server crash if will try to press such key. So it is more safe to use numbers from 2 up to 128.
+
+The word **Allownone** sets corresponded flag for radio-group and it is simple boolean variable. Note that **Allownone** is attribute of whole radio-group but not some of its members. So you can specify it only once in any key description (of course, I mean the key that is member of this group).
+
+By defaut there is not any radio-groups and their members.
+
+### overlay1 and overlay2
+
+This instruction means that key belongs to one of two 'overlay group'. Remind that when the 'overlay mode' is active (the corresponded flag in in keyboard state is set) such key has to emulate press of key with another scan-code. Therefore on the right side of assignment there must be scan-code name which press has to be emulated. This name has the same look as scan-code name in the key description head and must be defined in the **xkb\_keycodes** type file.  
+For example:
+
+overlay1 = <XY01>,
+
+By default there is not any overaly groups and their members.
+
+### permanent...
+
+This word can not be used alone but is a prefix for words **radiogroup, overlay1, overlay2**, etc. For example:
+
+permanentradiogroup = ..., permanentoverlay1 = ..., permanentoverlay2 = ...,
+
+It means that such behavior is provided by hardware and the XKB don't need to emulate it but only send corresponded setup commands to keyboard at map loading.
+
+### vmods
+
+This instruction defines virtual modifier (or set of modifiers) that has to be bound to key. The right side of assignment must be virtula modifier name (or list of names devided by plus sign).
+
+Remind that generally virtual modifiers are bound not here but in the **xkb\_compat** type files.
+
+### symbols
+
+It is the main part of the **key** description. It defines set of symbols for this key. One such instruction specifies the symbols set for one **group**. Therefore square brackets in the left side must contain name of group and the right side is list of symbols for all **shift levels** of this **group** (list must be bounded by square brackets too).  
+For example,
+
+symbols\[Group1\] = \[ semicolon, colon \], symbols\[Group1\] = \[Cyrillic\_zhe, Cyrillic\_ZHE\],
+
+The 'symbols' here can be numeric codes of symbols (in decimal, octal or hexidecimal format) or special 'symbol names' (or **keysym** names).
+
+Possible names of keysyms you can find in the **X11R6/include/X11/keysymdefs.h** file. But note that there names have prefix "**XK\_**". Thus if you see in this file definitions like
+
+#define XK\_Escape 0xFF1B #define XK\_Delete 0xFFFF ....
+
+it means that keysym names that can be used in the **xkb\_symbols** file are **Escape** and **Delete**.
+
+NOTE: If digits 0 - 9 are used as symbols they will be considered as names of symbols '**0**' - '**9**' but not as numeric codes.
+
+The recent versions of XFree allow to use 'Unicode keysyms'. (Internally they are codes like 0x1000000+'unicode value'). Such symbols have names that looks like **U1234** where number after 'U' letter is the symbol's Unicode value in hexidecimal representation. So you can specify such symbols as numeris code or as a special 'Unicode keysym name'. For example:
+
+symbols\[Group1\] = \[ 0x100003a, 0x1000038 \], symbols\[Group1\] = \[ U410, U430\],
+
+If one of shift levels is undefined and symbol there is not needed you can use a special 'empty symbol' name - **NoSymbol**.
+
+### actions
+
+Like previous instruction this one defines set of **actions** the key. It has the same look as **symbols** instruction but instead of symbols an action descriptions are used there.  
+For example:
+
+actions\[Group1\] = \[ SetGroup(group=2), SetGroup(group=1) \],
+
+Detail description of possible actions and their arguments you can read in [Actions description.](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-action.html).
+
+I mention only here that if one of levels don't need any actions you can use a special name for 'empty action' - **NoAction()**.
+
+### \[...\] only.
+
+Often description of key consists of symbols lists only (in square brackets) without any words like "**symbols\[...\] =**". Since usually most of keys need for description the symbols set only you can use a brief form of description.  
+For example, the description
+
+key <AE03> { \[ 3, numbersign \], \[ apostrophe, 3 \] };
+
+is complete equvivalent for
+
+key <AE03> { symbols\[Group1\]= \[ 3, numbersign \], symbols\[Group2\]= \[ apostrophe, 3 \] };
+
+You see that the first pair of square brackets (with content inside) is interpreted as **symbols\[...\]** instruction for the first group, the second pair of brackets - as description for the second group and so one.
+
+By the way, some **xkb\_symbols** files can contain a partial description of full keyboard map. For example it can be some national alphabet symbols placed in the second **group**. Of course such files generally are used as addition to some other file (**xkb\_symbols** type) that contains first group description.  
+For specifying that the symbols from this file must be loaded to the second group but the first group must not be touched you can use two ways:
+
+*   To specify group number explicitly in each key description:
     
-## Actions description.
---------------------
+    key <AE03> { symbols\[Group2\]= \[ apostrophe, 3 \] };
+    
+*   or use 'empty brackets' for the skiped group:
+    
+    key <AE03> { \[\], \[ apostrophe, 3 \] };
+    
+
+### 'Set of exceptions'.
+
+Remind that each key can have a 'set of exceptions' which prohibits change of action binding, 'autorepeat' and 'lock' flags and key's virtual modifier at **interpretation** processing.
+
+Note that there are not special instructions for specifying these exceptions in the key description. But this set will be created implicitly in some cases:
+
+*   if the table of **actions** is specified explicitly in the key description the 'prohibition of whole interpretation processing' will be set;
+*   if the **repeat** flag is specified it prohibits its change at interptretation processing;
+*   if either **lock** flag or **radiogroup** membership are specified it prohibits changes of 'locking';
+*   and finally, if the virtual modifier is specified in the key description (**vmod** instruction) it prohibits changes of the virtual modifier (or set of virtual modifiers).
+
+## The real modifiers binding description.
+
+This instruction fills the internal XKB table **modmap** which describes relation between keys and real modifiers. Remind that these modifiers will be set on/off in the state field of the 'key event' automatically at the key press/release.
+
+The instruction looks like
+
+**'modifier\_map'** real\_modifier\_name **'{'** keys\_list **'};'**
+
+Synonyms **modmap** or **mod\_map** can be used instead of **modifier\_map**" word.
+
+The **real\_modifier\_name** there must name of one of real modifiers - **Shift, Lock, Control, Mod1, Mod2, Mod3, Mod4, Mod5**.
+
+But **keys\_list** can consist of either names of scan-codes (keycodes), for example:
+
+modifier\_map Control { <LCTL>, <RCTL> };
+
+or names of symbols (keysyms), for example:
+
+modifier\_map Mod1 { Alt\_L, Alt\_R };
+
+Since the internal **modmap** table is 'scan\_code to modifiers' mapping, in the second case the XKB has to find scan-codes where specified symbols are bound to and then place these scan-codes into **modmap**.
+
+Note that the same real modifier can be bound to many keycodes but not vice versa - many modifiers to one keycode. It means that scan-code name can appears in **modmap** instructions only once (the xkbcomp checks it). The same limitation is applied to keys specified **modmap** instruction by symbol names.
+
+However the **xkbcomp** doesn't checks state where the same key one time is specified as keycode and another time - as symbol or represented by two different symbols bound to the same keycode. In this case ie is posible that more than one real modifier will be bound to key.
+
+## Defaults declaration.
+
+This instruction defines the default value for some key attributes and looks like assignment to the 'field of structure' in the C language.  
+For example:
+
+key.repeat = no;
+
+or
+
+type\[Group2\]="ALPHABETIC";
+
+The first word (before period sign) in the left side must be "**key**" and the second one can be any of available in the key description - **type, locks, radiogroup**, etc.
+
+Of course, this default value will be actual until another deafult declaration for the same parameter will occur in the text. And if the corresponded parameter doesn't specified in the key description body explicitly.
+
+Also the default declaration can be used for arguments in the **action** descriptions (details read in the [Actions description](https://web.archive.org/web/20190723233834/http://pascal.tsu.ru/en/xkb/gram-action.html)). In this case the first word is the action name, for example
+
+SetMods.clearLocks = True;
+
+And the last one, there is one another instruction that can be considered as the 'defaults declaration'. It is instruction which sets the **allownone** flag ("all members can be released") for radio-groups.
+
+Remind that this flag can be specified inside any key description. But since it is whole radio-group attribute but no attribute of the radio-group member key this flag can be specified outside of any key description. For example:
+
+allownone = 10;
+
+means the tenth radio-group has this flag.
+
+
+# Actions description.
 
 *   [Actions description in common.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#actions)
 *   [Actions for the XKB state change.](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/gram-action.html#state)
@@ -1690,7 +1994,7 @@ Actions for the XKB state change.
 I should remind that the XKB state includes [current modifiers set](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#state-mods), [current group number](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#state-group) and ["set of control flags"](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#controls) (XKB Controls).  
 And it being known that the modifiers set and the group number are distributed into three variables which value can be changed independly. Threrfore there are three action for modifiers change (each action changes own variable) and three actions for the group number change.
 
-### Modifiers change.
+## Modifiers change.
 
 As I have said above there are three variables for modifiers - **base modifiers, latched modifiers** and **locked modifiers**.  
 Corresponded actions for their change are:
@@ -1747,7 +2051,7 @@ Adds modifiers to **latched modifiers**
 *   Removes modifiers from **base modifiers**,
 *   **locked modifiers** stay unchanged.
 
-### Group number change.
+## Group number change.
 
 Like the modifiers set the group number is distributed to three variables - a **base group**, a **latched group** and a **locked group**. The real or effective group number is sum of these three varibales. If the sum result (it can be negative too) is out of bounds (less than first group or more than number of groups really used in keyboard map ) it will be adjusted using one of three [adjusting methods](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#wrap). By the way, the value of each variable also must be adjusted with the same method at every time the value is changed.
 
@@ -1807,7 +2111,7 @@ puts the argument value or adds the increment to the**locked group** variable
 
 nothing changes
 
-### Control flags (XKB Controls) change.
+## Control flags (XKB Controls) change.
 
 The control flags set in difference from the modifiers set or the group numer represented by one variable only.
 
@@ -1836,7 +2140,7 @@ These actions have not any flags.
 *   **all** - to set all flags
 *   **none** - none of control flags
 
-### ISO\_Lock action.
+## ISO\_Lock action.
 
 Its name is **ISOLock**.  
 This action is additional one for described abowe actions. It changes behavior of other actions making them 'lockable'.
@@ -1882,7 +2186,7 @@ There are not any additional flags (strictly speaking there are flags but their 
 Actions for mouse events emulation.
 -----------------------------------
 
-### Cursor movement.
+## Cursor movement.
 
 The action name is **MovePtr** or **MovePointer**.  
 Arguments are: **x** and **y** coordinates.  
@@ -1903,7 +2207,7 @@ This flag allows to switch off the acceleration at this action performing but no
 
 Since the name of argument means 'allow acceleration' its value by default is **yes**. And you need to specify it explicily only when you want a **no** value.
 
-### Mouse buttons press.
+## Mouse buttons press.
 
 this action has name **PtrBtn** or **PointerButton**.  
 Arguments are: the button number - **button** and the repeat counter - **count**.  
@@ -1916,7 +2220,7 @@ Remind that in the XKB there is term such as 'default button' which values can b
 
 There are not flags for this action.
 
-### Mouse buttons press with locking.
+## Mouse buttons press with locking.
 
 The name is: **LockPtrBtn**, or **LockPointerButton**, or **LockPtrButton**, or **LockPointerBtn**.
 
@@ -1939,7 +2243,7 @@ The value of the **affect** argument can be one of:
 *   **both** - the first press of key presses and locks the button and the second press of the same key releases the button. It is a default mode.
 *   **neither** - don't press and don't release the button. (Funny. Of course the action with such **affect** doesn't make sense.)
 
-### A "defaul button" choice.
+## A "defaul button" choice.
 
 The action name is: **SetPtrDflt** or **SetPointerDefault**.  
 The main argument is: the button number - **button**.  
@@ -1955,7 +2259,7 @@ But for it only one value available (but this value has many names - **Button**,
 Other actions.
 --------------
 
-### Message sending.
+## Message sending.
 
 The XKB allow to generate own special events instead of (or together with) usual key press/release event.  
 A program that want to receive such events has to request them from the server by special request sending. Note that usual key events are delivered to 'focused windows' (to applications that have requested key events for this window) but the special XKB events will be delivered to any application which have requested them regardless of what window is currently focused.  
@@ -1985,7 +2289,7 @@ By default the **report** value is **none** (it means you need to specify its va
 
 The **genkeyevent** flag defines - has this key to generate the ordinary key event too. It is clear that with **genkeyevent=yes** the normal key event will be sent besides the **message** event and in contrary case the **message** event only will be sent. By default **genkeyevent=no**.
 
-### Another key press emulation.
+## Another key press emulation.
 
 This action allow to emulate a pressing of key with anothe scan-code (**keycode**). It can be usefull for 'redused' keyboard that have not all needed physical keys.  
 The same problem can be silved using [overlay groups](https://web.archive.org/web/20190728062500/http://pascal.tsu.ru/en/xkb/internals.html#overlay). So these two mechanisms are similar and partialy duplicates each other functionality.
@@ -2002,7 +2306,7 @@ Two other arguments serves for specifying the set of modifiers. Their names are 
 
 The value of such arguments is the same as in actions for chanding the modifiers set. It means it consists of real and/or virtual modifiers names separated by '+' sign.
 
-### X-server termination.
+## X-server termination.
 
 The action name is: **Terminate** or **TerminateServer**.  
 The result of this action is the same as after pressing of a 'magic combonation' **Control+Alt+BackSpace**.
@@ -2010,7 +2314,7 @@ The result of this action is the same as after pressing of a 'magic combonation'
 Tha action has not any arguments or flags.  
 I'd like to note that the **Control+Alt+BackSpace** combination is processed before the XKB module and have no relation to the XKB actions. Therefore you can't cancel it in the XKB configuration but only add another one combination with the same effect.
 
-### Screen switching.
+## Screen switching.
 
 This action isn't implemented in the XFree86. It means you can to bind it to some key but will not get any effect.
 
@@ -2024,7 +2328,7 @@ In the last case there must be '+' or '-' sign before value specified.
 This action has one flag named **Same** (or **SameServer**).  
 If the flag value is 'true' it implies switching of X-server screens (it means 'the same server'). Otherwise this action has to switch to some console terminal.
 
-### Pressing buttons of another device served by XKB.
+## Pressing buttons of another device served by XKB.
 
 Except a mouse events the XKB can emulate events of other input devices (**joystick** for exampl). For such device buttons emulation there are two actions like **PointerButton** and **LockPointerButton**.
 
@@ -2036,11 +2340,11 @@ Like mouse's actions these actions have arguments - **button** and **count**. Bu
 'Special' actions.
 ------------------
 
-### 'Empty action'.
+## 'Empty action'.
 
 In some cases there can be some empty cells in the actions table. For example, a type of key implies two shift levels but you really need an action in only one of cells. To fill empty cells there is special 'empty action' - **NoAction()**.
 
-### 'Raw' action.
+## 'Raw' action.
 
 Remind that we talk about how actions are described in the text files which then will be compiled by the xkbcomp program. Compiled actions are processed inside X-server by the XKB module.
 
