@@ -55,7 +55,7 @@ For example
 
 **types**
 
-describes key types. A key type defines, how the code produced by a key must be changed in dependence of 'modifiers' (Control, Shift and so on). For example 'letter' keys have type ALPHABETIC. This means that they will produce different codes depending on the states of the \[Shift\] and \[CapsLock\] keys. The \[Enter\] key has another type: ONE\_LEVEL. That means that its code is always the same independent of any modifiers state.
+describes key types. A key type defines, how the code produced by a key must be changed in dependence of 'modifiers' (Control, Shift and so on). For example 'letter' keys have type ALPHABETIC. This means that they will produce different codes depending on the states of the \[Shift\] and \[CapsLock\] keys. The \[Enter\] key has another type: ONE_LEVEL. That means that its code is always the same independent of any modifiers state.
 
 **compat** (abridged from compatibility)
 
@@ -74,11 +74,11 @@ All these components correcpond to subdirectories in directory **{XROOT}/lib/X11
 It must be mentioned that every such directory has several files (sometimes many) with different settings. Each file can contain several sections (parts, blocks) like
 
 ```
-component\_type "section\_name" {........};
+component_type "section_name" {........};
 ```
 
 So to specify a single setting one has to write something like  
-**file\_name(section\_name)**  
+**file_name(section_name)**  
 for example  
 **us(pc104)**
 
@@ -114,7 +114,7 @@ As you guess it means that
 
 It needs to be mentioned that any section in any component can contain an instruction
 
-**include "file\_name(section\_name)"** (of course section\_name can be omitted)
+**include "file_name(section_name)"** (of course section_name can be omitted)
 
 That means (as you guess) that some other description must be inserted from specified file/section to current section.
 
@@ -126,7 +126,7 @@ You can specify the full set of components by one name. Such components sets are
 
 Usually every **keymap** section contains 'include' instructions only that define from which files XKB has to get every component. (In the most general case it can contain a full description of every component.) For example
 
-xkb_keymap "ru" { xkb_keycodes { include "xfree86" }; xkb_types { include "default" }; xkb_compatibility { include "default" }; xkb_symbols { include "en\_US(pc105)+ru" }; xkb_geometry { include "pc(pc102)" }; };
+xkb_keymap "ru" { xkb_keycodes { include "xfree86" }; xkb_types { include "default" }; xkb_compatibility { include "default" }; xkb_symbols { include "en_US(pc105)+ru" }; xkb_geometry { include "pc(pc102)" }; };
 
 Note that one **include** instruction can contain several files (sections) separated by "+" signs. Of course it means that all these sections must be inserted sequentially.
 
@@ -170,9 +170,9 @@ means that the following lines define, how to select **symbols** file and sectio
 You can see also, that some lines from **rules** file can contain wildcards - "\*" sign. It means that you cannot only use words listed in rules file. If XKB can't find specified words exactly in left parts of rules it will anyway select appropriate component file name.  
 For example rule
 
-! model layout = symbols .... \* \* = en\_US(pc102)+%l%(v)
+! model layout = symbols .... \* \* = en_US(pc102)+%l%(v)
 
-means that if your 'Model' and 'Layout' was not found in pvious lines XKB has to take **pc102** section from **en\_US** file as **symbols** and add to it a section which name is defined by 'Variant' value from a file which name is defined by 'Layout' value. (Thus in some case argument values can be file or section names. But in the common case they are 'keywords' only).
+means that if your 'Model' and 'Layout' was not found in pvious lines XKB has to take **pc102** section from **en_US** file as **symbols** and add to it a section which name is defined by 'Variant' value from a file which name is defined by 'Layout' value. (Thus in some case argument values can be file or section names. But in the common case they are 'keywords' only).
 
 Also you can see that...  
 not all these terms are mandatory. Usually 'Model' and 'Layout' (and of course - 'Rules') are enough and Variant and/or Options are needed in some cases only.  
@@ -181,18 +181,18 @@ And also -
 *   Model usually defines hardware (keyboard) type.
 *   Layout defines language (or rather alphabet) - which letters must be bound to keyboard keys.
 *   Variant - means variant of letter placement on the keyboard of a language (Layout).
-*   Options - usually defines behavior or placement of modifier keys Control and Group\_switch (group\_switch is switch for languages, for example English/Russian).
+*   Options - usually defines behavior or placement of modifier keys Control and Group_switch (group_switch is switch for languages, for example English/Russian).
 
 By the way note that although all Options consist of two words separated by a ":" sign, it doesn't mean that you can compose new options from two such parts of different options.
 
 So if you decide to use the third method, you need to write in the X server configuration file XkbRules, XkbModel, XkbLayout words and if you need something non-standard, you have to write also XkbVariant and XkbOptions.  
 For example
 
-XkbRules "xfree86" XkbModel "pc104" XkbLayout "ru" XkbVariant "" XkbOptions "ctrl:ctrl\_ac"
+XkbRules "xfree86" XkbModel "pc104" XkbLayout "ru" XkbVariant "" XkbOptions "ctrl:ctrl_ac"
 
 or for XFree86 4.x
 
-Option "XkbRules" "xfree86" Option "XkbModel" "pc104" Option "XkbLayout" "ru" Option "XkbVariant" "" Option "XkbOptions" "ctrl:ctrl\_ac"
+Option "XkbRules" "xfree86" Option "XkbModel" "pc104" Option "XkbLayout" "ru" Option "XkbVariant" "" Option "XkbOptions" "ctrl:ctrl_ac"
 
 that means XKB has to
 
@@ -200,23 +200,23 @@ that means XKB has to
 *   keyboard **"pc104"** type (104 buttons),
 *   Russian alphabet (English alphabet will be included by default),
 *   default variant (so this line can be omitted)
-*   and finally - additional options for your 'keyboard map' - **"ctrl:ctrl\_aa"**.
+*   and finally - additional options for your 'keyboard map' - **"ctrl:ctrl_aa"**.
 
 By the way, you can find descriptions - what meaning has what option and what Models and Layouts are defined in Rules (and what they mean) in **xfree86.lst** file (or another **\*.lst** file if you use no **xfree86** rules) that is placed in the same directory **{XKBROOT}/rules**.
 
 ## Some suggestions.
 
-These suggestions were written for Russian users, so all examples assume that the needed language (alphabet) is Russian. Also note that the Cyrillic (Russian) alphabet is very different from Latin one, so in Russian 'symbols map' Latin and Cyrillic are placed in different XKB 'symbols group' and so russian users need a special 'group\_switch' key to switch between these groups.
+These suggestions were written for Russian users, so all examples assume that the needed language (alphabet) is Russian. Also note that the Cyrillic (Russian) alphabet is very different from Latin one, so in Russian 'symbols map' Latin and Cyrillic are placed in different XKB 'symbols group' and so russian users need a special 'group_switch' key to switch between these groups.
 
 All examples are written for XFree 3.x version. If you use XFree 4.x I hope you understand how to change it.
 
 ### The simplest way is to use special program for X's configuration.
 
-In XFree86 this program has the name XF86Setup. It uses the third method for XKB configuration with rules (**XkbRules**) - xfree86. All you need is to choose 'Model' (**XkbModel**), 'Layout' (**XkbLayout**) and 'group\_switcher' ("Russian/Latin" switcher).
+In XFree86 this program has the name XF86Setup. It uses the third method for XKB configuration with rules (**XkbRules**) - xfree86. All you need is to choose 'Model' (**XkbModel**), 'Layout' (**XkbLayout**) and 'group_switcher' ("Russian/Latin" switcher).
 
 Also if you need you can change 'Ctrl key place'. Of course in file it will look like **XkbOptions** lines.
 
-So, let's run the XF86Setup program and choose the **Keyboard** section. In this screen you have to choose from menu **Model** (keyboard type) and **Layout** (language). Don't forget to choose needed 'group\_switcher' and (if you want) - 'Ctrl place'.
+So, let's run the XF86Setup program and choose the **Keyboard** section. In this screen you have to choose from menu **Model** (keyboard type) and **Layout** (language). Don't forget to choose needed 'group_switcher' and (if you want) - 'Ctrl place'.
 
 When you exit the program, it will write appropriate lines to the Keyboard section of the XFree configuration file.
 
@@ -238,11 +238,11 @@ For 'russified' keyboard appropriate keymap is
 
 XkbKeymap "xfree86(ru)"
 
-Unfortunately some time ago russian full keymap had a 'default group\_swither' inside **symbols** file, but frome some XFree version this switcher was removed from **symbols** (it is right because an 'alphabetical' symbols map is not the appropriate place for such keys). But at the same time such switcher was not added in any place in any russian **keymap**. Therefore if you choose this method, you can't switch on Russian language anyway.
+Unfortunately some time ago russian full keymap had a 'default group_swither' inside **symbols** file, but frome some XFree version this switcher was removed from **symbols** (it is right because an 'alphabetical' symbols map is not the appropriate place for such keys). But at the same time such switcher was not added in any place in any russian **keymap**. Therefore if you choose this method, you can't switch on Russian language anyway.
 
-The only way to add this group\_switcher is to edit **{XKBROOT}/keymap/xfree86** file. You can find this file in your system, then go to section "ru" in this file and add to line **xkb_symbols** appropriate switcher name. For **CapsLock** key it is **group(caps\_toggle)**. It means that this line must look like
+The only way to add this group_switcher is to edit **{XKBROOT}/keymap/xfree86** file. You can find this file in your system, then go to section "ru" in this file and add to line **xkb_symbols** appropriate switcher name. For **CapsLock** key it is **group(caps_toggle)**. It means that this line must look like
 
-xkb_symbols { include "en\_US(pc105)+ru+group(caps\_toggle)"};
+xkb_symbols { include "en_US(pc105)+ru+group(caps_toggle)"};
 
 ### If you want to use the third method - by Rules, Model, Layout
 
@@ -258,9 +258,9 @@ XkbRules "xfree86" XkbModel "pc104" XkbLayout "ru"
 
 With help of **XkbOptions** you can choose the behaviour of modifier keys. Possible values of **XkbOptions** and their descriptions you can see in the **{XKBROOT}/rules/xfree86.lst** file.
 
-Don't forget that in recent versions of XFree there is no 'default group\_switcher', so you have to specify it explicitly. For **CapsLock** key it will be
+Don't forget that in recent versions of XFree there is no 'default group_switcher', so you have to specify it explicitly. For **CapsLock** key it will be
 
-XkbOptions "grp:caps\_toggle"
+XkbOptions "grp:caps_toggle"
 
 ### And finally the first method - by separate XKB components (keycodes, compat, types, symbols, geometry).
 
@@ -274,18 +274,18 @@ I can suggest you
 
 The **symbols** require special attention. The **symbols/ru** file describes 'alphabetical' keys only. So if you want to write to the **XkbSymbols** line this file name only you will loose all other keys (including Enter, Shift/Ctrl/Alt, F1-F12, etc.).
 
-Therefore **symbols** must consist of at least two files - **en\_US(pc101)** (section name depends of number of keys) and **ru** itself.  
+Therefore **symbols** must consist of at least two files - **en_US(pc101)** (section name depends of number of keys) and **ru** itself.  
 The full list of possible symbols is in **{XKBROOT}/symbols.dir** file.
 
-Also you have to add a description of an appropriate "Russian/Latin" switcher to **symbols**. Description of all pdefined group\_swithers is in **{XKBROOT}/symbols/group** file.
+Also you have to add a description of an appropriate "Russian/Latin" switcher to **symbols**. Description of all pdefined group_swithers is in **{XKBROOT}/symbols/group** file.
 
 So for the first method the configuration can look like
 
-XkbKeycodes "xfree86" XkbTypes "complete" XkbCompat "complete" XkbSymbols "en\_US(pc101)+ru+group(caps\_toggle)" XkbGeometry "pc(pc101)"
+XkbKeycodes "xfree86" XkbTypes "complete" XkbCompat "complete" XkbSymbols "en_US(pc101)+ru+group(caps_toggle)" XkbGeometry "pc(pc101)"
 
 If you additionally want to change the behavior of other control keys (that in third method was defined by **XkbOptions**), you can find appropriate addition in **{XKBROOT}/rules/xfree86.lst** file. Then you have to 'plus' it to the **XkbSymbols** line. For example
 
-XkbSymbols "en\_US(pc101)+ru+group(shift\_toggle)+ctrl(ctrl\_ac)"
+XkbSymbols "en_US(pc101)+ru+group(shift_toggle)+ctrl(ctrl_ac)"
 
 # One another way to describe XKB configuration.
 
@@ -317,11 +317,11 @@ If you need several modifiers (or flags) in one expression they have to be separ
 Also this file can use some variants of assignment statement. If statement defines initial value for control flags set (for example) that already have some flags by default the possible actions are
 
 *   to remove specified files from flags set  
-    flag\_set **\-=** flag1 + flag2 + ...
+    flag_set **\-=** flag1 + flag2 + ...
 *   to add specified files to flags set  
-    flag\_set **+=** flag1 + flag2 + ...
+    flag_set **+=** flag1 + flag2 + ...
 *   completly replace existent flags set by specified in the statement  
-    flag\_set **\=** flag1 + flag2 + ...
+    flag_set **\=** flag1 + flag2 + ...
 
 In this file you can specify...
 
@@ -404,7 +404,7 @@ This is modifiers set that must be used inside Xserver (for 'action' selection i
 It defines 'group adjustment method'. Remind that such method can be **wrap**, **clamp** or **redirect**. In the last case additional data required - group number 'what number redirect to' if original group number is out of bounds.  
 So **redirect** method can be specified in form
 
-**groups** = group\_number
+**groups** = group_number
 
 ## Bell parameters.
 
@@ -542,7 +542,7 @@ Like in many another keyboard modules it can be represented as simple two-dimens
 First of all note that in the key press/release event only one byte (octet) allocated for modifiers. So there can be eight modifiers only. First three ones are named **Shift, Lock, Control** and all other are "unnamed" - **Mod1, Mod2, Mod3, Mod4, Mod5**.  
 I should note that though names of first three modifiers obviously hints what keys they should correspond actually they can be binded (it means modifiers will change own state at corresponded key press/release) to any other keys
 
-But it's more important that the eight modifiers can form up to 256 different combinations. So in theory symbols table can include up to 256 columns. In the same time old standard strongly defines only first four columns. You can guess that only two modifiers are used to distinguish these columns, they are **Shift** and **Mode\_switch**. (You can see that there isn't modifier with name **Mode\_switch**. Yes, it's right. One of unnamed modifiers plays this role. And **Mode\_switch** is name of one of control symbols. When application requests symbol table from server it also asks what modifier is bound to this control symbol.)
+But it's more important that the eight modifiers can form up to 256 different combinations. So in theory symbols table can include up to 256 columns. In the same time old standard strongly defines only first four columns. You can guess that only two modifiers are used to distinguish these columns, they are **Shift** and **Mode_switch**. (You can see that there isn't modifier with name **Mode_switch**. Yes, it's right. One of unnamed modifiers plays this role. And **Mode_switch** is name of one of control symbols. When application requests symbol table from server it also asks what modifier is bound to this control symbol.)
 
 So first four columns corresponds to states:
 
@@ -550,12 +550,12 @@ none modifiers
 
 Shift
 
-Mode\_switch
+Mode_switch
 
-Mode\_switch+Shift
+Mode_switch+Shift
 
   
-In core protocol terms we can say that the **Mode\_switch** choose one of two column groups (note that here "group" means not the same that the "XKB group" about which we will talk below). And **Shift** state choose one of two columns inside group.  
+In core protocol terms we can say that the **Mode_switch** choose one of two column groups (note that here "group" means not the same that the "XKB group" about which we will talk below). And **Shift** state choose one of two columns inside group.  
 Of course you know that the different group usually used for different alphabets and **Shift** choose small or capital letters inside one alphabet.
 
 �
@@ -568,9 +568,9 @@ Group 2
 
 Shift
 
-Mode\_switch
+Mode_switch
 
-Mode\_switch+Shift
+Mode_switch+Shift
 
 ...
 
@@ -580,9 +580,9 @@ a
 
 A
 
-Cyrillic\_ef
+Cyrillic_ef
 
-Cyrillic\_EF
+Cyrillic_EF
 
 keycode 39
 
@@ -590,9 +590,9 @@ s
 
 S
 
-Cyrillic\_yeru
+Cyrillic_yeru
 
-Cyrillic\_YERU
+Cyrillic_YERU
 
 keycode 40
 
@@ -600,9 +600,9 @@ d
 
 D
 
-Cyrillic\_ve
+Cyrillic_ve
 
-Cyrillic\_VE
+Cyrillic_VE
 
 ...
 
@@ -616,9 +616,9 @@ Therefore one of the basic improvements brought by XKB is large flexibility in t
 *   The second one: in the same keyboard map different keys can contain different number of symbols and their dependence on modifiers. For example
     *   **Enter** key doesn't depend on any modifiers state so in table its row has only one column.
     *   key with symbols '1' and '!' has in table two columns and column choice depends on only **Shift** state.
-    *   but key with symbols '-','\_' and '=' can have three columns and their choice depends on two modifiers - **Shift** and **Mod1**
+    *   but key with symbols '-','_' and '=' can have three columns and their choice depends on two modifiers - **Shift** and **Mod1**
 *   With such approach term "group" significantly change meaning. We can't define group as "pack of columns" becouse such pack size will be different for different keys.  
-    Generally with such flexibility of columns\_to\_modifiers binding we can forget about groups or simply speak that the "group" is group of columns united by one modifier state (**Mode\_switch** for example) but ...
+    Generally with such flexibility of columns_to_modifiers binding we can forget about groups or simply speak that the "group" is group of columns united by one modifier state (**Mode_switch** for example) but ...
 
 It is very usefull to devide table into groups. First of all it makes easier to separate different alphabets in one keyboard map. Note that someone use two and more alphabets simultaneously. And strong bounds between alphabets allow to complete such parts independly.  
 And the second one is than more modifiers we involve to column choice then more complicated and difficult to understand keyboard map become.
@@ -675,9 +675,9 @@ A
 
 three columns
 
-Cyrillic\_ef
+Cyrillic_ef
 
-Cyrillic\_EF
+Cyrillic_EF
 
 �
 
@@ -685,9 +685,9 @@ Cyrillic\_EF
 
 two columns
 
-Greek\_alpha
+Greek_alpha
 
-Greek\_ALPHA
+Greek_ALPHA
 
 �
 
@@ -835,7 +835,7 @@ These flags defines:
 
 ### Exceptions set.
 
-It is bit mask that defines what keycode related data is "specified explicitly" and must not be changed in some cases. The thing is that the X-protocol include commands that allow application change symbol\_to\_keycode binding in keyboard map inside X-server. Of course these commands changes symbols placement only but doesn't change other data such as **action**, key behavior or key bound modifiers.
+It is bit mask that defines what keycode related data is "specified explicitly" and must not be changed in some cases. The thing is that the X-protocol include commands that allow application change symbol_to_keycode binding in keyboard map inside X-server. Of course these commands changes symbols placement only but doesn't change other data such as **action**, key behavior or key bound modifiers.
 
 To allow XKB to move this data at symbol moving there is special mechanism - symbol [interpretation](#compatibility-table). Useing this mechanism XKB can move non-symbol data bound to keycode when application requests the symbol moving.
 
@@ -860,7 +860,7 @@ I should say that the virtual modifiers set (**base, locked** and **latched** ca
 
 But modifiers in the "emulated traditional modifiers set" changes automaticaly at key press/release. You can guess that the "emulated modifier" for particular key is modifier keeped in the real modifier variable (**modmap**) of this key.
 
-Also these two variable are used for the virtual\_to\_real modifier mapping. Remember that the virtual modifier has not any effect while it is not mapped to any real modifier.
+Also these two variable are used for the virtual_to_real modifier mapping. Remember that the virtual modifier has not any effect while it is not mapped to any real modifier.
 
 ## XKB state: control flags (XKB Controls).
 
@@ -899,7 +899,7 @@ As I already mentioned above, XKB needs to solve the "compatibility problem" wor
 Of course XKB can process such requests but the problem is that the XKB has some new terms and mechanisms absent in traditional protocol (core protocol). You guess that the core protocol requests doesn't deal with these mechanisms.
 
 *   First of all XKB has more modifiers (and can change their behavior flexibly). Therefore XKB needs to support eight traditional modifiers and to map own modifiers to these ones (as I told above).
-*   The second one is that the group number in the core protocol has another meaning. I already said that there are only two groups that can be switched by the **Mode\_Switch** key and the current group in keyboard state can be reflected by one of unnamed (**Mod1-Mod5**) modifiers that is bound to **Mode\_Switch**.
+*   The second one is that the group number in the core protocol has another meaning. I already said that there are only two groups that can be switched by the **Mode_Switch** key and the current group in keyboard state can be reflected by one of unnamed (**Mod1-Mod5**) modifiers that is bound to **Mode_Switch**.
     
     Thus in core protocol the current group (base/alternative group) indication needs only one bit and this bit is one of modifiers. But XKB for current group number delivering heeds two-bit field and in keyboard event this field placed separately from the modifiers set.
     
@@ -909,9 +909,9 @@ Of course XKB can process such requests but the problem is that the XKB has some
     
     *   First of all convert own "group sub-table" to one row of traditional symbols table (to say honestly I still don't understand this action rules except simplest case such as "two group of two levels").
     *   And the second one, to convert own group number to any real modifier state.
-*   The last problem is that the old keyboard module hasn't **actions** that are main feature provide XKB behavior flexibility. It leads to problem when non XKB-aware program will request change of some symbol\_to\_keycode binding. Since such program even doesn't suspect that this keycode can have also some action bound, it's possible that the application will move "alphabet switcher" to another key but **action** that really do such switching will stay on old place.
+*   The last problem is that the old keyboard module hasn't **actions** that are main feature provide XKB behavior flexibility. It leads to problem when non XKB-aware program will request change of some symbol_to_keycode binding. Since such program even doesn't suspect that this keycode can have also some action bound, it's possible that the application will move "alphabet switcher" to another key but **action** that really do such switching will stay on old place.
     
-    To solve this problem XKB has table of "control symbols interpretation" (or simply **interpretation** table). This table connects symbols codes and corresponded **actions**. Of course only control symbols (such as **Caps\_Lock, Shift, Num\_Lock, "alphabet switcher"**, etc.) presents in this table.
+    To solve this problem XKB has table of "control symbols interpretation" (or simply **interpretation** table). This table connects symbols codes and corresponded **actions**. Of course only control symbols (such as **Caps_Lock, Shift, Num_Lock, "alphabet switcher"**, etc.) presents in this table.
     
     Besides symbols and actions itself each **interpretation** keeps some additional data that is "real modifier list" and "match criterion" (such as "any of modifiers", "all of modifiers", "specified modifiers only", etc.).
     
@@ -1006,9 +1006,9 @@ I should note that by default all needed actions are described in the XKB config
 ## Bell features extension.
 
 It can seems that this part has not relation to keyboard.  
-Moreover, for users of computers where keyboard, display and "speaker" are independent devices such combination can looks very strange. But since in some hardware bell is placed in keyboard and produce **key\_click** sound at every key press so X's design consider that bell control is keyboard mode duty.
+Moreover, for users of computers where keyboard, display and "speaker" are independent devices such combination can looks very strange. But since in some hardware bell is placed in keyboard and produce **key_click** sound at every key press so X's design consider that bell control is keyboard mode duty.
 
-I should note that bell control presents in old (core protocol) keyboard module. With special requests to X-server application can change **key\_click** parameters (tone, duration and loudness) and produce this sound when it needs.
+I should note that bell control presents in old (core protocol) keyboard module. With special requests to X-server application can change **key_click** parameters (tone, duration and loudness) and produce this sound when it needs.
 
 The XKB module offers advanced bell features and allows not only cause **click** sound but play music fragment. Of course to provide such "music accompaniment" is too complex task for keyboard module. First aff all it needs some 'sound database' and the second it has to support many different hardware (sound cards).
 
@@ -1046,7 +1046,7 @@ Though there are some words that can be used in files (sections) of any type.
 
 Of course, it means that some portion of text must be inserted into this section from other file (section). Note that argument of this statement can be not a single file (section) name but a more complex string. For example
 
-  include "en\_US(pc104)+ru"  
+  include "en_US(pc104)+ru"  
 
 Of course, all words in such string (concatenated with plus sign) must be names of existent files and their internal sections. And each such file must have a type the same as the current section (where 'include' statement occur) has.
 
@@ -1129,7 +1129,7 @@ You can see that **FileType** in headings must presents always but **Name** can 
 
 But if there are some sections in one file they has to have differnt names. To refer to particular section it can be specified like
 
-file\_name(section\_name)
+file_name(section_name)
 
 for example:
 
@@ -1141,15 +1141,15 @@ Each heading can contain some flags such as:
 
 *   **default** - this flag makes sense when file consists of more than one section. It marks one of sections (one only !) as "default section". It means that if somewhere this file name specified without section name namely this marked section has to be taken.
 *   **partial** - means that this section is not full description but some part only. For example it can be **xkb_symbols** type section that contains only "numpad key" description or it can be **xkb_geometry** type section that describes only indicators placement.
-*   **hidden** - means that definitions from this section are invisible in "normal state" and will become visible when XKB internal state will be changed. For example it can be **xkb_symbols** type section that contains keypad symbols that will be generated when **Num\_Lock** modifier is set.
+*   **hidden** - means that definitions from this section are invisible in "normal state" and will become visible when XKB internal state will be changed. For example it can be **xkb_symbols** type section that contains keypad symbols that will be generated when **Num_Lock** modifier is set.
 
 The next flags makes sense only for **xkb_symbols** type files and sections. They only marks kind of symbols this section contains.
 
-*   **alphanumeric\_keys** - alphabetic and numeric keys,
-*   **modifier\_keys** - modifiers (Control, Shift, Alt, Meta, etc.),
-*   **keypad\_keys** - keypad keys,
-*   **function\_keys** - F1, F2, etc. keys
-*   **alternate\_group** - symbols from any national alphabet.
+*   **alphanumeric_keys** - alphabetic and numeric keys,
+*   **modifier_keys** - modifiers (Control, Shift, Alt, Meta, etc.),
+*   **keypad_keys** - keypad keys,
+*   **function_keys** - F1, F2, etc. keys
+*   **alternate_group** - symbols from any national alphabet.
 
 I should note that X-server (or **xkbcomp** program) can use only **default** flag becouse it can help to choose needed section. All other flags are needed rather for users for navigation in lot of files and sections.
 
@@ -1201,11 +1201,11 @@ Any key type description can use both real and virtual modifiers. Since real mod
 
 Virtual modifiers declaration looks simple:
 
-'virtual\_modifiers' modifiers\_list  ';'  
+'virtual_modifiers' modifiers_list  ';'  
 
-where **modifiers\_list** - is simple sequence of modifiers names divided by comma. For example line
+where **modifiers_list** - is simple sequence of modifiers names divided by comma. For example line
 
-virtual\_modifiers NumLock, Alt;  
+virtual_modifiers NumLock, Alt;  
 
 means that besides real modifiers also virtual modifiers **NumLock** and **Alt** can be used in key type descriptions.
 
@@ -1223,7 +1223,7 @@ Instruction inside key type description can be:
 
 *   [modifiers = ...;](#key-type-modifiers)
 *   [map\[...\] = ...;](#key-type-map)
-*   [level\_name\[...\] = ...;](#levelname)
+*   [level_name\[...\] = ...;](#levelname)
 *   [preserve\[...\] = ...;](#preserve)
 
 ### Key type modifiers
@@ -1258,14 +1258,14 @@ means that if both **Control** and **Alt** modifiers are active the Level3 value
 Note that in the last example it can be that each of **Control** and **Alt** modifiers separately doesn't match to any level value but only pressed together can change level. In such case instructions with **map\[Control\]** and **map\[Alt\]** will be absent.  
 But **map\[None\]** usualy presents in each key type description.
 
-### level\_name\[...\]
+### level_name\[...\]
 
 This instruction assigns any symbolic name to each level described in this key type. So inside squere brackets level value (**Level1, Level2**, etc.) must be specified and at right side any symbols string (in double quotas) must be placed.  
 For eaxmple,
 
-level\_name\[Level1\] = "Base";  level\_name\[Level2\] = "Shifted";  
+level_name\[Level1\] = "Base";  level_name\[Level2\] = "Shifted";  
 
-(**levelname** word can be used instead of **level\_name**).
+(**levelname** word can be used instead of **level_name**).
 
 I should mention that for XKB work these names (and so these instructions) doesn't make sense. They can be used by application that shows keyboard state. But on the other hand X-server "don't like" incomplete description and outputs error messages if level names are absent in type description.
 
@@ -1294,9 +1294,9 @@ Also note that in right side as modifier name the "None" word can be used. It me
 
 The XKB module already has for key types defined as "default types":
 
-*   **"ONE\_LEVEL"** - for keys that has only one symbol indpendently on any modifiers state (**Enter, Escape, Space**, etc.)
-*   **"TWO\_LEVEL"** - for keys with two levels (but non-alphabetical), the second level can be chosen by **Shift** modifier but this type keys doesn't depends on **Lock** modifier state. They are keys like 1/!, 2/@, 3/#, etc.
-*   **"ALPHABETIC"** - for alphabetical keys. They has two levels (small and capital letters) but in difference from **"TWO\_LEVEL"** keys these keys depends on **Shift** state and on **Lock** state too.
+*   **"ONE_LEVEL"** - for keys that has only one symbol indpendently on any modifiers state (**Enter, Escape, Space**, etc.)
+*   **"TWO_LEVEL"** - for keys with two levels (but non-alphabetical), the second level can be chosen by **Shift** modifier but this type keys doesn't depends on **Lock** modifier state. They are keys like 1/!, 2/@, 3/#, etc.
+*   **"ALPHABETIC"** - for alphabetical keys. They has two levels (small and capital letters) but in difference from **"TWO_LEVEL"** keys these keys depends on **Shift** state and on **Lock** state too.
 *   **"KEYPAD"** - **keypad** keys. Thses keys has two levels too. But they depends on **NumLock** and **Shift** modifiers state.
 
 Note that the number of cells in symbols table in key description (in **xkb_symbols** file) has to be the same as number of levels in key type description for this key.
@@ -1334,11 +1334,11 @@ As in **xkb_types** type files a virtual modifiers that can be used in followed 
 
 Virtual modifier declaration looks like:
 
-'virtual\_modifiers' modifiers list ';'
+'virtual_modifiers' modifiers list ';'
 
 For example:
 
-virtual\_modifiers NumLock, AltGr ;
+virtual_modifiers NumLock, AltGr ;
 
 ## Interpretation description.
 
@@ -1402,7 +1402,7 @@ or
 
 For example:
 
-interpret Num\_Lock {...}; interpret ISO\_Level2 + Shift {...}; interpret ISO\_Lock + AnyOf(Lock+shift) {...};
+interpret Num_Lock {...}; interpret ISO_Level2 + Shift {...}; interpret ISO_Lock + AnyOf(Lock+shift) {...};
 
 *   If in heading only symbol code is specified it means that the match condition is **AnyOfOrNone** and real modifier field is empty.
 *   If one has specified symbol code and modifier name (but no conditions) it means that condition is **Exactly**.
@@ -1493,9 +1493,9 @@ And the second point is that the indicator also can be switched by application. 
 
 The indicator behavior whole description looks like:
 
-'indicator' inducator\_name '{' description '};'
+'indicator' inducator_name '{' description '};'
 
-Here **indicator\_name** is symbolic name (in double quotas) assigned to the indicator in **xkb_keycodes** type file.
+Here **indicator_name** is symbolic name (in double quotas) assigned to the indicator in **xkb_keycodes** type file.
 
 And **description** consists of instructions that looks like assignment instruction.
 
@@ -1617,13 +1617,13 @@ Remind that each key has a symbols table. Such table is devided to **group** sub
 
 Remind also that differnt keys can have different number of groups and differntt groups of the same key can have different number of levels.
 
-Besides symbol table some of keys can have analogous table of **actions**. Although usually **actions** are bound not to keys itself but to special symbols (in **xkb\_compat** type files).
+Besides symbol table some of keys can have analogous table of **actions**. Although usually **actions** are bound not to keys itself but to special symbols (in **xkb_compat** type files).
 
-Before considering this file grammar lets remember what other data (description fields) besides **simbols** and **actions** can be bound to key scan-code. Generally all these fields have values for default so usually you will not find their specification inside the **xkb\_symbols**file. But if you need you can specify them here explicitly.
+Before considering this file grammar lets remember what other data (description fields) besides **simbols** and **actions** can be bound to key scan-code. Generally all these fields have values for default so usually you will not find their specification inside the **xkb_symbols**file. But if you need you can specify them here explicitly.
 
 Each scan-code description have
 
-*   common **key type** - types are described in **xkb\_types** type files and define dependence of **shift level** on modifiers state. Note that each group sub-table can have own **type**. But if all groups for this key have the same **type** it can be specified once as common for all groups.
+*   common **key type** - types are described in **xkb_types** type files and define dependence of **shift level** on modifiers state. Note that each group sub-table can have own **type**. But if all groups for this key have the same **type** it can be specified once as common for all groups.
 *   **adjustment method** for group number - remind that some keys can have number of groups less then other keys have. The XKB adjusts group number if it comes out of bounds but the bounds in this case means maximum value of group number used in all key descriptions. Therefore at pressing such few-group key it is possible that for this key even adjusted number is 'out-of-bounds'. In this case the number must be adjusted additionaly specialy for this key. The methods itsel are the same as 'global' ones (see [The XKB internals:"Keep in range" methods...](#"keeping-in-range"-methods-for-group-number) ).
 *   **autorepeat** - a boolean flag that defines - need it key autorepeating or no;
 *   **key 'behavior'** - it is set of flags and one additional argument that defines ...
@@ -1633,11 +1633,11 @@ Each scan-code description have
     *   **Overlay 1** - defines that key belongs to overlay group of keys. If in the XKB 'control flags' a **Overlay1** flag is active so this key generates another scan-code (**keycode**) which specified by 'additional argument'.
     *   **Overlay 2** - the same as previous flag but the behavior of key with this flag depends on **Overlay2** 'control flag'.
     *   **permanent** - this flag can be combined with any other flag and means that corresponded behavior is supported by hardware and the XKB module don't need to emulate it. (For example, some keyboard allow to forbid autorepeat for separate key. In this case the XKB has to send special command to hardware at symbols map loading and then don't care about supress unneeded key press events.)
-*   **virtual modifier** - this modifier can be used as argument for an **action** bound to the key (of course, if key has any actions). I should note that genarally these **virtual modifiers** are specified not in the **xkb\_symbols** file but in **xkb\_compat** ones (where **actions** are specified).
+*   **virtual modifier** - this modifier can be used as argument for an **action** bound to the key (of course, if key has any actions). I should note that genarally these **virtual modifiers** are specified not in the **xkb_symbols** file but in **xkb_compat** ones (where **actions** are specified).
 *   **'Exceptions set'** - it is set of flags that protects the key description against **interpretation** performing (changing **actions** binding when symbols-to-keycodes binding was changed). By these flags one can forbid the whole interpreatation or some its parts performing - changes of virtual modifier, 'autorepeat' flag or 'lock' flag.
 *   and the last, in a separate table one can specify binding of **real modifiers** to scan-codes. If the real modifier (one of 'core protocol' modifiers) is bound to some key its state will be changed automaticaly (none **actions** are needed) at key press/release. Also real modifiers-to-scan-code binding can be used by XKB when it search appropriate key for the **interpretation** applying.
 
-## Declaration in xkb\_symbols type file.
+## Declaration in xkb_symbols type file.
 
 The records in such type file can be:
 
@@ -1653,9 +1653,9 @@ This instruction sipmply declare list of virtual modifiers names which can be me
 
 It looks like
 
-**'virtual\_modifiers'** list of modifiers **';'**
+**'virtual_modifiers'** list of modifiers **';'**
 
-Remind that virtual modifiers can be used in the **action** description or as attribute of the key description. At the same time usually neither action description nor 'virtual modifier field' are specified in the **xkb\_symbols** type files (generally they are specified in the **xkb\_compat** type file). So your will hardly find such instruction in any 'standard' xkb\_symbols file.
+Remind that virtual modifiers can be used in the **action** description or as attribute of the key description. At the same time usually neither action description nor 'virtual modifier field' are specified in the **xkb_symbols** type files (generally they are specified in the **xkb_compat** type file). So your will hardly find such instruction in any 'standard' xkb_symbols file.
 
 ## Group name declaration.
 
@@ -1671,13 +1671,13 @@ name\[Group1\] = "English" ; name\[Group2\] = "Russian" ;
 
 ## Key description.
 
-This is the main type of records in xkb\_symbols type files. Namely this record describes symbols table (and action table if needed) bound to scan-kode.
+This is the main type of records in xkb_symbols type files. Namely this record describes symbols table (and action table if needed) bound to scan-kode.
 
 It looks like
 
-**'key'** scan-code\_name **'{'** descriptions **'};'**
+**'key'** scan-code_name **'{'** descriptions **'};'**
 
-Remind that the 'scan-code\_names' are declared in **xkb\_keycodes** type files and it is string of any printable symbols (but no longer than four symbols) bounded by 'angle brackets'.  
+Remind that the 'scan-code_names' are declared in **xkb_keycodes** type files and it is string of any printable symbols (but no longer than four symbols) bounded by 'angle brackets'.  
 For example,
 
 key <LCTL> {...};
@@ -1703,15 +1703,15 @@ The 'description' can be
 
 ### type (key-description)
 
-It defines key **type**. The word in the right side must be name of one of types desribed in the **xkb\_types** type file.
+It defines key **type**. The word in the right side must be name of one of types desribed in the **xkb_types** type file.
 
 Note that since differnt **groups** table of the same key can have different types (remind, the type defines number of **shift levels** inside the **group**) this description in common case must looks like
 
-type\[ group \] = type\_name,
+type\[ group \] = type_name,
 
 for example,
 
-type\[ Group1 \] = "ONE\_LEVEL", type\[ Group2 \] = "ALPHABETIC",
+type\[ Group1 \] = "ONE_LEVEL", type\[ Group2 \] = "ALPHABETIC",
 
 But if all groups have the same number of levels and belong to the same type the group specification (together with square brackets) can be ommited. For example:
 
@@ -1719,7 +1719,7 @@ type = "ALPHABETIC",
 
 I should note that all keys have the 'deafult group' value. So generally the type is not specified in key description.
 
-At the same time there is one point (can be considered as bug) in these defaults. There is two similar types with two levels each - "TWO\_LEVEL" and "ALPHABETIC". Both types imply two levels and the levels choice depends on Shift modifier. But the "ALPHABETIC" type keys also depends on CapsLock key (I hope everybody know what such dependences means). But by default only first group of each 'alphabetic' key have "ALPHABETIC" type. If you will have made symbols map with any national alphabet (for exapmle some kind of Cyrillic) placed into second group this second group will have "TWO\_LEVEL" type. It means such key will depend on CapsLock when the keyboard is switched to the first group but the CapsLock will not have any effect for the same key when you will switch to your national alphabet. So in this case you need to specify the type for second group explicitly. (But you need not do it in each key description but can use 'defaults declaration'. See [below](#defaults-declaration-symb).)
+At the same time there is one point (can be considered as bug) in these defaults. There is two similar types with two levels each - "TWO_LEVEL" and "ALPHABETIC". Both types imply two levels and the levels choice depends on Shift modifier. But the "ALPHABETIC" type keys also depends on CapsLock key (I hope everybody know what such dependences means). But by default only first group of each 'alphabetic' key have "ALPHABETIC" type. If you will have made symbols map with any national alphabet (for exapmle some kind of Cyrillic) placed into second group this second group will have "TWO_LEVEL" type. It means such key will depend on CapsLock when the keyboard is switched to the first group but the CapsLock will not have any effect for the same key when you will switch to your national alphabet. So in this case you need to specify the type for second group explicitly. (But you need not do it in each key description but can use 'defaults declaration'. See [below](#defaults-declaration-symb).)
 
 ### locks (key-description)
 
@@ -1731,7 +1731,7 @@ Remind that this word can be combined with word **permanent**. It makes sense wh
 
 By default all keys are not localble.
 
-NOTE: You can answer that keys such as CapsLock, NumLock or ScrollLock behaves as lockable by default. It is right. But they use another mechanism. The point is that some **actions** behaves as lockable. It means that the key sends to the XKB both events - key press and key release. But if a symbol bound to this key is Caps\_Lock, Num\_Lock, etc. the XKB has to perform the corresponded action which filters out the release event at the first press and ignores the key press event at the second one. Thus this key behavior looks like 'lock key'. At the same time this key can have some other symbols that will be chosen if the key is pressed with some other 'modifier key'. In this case the key will not behave as lockable one. But if you specify 'lockability' in the key description it means that the XKB will filter out unneded events (release event at the first press and press event at the second time) before any action processing and for any symbols (independly on any modifiers state).
+NOTE: You can answer that keys such as CapsLock, NumLock or ScrollLock behaves as lockable by default. It is right. But they use another mechanism. The point is that some **actions** behaves as lockable. It means that the key sends to the XKB both events - key press and key release. But if a symbol bound to this key is Caps_Lock, Num_Lock, etc. the XKB has to perform the corresponded action which filters out the release event at the first press and ignores the key press event at the second one. Thus this key behavior looks like 'lock key'. At the same time this key can have some other symbols that will be chosen if the key is pressed with some other 'modifier key'. In this case the key will not behave as lockable one. But if you specify 'lockability' in the key description it means that the XKB will filter out unneded events (release event at the first press and press event at the second time) before any action processing and for any symbols (independly on any modifiers state).
 
 ### repeat (key-description)
 
@@ -1771,7 +1771,7 @@ By defaut there is not any radio-groups and their members.
 
 ### overlay1 and overlay2
 
-This instruction means that key belongs to one of two 'overlay group'. Remind that when the 'overlay mode' is active (the corresponded flag in in keyboard state is set) such key has to emulate press of key with another scan-code. Therefore on the right side of assignment there must be scan-code name which press has to be emulated. This name has the same look as scan-code name in the key description head and must be defined in the **xkb\_keycodes** type file.  
+This instruction means that key belongs to one of two 'overlay group'. Remind that when the 'overlay mode' is active (the corresponded flag in in keyboard state is set) such key has to emulate press of key with another scan-code. Therefore on the right side of assignment there must be scan-code name which press has to be emulated. This name has the same look as scan-code name in the key description head and must be defined in the **xkb_keycodes** type file.  
 For example:
 
 overlay1 = <XY01>,
@@ -1790,22 +1790,22 @@ It means that such behavior is provided by hardware and the XKB don't need to em
 
 This instruction defines virtual modifier (or set of modifiers) that has to be bound to key. The right side of assignment must be virtula modifier name (or list of names devided by plus sign).
 
-Remind that generally virtual modifiers are bound not here but in the **xkb\_compat** type files.
+Remind that generally virtual modifiers are bound not here but in the **xkb_compat** type files.
 
 ### symbols
 
 It is the main part of the **key** description. It defines set of symbols for this key. One such instruction specifies the symbols set for one **group**. Therefore square brackets in the left side must contain name of group and the right side is list of symbols for all **shift levels** of this **group** (list must be bounded by square brackets too).  
 For example,
 
-symbols\[Group1\] = \[ semicolon, colon \], symbols\[Group1\] = \[Cyrillic\_zhe, Cyrillic\_ZHE\],
+symbols\[Group1\] = \[ semicolon, colon \], symbols\[Group1\] = \[Cyrillic_zhe, Cyrillic_ZHE\],
 
 The 'symbols' here can be numeric codes of symbols (in decimal, octal or hexidecimal format) or special 'symbol names' (or **keysym** names).
 
-Possible names of keysyms you can find in the **X11R6/include/X11/keysymdefs.h** file. But note that there names have prefix "**XK\_**". Thus if you see in this file definitions like
+Possible names of keysyms you can find in the **X11R6/include/X11/keysymdefs.h** file. But note that there names have prefix "**XK_**". Thus if you see in this file definitions like
 
-#define XK\_Escape 0xFF1B #define XK\_Delete 0xFFFF ....
+#define XK_Escape 0xFF1B #define XK_Delete 0xFFFF ....
 
-it means that keysym names that can be used in the **xkb\_symbols** file are **Escape** and **Delete**.
+it means that keysym names that can be used in the **xkb_symbols** file are **Escape** and **Delete**.
 
 NOTE: If digits 0 - 9 are used as symbols they will be considered as names of symbols '**0**' - '**9**' but not as numeric codes.
 
@@ -1839,7 +1839,7 @@ key <AE03> { symbols\[Group1\]= \[ 3, numbersign \], symbols\[Group2\]= \[ apost
 
 You see that the first pair of square brackets (with content inside) is interpreted as **symbols\[...\]** instruction for the first group, the second pair of brackets - as description for the second group and so one.
 
-By the way, some **xkb\_symbols** files can contain a partial description of full keyboard map. For example it can be some national alphabet symbols placed in the second **group**. Of course such files generally are used as addition to some other file (**xkb\_symbols** type) that contains first group description.  
+By the way, some **xkb_symbols** files can contain a partial description of full keyboard map. For example it can be some national alphabet symbols placed in the second **group**. Of course such files generally are used as addition to some other file (**xkb_symbols** type) that contains first group description.  
 For specifying that the symbols from this file must be loaded to the second group but the first group must not be touched you can use two ways:
 
 *   To specify group number explicitly in each key description:
@@ -1868,21 +1868,21 @@ This instruction fills the internal XKB table **modmap** which describes relatio
 
 The instruction looks like
 
-**'modifier\_map'** real\_modifier\_name **'{'** keys\_list **'};'**
+**'modifier_map'** real_modifier_name **'{'** keys_list **'};'**
 
-Synonyms **modmap** or **mod\_map** can be used instead of **modifier\_map**" word.
+Synonyms **modmap** or **mod_map** can be used instead of **modifier_map**" word.
 
-The **real\_modifier\_name** there must name of one of real modifiers - **Shift, Lock, Control, Mod1, Mod2, Mod3, Mod4, Mod5**.
+The **real_modifier_name** there must name of one of real modifiers - **Shift, Lock, Control, Mod1, Mod2, Mod3, Mod4, Mod5**.
 
-But **keys\_list** can consist of either names of scan-codes (keycodes), for example:
+But **keys_list** can consist of either names of scan-codes (keycodes), for example:
 
-modifier\_map Control { <LCTL>, <RCTL> };
+modifier_map Control { <LCTL>, <RCTL> };
 
 or names of symbols (keysyms), for example:
 
-modifier\_map Mod1 { Alt\_L, Alt\_R };
+modifier_map Mod1 { Alt_L, Alt_R };
 
-Since the internal **modmap** table is 'scan\_code to modifiers' mapping, in the second case the XKB has to find scan-codes where specified symbols are bound to and then place these scan-codes into **modmap**.
+Since the internal **modmap** table is 'scan_code to modifiers' mapping, in the second case the XKB has to find scan-codes where specified symbols are bound to and then place these scan-codes into **modmap**.
 
 Note that the same real modifier can be bound to many keycodes but not vice versa - many modifiers to one keycode. It means that scan-code name can appears in **modmap** instructions only once (the xkbcomp checks it). The same limitation is applied to keys specified **modmap** instruction by symbol names.
 
@@ -1923,7 +1923,7 @@ means the tenth radio-group has this flag.
     *   [Modifiers change.](#modifiers-change)
     *   [Group number change.](#group-number-change)
     *   [Control flags (XKB Controls) change.](#control-flags-xkb-controls-change)
-    *   [The ISO\_Lock action.](#isolock-action)
+    *   [The ISO_Lock action.](#isolock-action)
 *   [Actions for mouse events emulation.](#actions-for-mouse-events-emulation)
     *   [Cursor movement.](#cursor-movement)
     *   [Mouse buttons press.](#mouse-buttons-press)
@@ -1945,11 +1945,11 @@ Actions decsriptions are used in the **xkb_symbols** type file where an **action
 
 In common the action description looks like the function declaration in C language:
 
-action\_name **'('** arguments\_list **');'**
+action_name **'('** arguments_list **');'**
 
 But a difference is that arguments are not values only but name-value pairs:
 
-argument\_name **'='** argument\_value
+argument_name **'='** argument_value
 
 For example:
 
@@ -2151,7 +2151,7 @@ These actions have not any flags.
 Its name is **ISOLock**.  
 This action is additional one for described abowe actions. It changes behavior of other actions making them 'lockable'.
 
-It means you can press **ISO\_Lock** and keeping it pressed press some of key with actions such as **SetMods, SetGroup, SetControls** or **PointerButton** (about this action see below) so their behavior becomes the same as **LockMods, LockGroup, LockControls** or **LockPointerButton** respectively.
+It means you can press **ISO_Lock** and keeping it pressed press some of key with actions such as **SetMods, SetGroup, SetControls** or **PointerButton** (about this action see below) so their behavior becomes the same as **LockMods, LockGroup, LockControls** or **LockPointerButton** respectively.
 
 The main argument is **affect**. It allows to filter actions must be changed. Possible values are:
 
