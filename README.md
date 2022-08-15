@@ -57,7 +57,7 @@ For example
 
 **types**
 
-describes key types. A key type defines, how the code produced by a key must be changed in dependence of 'modifiers' (Control, Shift and so on). For example 'letter' keys have type ALPHABETIC. This means that they will produce different codes depending on the states of the \[Shift\] and \[CapsLock\] keys. The \[Enter\] key has another type: ONE_LEVEL. That means that its code is always the same independent of any modifiers state.
+describes key types. A key type defines, how the code produced by a key must be changed in dependence of 'modifiers' (Control, Shift and so on). For example 'letter' keys have type ALPHABETIC. This means that they will produce different codes depending on the states of the [Shift] and [CapsLock] keys. The [Enter] key has another type: ONE_LEVEL. That means that its code is always the same independent of any modifiers state.
 
 **compat** (abridged from compatibility)
 
@@ -78,7 +78,7 @@ It must be mentioned that every such directory has several files (sometimes many
 component_type "section_name" {........};
 ```
 
-So to specify a single setting one has to write something like ```**file_name(section_name)** ``` for example ``` **us(pc104)** ```.
+So to specify a single setting one has to write something like ```file_name(section_name) ``` for example ``` us(pc104) ```.
 
 At the same time usually one of sections in such file is marked with 'flag' **default**. For example
 
@@ -361,7 +361,7 @@ Remind that 'additional configuration file' can be composed for each display sep
 ## Initial value for [modifiers](#modifiers) set.
 
 ```
-**modifiers** **\[ = | -= | += \]** modifier1 + modifier2 + ...
+modifiers [ = | -= | += ] modifier1 + modifier2 + ...
 ```
 
 Where 'modifier\*' is name of one of 'real modifiers' - **shift, lock, control** (or **ctrl**), **mod1, mod2, mod3, mod4, mod5**.
@@ -372,7 +372,7 @@ As I told above in this statement 'variants of assignment' can be used - '**\-=*
 ## Initial value for ["control flags"](#control-flags-xkb-controls-change) set.
 
 ```
-**controls** **\[ = | -= | += \]** flag1 + flag2 + ...
+controls [ = | -= | += ] flag1 + flag2 + ...
 ```
 
 As in previous statement operation can be remove/add/replace (**'-='/'+='/'='**).
@@ -432,13 +432,13 @@ switch on several modes of AccessX (for Physically Impaired Persons).
 ## Modifiers that must be ignored in GrabKey mode
 
 ```
-ignorelockmods \[ -= | += | = \] modifier1 + modifier2 + ... (or ignorelockmodifiers ...)
+ignorelockmods [ -= | += | = ] modifier1 + modifier2 + ... (or ignorelockmodifiers ...)
 ```
 
 ## List of 'internal modifiers'
 
 ```
-internalmods \[ -= | += | = \] modifier1 + modifier2 + ... (or internalmodifiers ...)
+internalmods [ -= | += | = ] modifier1 + modifier2 + ... (or internalmodifiers ...)
 ```
 
 This is modifiers set that must be used inside Xserver (for 'action' selection if exists) and must not be reported to client applications in keyboard events
@@ -446,7 +446,7 @@ This is modifiers set that must be used inside Xserver (for 'action' selection i
 ## Group ['adjust method'](#keep-group-number-in-range-method).
 
 ```
-groups = \[ wrap | clamp | number \] (or outofrangegroups ...)
+groups = [ wrap | clamp | number ] (or outofrangegroups ...)
 ```
 
 It defines 'group adjustment method'. Remind that such method can be **wrap**, **clamp** or **redirect**. In the last case additional data required - group number 'what number redirect to' if original group number is out of bounds.  
@@ -467,7 +467,7 @@ All this statements define 'cheeper' parameters (**bell**) and 'keyboard click' 
 Statements **bell** and **click** also can looks like
 
 ```
-bell = \[ on | off \] click = \[ on | off \]
+bell = [ on | off ] click = [ on | off ]
 ```
 
 that means (as easy to guess) that these signals must be switched on/off. If command is "to switch on signal" without any volume the volume assumed 100.
@@ -539,7 +539,7 @@ acceleration 'curve Factor' ( in accelerated mode cursor speed grows from initia
 ## Switch on/off AccessX 'sound indication' modes
 
 ```
-accessxtimeoutctrlson \[ -= | += | = \] option1 + option2 + ... (or axtctrlson ...) accessxtimeoutctrlsoff \[ -= | += | = \] option1 + option2 + ... (or axtctrlsoff ...)
+accessxtimeoutctrlson [ -= | += | = ] option1 + option2 + ... (or axtctrlson ...) accessxtimeoutctrlsoff [ -= | += | = ] option1 + option2 + ... (or axtctrlsoff ...)
 ```
 
 here 'options' can be - **slowkeyspress, slowkeysaccept, feature, slowwarn, indicator, stickykeys, slowkeysrelease, slowkeysreject, bouncekeysreject, dumbbell.**
@@ -1167,7 +1167,7 @@ The XKB configuration file can have one of three forms:
 
 If file contain the "simple configuration" there must begins from heading like
 
-\[ Flags \] FileType \[ Name \]
+[ Flags ] FileType [ Name ]
 
 after which instructions follows. For example:
 
@@ -1179,7 +1179,7 @@ But often another form is used that is sequence of "simple sections". In such fi
 
 Each section has own heading the same as for "simple configuration" file.
 
-\[ Flags \] FileType \[ Name1 \] '{' \[ instructions \] '};' \[ Flags \] FileType \[ Name2 \] '{' \[ instructions \] '};' ...
+[ Flags ] FileType [ Name1 ] '{' [ instructions ] '};' [ Flags ] FileType [ Name2 ] '{' [ instructions ] '};' ...
 
 For example:
 
@@ -1233,7 +1233,7 @@ By the way, complete list of all sections with their flags you can find in **\*.
 
 And finally lets consider third type of configuration file that is sequence of "complex sections". Each "Complex section" has form the same as "simple section":
 
-\[ Flags \] ComplexType \[ Name \] '{' Section { Section } '};'
+[ Flags ] ComplexType [ Name ] '{' Section { Section } '};'
 
 but contains not instruction but blocks of simple type sections. For example
 
@@ -1257,7 +1257,7 @@ Usualy different groups are used for different alphabets and different levels ar
 
 So xkb_types files describe how **shift level** dependends on the state of modifier keys (**Shift, Control, Alt**, etc.). Strictly speaking these files describe **key types**. Each type has a name and rules for the shift level calculation.
 
-Then these key types are used in **xkb_symbols** files. But note that for most groups there are "default types" already defined so in most symbols maps you will not find explicit key type spcifying.
+Then these key types are used in **xkb_symbols** files where for each group table bound to keycode its own **key type** can be specified. But note that for most groups there are ["default types"](#predefined-types) already defined so in most symbols maps you will not find explicit key type spcifying.
 
 The **xkb_types** type files can contain records:
 
@@ -1266,7 +1266,7 @@ The **xkb_types** type files can contain records:
 
 ## Virtual modifiers declaration.
 
-Such record simply itemises virtual modifiers names that cam be met in followed key type descriptions.
+Such record simply itemises virtual modifiers names that can be met in followed key type descriptions.
 
 I should remind that there are eight "traditional" modifiers (**Shift, Lock, Control, Mod1-Mod5**) named in XKB as **real** modifiers. And additionaly XKB can have up to 16 own modifiers named as **virtual** modifiers. Usualy their names are **NumLock, ScrollLock, Alt, AltGr**, etc.  
 Modifiers are bound to keys in **xkb_symbols** type files.
@@ -1274,127 +1274,130 @@ Modifiers are bound to keys in **xkb_symbols** type files.
 Any key type description can use both real and virtual modifiers. Since real modifiers always has standard names it is not necessary to declare these names any where but virtual modifier name can be any so it can be declared before using in key type descriptions.
 
 Virtual modifiers declaration looks simple:
-
+```
 'virtual_modifiers' modifiers_list  ';'  
-
+```
 where **modifiers_list** - is simple sequence of modifiers names divided by comma. For example line
-
+```
 virtual_modifiers NumLock, Alt;  
-
+```
 means that besides real modifiers also virtual modifiers **NumLock** and **Alt** can be used in key type descriptions.
 
 ## Key type description
 
-This records looks like:
-
+These records look like:
+```
 'type' TypeName '{' Instructions '};'  
+```
+**TypeName** is any STRING type constant (or string of symbols in double quotas). This name is used in **xkb_symbols** files for specifying key type.
 
-**Type name** is any STRING type constant (or string of symbols in double quotas). This name is used in **xkb_symbols** files for key type specifying.
+And **Instructions** are some records that looks like value to variable assignment. Each single instruction must be terminated by semicolon.
 
-And **Instructions** are some records that looks like value to variable assignment. Each single instruction must be termonated by semicolon.
-
-Instruction inside key type description can be:
+Instructions inside key type description can be:
 
 *   [modifiers = ...;](#key-type-modifiers)
-*   [map\[...\] = ...;](#key-type-map)
-*   [level_name\[...\] = ...;](#levelname)
-*   [preserve\[...\] = ...;](#preserve)
+*   [map[...] = ...;](#key-type-map)
+*   [level_name[...] = ...;](#levelname)
+*   [preserve[...] = ...;](#preserve)
 
 ### Key type modifiers
 
-This instruction simply itemise real and virtual modifiers that are used for level computation in this concrete type. If there are more that one modifier they are concatenated by plus sign.  
+This instruction simply itemise real and virtual modifiers that are used for level computation in this concrete type. If there are more than one modifier they are concatenated by plus sign.  
 For example:
-
+```
 modifiers = NumLock;  
-
+```
 or
-
+```
 modifiers = Shift+Lock;  
+```
 
 ### Key type map
 
-Namely this instruction describes what level value match to each modifier or their combination. So inside squere brackets modifier or combination is specified and at right side of assignment corresponded level value is placed. For level value one can use "level names" (**Level1, Level2**, etc.) or simply numeric value. (The xkbcomp program undestand level names from **Level1** to **Level8** only. So if you need level value more than eight you need to specify it as number.)  
-Also as modifier name the special word "None" can be used. It means that this instruction defines what level value match to state where all modifiers are inactive.  
+These instructions describe what level values correspond to each modifier or their combination. Inside squere brackets a modifier or a combination of modifiers is specified and at the right side of the assignment the corresponding level value is placed. For the level value one can use "level names" (**Level1, Level2**, etc.) or simply numeric value. (Note: the xkbcomp program undestands level names from **Level1** to **Level8** only. So if you need a level value more than eight then you need to specify it as a number.)  
+Also as a modifier name the special word "None" can be used. It means that this instruction defines that the level value matches to the state where all modifiers are inactive.  
 For example:
-
-map\[None\] = Level1;  
-
+```
+map[None] = Level1;  
+```
 means that if none of modifiers are set the Level1 value must be chosen.
-
-map\[Shift\] = Level2;  
-
+```
+map[Shift] = Level2;  
+```
 means that if **Shift** is set (and nothing else) the Level2 value must be chosen..
-
-map\[Control+Alt\] = Level3;  
-
+```
+map[Control+Alt] = Level3;  
+```
 means that if both **Control** and **Alt** modifiers are active the Level3 value must be chosen.
 
-Note that in the last example it can be that each of **Control** and **Alt** modifiers separately doesn't match to any level value but only pressed together can change level. In such case instructions with **map\[Control\]** and **map\[Alt\]** will be absent.  
-But **map\[None\]** usualy presents in each key type description.
+Note that in the last example it can be that each of **Control** and **Alt** modifiers separately doesn't match to any level value but only pressed together can change level. In such case instructions with **map[Control]** and **map[Alt]** will be absent.  
+But **map[None]** usualy is present in each key type description.
 
-### level_name\[...\]
+### level_name[...]
 
-This instruction assigns any symbolic name to each level described in this key type. So inside squere brackets level value (**Level1, Level2**, etc.) must be specified and at right side any symbols string (in double quotas) must be placed.  
-For eaxmple,
-
-level_name\[Level1\] = "Base";  level_name\[Level2\] = "Shifted";  
-
+This instruction assigns any symbolic name to each level described in this key type. So inside squere brackets level value (**Level1, Level2**, etc.) must be specified and at the right side any symbols string (in double quotes) must be placed.
+For example,
+```
+level_name[Level1] = "Base";  level_name[Level2] = "Shifted";  
+```
 (**levelname** word can be used instead of **level_name**).
 
-I should mention that for XKB work these names (and so these instructions) doesn't make sense. They can be used by application that shows keyboard state. But on the other hand X-server "don't like" incomplete description and outputs error messages if level names are absent in type description.
+I should mention that for XKB work these names (and so these instructions) are not needed. They can be used by applications that show keyboard state. But at the same time X-server "doesn't like" incomplete descriptions and outputs error messages if level names are absent in a type description.
 
-### preserve\[...\]
+### preserve[...]
 
-This instruction needs additional explanation.  
-Remind that X-server sends to application some message about key press or release event. This message contain keycode and "state" that is set of modidifiers.
+This instruction needs an additional explanation.
+Recall that X-server sends to applications some message about a key press or release event. This message contains a keycode and a "state" that is a set of modifiers.
 
-Then this message must be converted to symbols by appropriate Xlib subroutines using keycode and modifiers set.
+Then this message must be converted to symbols by appropriate Xlib subroutines using the keycode and the modifiers set.
 
-In Xlib there are some subroutines that process this message step by step. Each subroutine performing own step can use only part of modifiers. To avoid any "side effects" each step subroutine cleans modifiers that it has used from modifiers set.
+In Xlib there are some subroutines that process this message step by step. Each subroutine performing own step can use only part of modifiers. To avoid any "side effects" each step subroutine cleans modifiers that it has used from the modifiers set.
 
-But in the same time in some cases such behavior is undesirable and one of modifiers must be considered by more than one subroutines.
+But in the same time in some cases such behavior is undesirable and one of the modifiers must be considered by more than one subroutines.
 
-Namely for such cases instruction **preserve** can be used. There "preserve" means "preserve modifier in state".
+For such cases the instruction **preserve** can be used. There "preserve" means "preserve modifier in state".
 
-In this instruction in squere brackets modifier (or their combination) must be specified and it must be the same as in one of **map\[...\]** isnructions. In right part one has to specify modifier (or combination) that has to be preserverd.
+In this instruction in squere brackets a modifier (or their combination) must be specified and it must be the same as in one of the **map[...]** isnructions. In right part one has to specify a modifier (or combination) that has to be preserverd.
 
-Note that combination in brackets must be exactly the same as in one of **map\[...\]** isnructions.  
-The point is that **preserve\[...\]** instruction isn't independent one. In XKB internal data it is continuation of corresponded **map\[...\]** instruction.  
-But in right part there can be only part of modifiers (or only one modifier). It means that this level will be chosen when all needed modifiers are active but only modifier specified in right part has to be preserved.
+Note that the combination in brackets must be exactly the same as in one of the **map[...]** isnructions.  
+The point is that the **preserve[...]** instruction isn't an independent one. In XKB internal data it is a continuation of the corresponding **map[...]** instruction.
+But in the right part there can be only a part of modifiers (or only one modifier). It means that this level will be chosen when all needed modifiers are active but only the modifier specified in the right part has to be preserved.
 
-Also note that in right side as modifier name the "None" word can be used. It means that none of modifiers has to be preserved. But since it is deafault behavior (don't save any modifiers) such instructions doesn't make sense and can be ommited.
+Also note that on the right side as a modifier name the "None" word can be used. It means that none of modifiers has to be preserved. But since it is deafault behavior (don't save any modifiers) such instructions doesn't make sense and can be ommited.
+
+(note from the editor: TODO: add references to examples with 'preserve')
 
 ## Predefined types.
 
-The XKB module already has for key types defined as "default types":
+The XKB module already has four key types defined as "default types":
 
 *   **"ONE_LEVEL"** - for keys that has only one symbol indpendently on any modifiers state (**Enter, Escape, Space**, etc.)
-*   **"TWO_LEVEL"** - for keys with two levels (but non-alphabetical), the second level can be chosen by **Shift** modifier but this type keys doesn't depends on **Lock** modifier state. They are keys like 1/!, 2/@, 3/#, etc.
-*   **"ALPHABETIC"** - for alphabetical keys. They has two levels (small and capital letters) but in difference from **"TWO_LEVEL"** keys these keys depends on **Shift** state and on **Lock** state too.
-*   **"KEYPAD"** - **keypad** keys. Thses keys has two levels too. But they depends on **NumLock** and **Shift** modifiers state.
+*   **"TWO_LEVEL"** - for keys with two levels (but non-alphabetical), the second level can be chosen by the **Shift** modifier but this type of keys doesn't depend on the **CapsLock** modifier state. They are keys like 1/!, 2/@, 3/#, etc.
+*   **"ALPHABETIC"** - for alphabetical keys. They has two levels (small and capital letters) but the difference from the **"TWO_LEVEL"** keys is that these keys depend not only on the **Shift** state but on the **CapsLock** state too.
+*   **"KEYPAD"** - **keypad** keys. Thses keys has two levels too. But they depend on **NumLock** and **Shift** modifiers state.
 
-Note that the number of cells in symbols table in key description (in **xkb_symbols** file) has to be the same as number of levels in key type description for this key.
+Note that the number of cells in the symbols table of a key description (in **xkb_symbols** file) has to be the same as the number of levels in the key type description for this key.
 
-Therefore althogh you can redefine any of "predefined" types (changing modifiers or laevel names in description) but it's dangerous to change number of values in these types. If you need more levels for some keys you can invent new type for them.
+Therefore although you can redefine any of the "predefined" types (by changing modifiers or level names in the description) but it's dangerous to change the number of values in these types. If you need more levels for some keys you can create a new type for them.
 
-Examples of key type description you can find in files from **{XKBROOT}/types/** directory.
+Examples of key type description you can find in files at **{XKBROOT}/types/** directory.
 
-And one example of new type invention and usage you can see in section [Examples:New type for the Enter key."](#example1).
+And one example of a new type creation and its usage you can see in the section [Examples: New type for the Enter key."](#example1).
 
 
 # The xkb_compat type files.
 
-This file contents describes modifier keys behavior. Or in the other words how keyboard state changes when you press such keys.
+These files describe the behariour of the modifier keys. Or in other words how the keyboard state changes when you press such keys.
 
 I should remind that the XKB module has internal tables named **Xkb Compability Map**. This data consists of two parts:
 
 *   table of **interpretation**;
-*   four single variables that defines **real** modifiers that will indicate current group number for 'old' application (that doesn't know about "current group" field in key event).
+*   four single variables that define **real** modifiers that will indicate current group number for 'old' applications (that don't know about "current group" field in the key event).
 
-An application can request X-server to change symbol to keycode binding. If the symbol is ordinar "printable" symbol there is no problem. But if it is "control" symbol that imply change of modifier, group number or XKB internal state the XKB module has to bind an "action" to corresponded place in keycode bound table. But "old standard" request has no information about "action" so XKB has to decide what action must be bound using own data.  
-And the **Xkb Compability Map** is used for this problem solution.
+An application can request X-server to change the symbol for a keycode binding. If the symbol is an ordinar "printable" symbol then there is no problem. But if it is a "control" symbol that imply a change of a modifier, a group number or an XKB internal state then the XKB module has to bind an "action" to the corresponding place in the keycode bound table. But "old standard" request has no information about "actions" so XKB has to decide what action must be bound using own data.  
+And the **Xkb Compability Map** is used for this problem resolution.
 
-The xkb_compat type files can contain records:
+The xkb_compat type files can contain the following records:
 
 *   [Virtual modifier declaration.](#virtual-modifier-declaration)
 *   [Interpretation desctription.](#interpretation-description)
@@ -1404,7 +1407,7 @@ The xkb_compat type files can contain records:
 
 ## Virtual modifier declaration.
 
-As in **xkb_types** type files a virtual modifiers that can be used in followed inctructions must be declared here. A real modifiers that can be used doesn't need to be declared becouse they have standard names. But the virtual modifiers can have any names therefore parser program need to know these names before all other instruction will be parsed.
+As in **xkb_types** files virtual modifiers that are used in the followed inctructions must be declared here. Real modifiers don't need to be declared because they have standard names. But virtual modifiers can have any names therefore the parser program needs to know these names before all other instruction will be parsed.
 
 Virtual modifier declaration looks like:
 
@@ -1499,7 +1502,7 @@ Instructions inside interpretation description looks like assignment instruction
 
 ### useModMapMods
 
-Is used for specifying **LevelOneOnly** condition. If a word in right side is "**level1**" or "**levelone**" the condition has to be checked. But words "**anylevel**" or "**any**" means that the condition has to be ignored. By the way, by default this condition has to be ignored, so lines like
+Is used for specifying **LevelOneOnly** condition. If a word on the right side is "**level1**" or "**levelone**" the condition has to be checked. But words "**anylevel**" or "**any**" means that the condition has to be ignored. By the way, by default this condition has to be ignored, so lines like
 
 useModMapMods = anylevel;
 
@@ -1507,7 +1510,7 @@ doesn't make sense.
 
 ### repeat and locking
 
-These instruction are used for specifying "autorepeat" and "locking" flags. The word in right side must be name of logical value - **True** or **False**.  
+These instruction are used for specifying "autorepeat" and "locking" flags. The word on the right side must be name of logical value - **True** or **False**.  
 For example:
 
 repeat = True; locking = False;
@@ -1516,7 +1519,7 @@ repeat = True; locking = False;
 
 This instruction defines a virtual modifier for keycode. Since such modifier is attribute of keycode (not of particular symbol), the interpretation with **virtualModifier** usualy uses **LevelOneOnly** condition.
 
-A word in right side is name of any virtual modifier.  
+A word on the right side is name of any virtual modifier.  
 For example:
 
 virtualModifier = AltGr;
@@ -1587,7 +1590,7 @@ They can be one of:
 ### modifiers, groups � controls
 
 These ones define what "state components" the indicator has to reflect.  
-Thus, value in right side must be
+Thus, value on the right side must be
 
 *   for **modifiers** - one modifier name or some modifiers names concatenated by plus sign "+";
 *   for **groups** - group number;
@@ -1737,11 +1740,11 @@ This instruction assigns to group some symbolic name. The name of group is short
 
 The instruction looks like
 
-**'name\['** group **'\]='** group name **';'**
+**'name['** group **']='** group name **';'**
 
 For example,
 
-name\[Group1\] = "English" ; name\[Group2\] = "Russian" ;
+name[Group1] = "English" ; name[Group2] = "Russian" ;
 
 ## Key description.
 
@@ -1760,7 +1763,7 @@ The 'descriptions' inside figure brackets are devided by comma. Note that it is 
 
 The 'description' can be
 
-*   [type = ..., or type\[...\] = ...,](#type-key-description)
+*   [type = ..., or type[...] = ...,](#type-key-description)
 *   [locks = ...,](#locks-key-description) (**locking** is synonym)
 *   [repeat = ...,](#repeat-key-description) (**repeats, repeating** are synonyms)
 *   [groupswrap, or warpgroups,](#groupswrap-groupsclamp-groupsredirect)
@@ -1771,21 +1774,21 @@ The 'description' can be
 *   [overlay1 = ..., or overlay2 = ...,](#overlay1-and-overlay2)
 *   [permanent...](#permanent)
 *   [vmods = ...,](#vmods) (**virtualmods, virtualmodifiers** are synonyms)
-*   [symbols\[...\] = ...,](#symbols)
-*   [actions\[...\] = ...,](#actions)
-*   [\[...\]](#only) only.
+*   [symbols[...] = ...,](#symbols)
+*   [actions[...] = ...,](#actions)
+*   [[...]](#only) only.
 
 ### type (key-description)
 
-It defines key **type**. The word in the right side must be name of one of types desribed in the **xkb_types** type file.
+It defines key **type**. The word on the right side must be name of one of types desribed in the **xkb_types** type file.
 
 Note that since differnt **groups** table of the same key can have different types (remind, the type defines number of **shift levels** inside the **group**) this description in common case must looks like
 
-type\[ group \] = type_name,
+type[ group ] = type_name,
 
 for example,
 
-type\[ Group1 \] = "ONE_LEVEL", type\[ Group2 \] = "ALPHABETIC",
+type[ Group1 ] = "ONE_LEVEL", type[ Group2 ] = "ALPHABETIC",
 
 But if all groups have the same number of levels and belong to the same type the group specification (together with square brackets) can be ommited. For example:
 
@@ -1871,7 +1874,7 @@ Remind that generally virtual modifiers are bound not here but in the **xkb_comp
 It is the main part of the **key** description. It defines set of symbols for this key. One such instruction specifies the symbols set for one **group**. Therefore square brackets in the left side must contain name of group and the right side is list of symbols for all **shift levels** of this **group** (list must be bounded by square brackets too).  
 For example,
 
-symbols\[Group1\] = \[ semicolon, colon \], symbols\[Group1\] = \[Cyrillic_zhe, Cyrillic_ZHE\],
+symbols[Group1] = [ semicolon, colon ], symbols[Group1] = [Cyrillic_zhe, Cyrillic_ZHE],
 
 The 'symbols' here can be numeric codes of symbols (in decimal, octal or hexidecimal format) or special 'symbol names' (or **keysym** names).
 
@@ -1885,7 +1888,7 @@ NOTE: If digits 0 - 9 are used as symbols they will be considered as names of sy
 
 The recent versions of XFree allow to use 'Unicode keysyms'. (Internally they are codes like 0x1000000+'unicode value'). Such symbols have names that looks like **U1234** where number after 'U' letter is the symbol's Unicode value in hexidecimal representation. So you can specify such symbols as numeris code or as a special 'Unicode keysym name'. For example:
 
-symbols\[Group1\] = \[ 0x100003a, 0x1000038 \], symbols\[Group1\] = \[ U410, U430\],
+symbols[Group1] = [ 0x100003a, 0x1000038 ], symbols[Group1] = [ U410, U430],
 
 If one of shift levels is undefined and symbol there is not needed you can use a special 'empty symbol' name - **NoSymbol**.
 
@@ -1894,35 +1897,35 @@ If one of shift levels is undefined and symbol there is not needed you can use a
 Like previous instruction this one defines set of **actions** the key. It has the same look as **symbols** instruction but instead of symbols an action descriptions are used there.  
 For example:
 
-actions\[Group1\] = \[ SetGroup(group=2), SetGroup(group=1) \],
+actions[Group1] = [ SetGroup(group=2), SetGroup(group=1) ],
 
 Detail description of possible actions and their arguments you can read in [Actions description.](#actions-description).
 
 I mention only here that if one of levels don't need any actions you can use a special name for 'empty action' - **NoAction()**.
 
-### \[...\] only.
+### [...] only.
 
-Often description of key consists of symbols lists only (in square brackets) without any words like "**symbols\[...\] =**". Since usually most of keys need for description the symbols set only you can use a brief form of description.  
+Often description of key consists of symbols lists only (in square brackets) without any words like "**symbols[...] =**". Since usually most of keys need for description the symbols set only you can use a brief form of description.  
 For example, the description
 
-key <AE03> { \[ 3, numbersign \], \[ apostrophe, 3 \] };
+key <AE03> { [ 3, numbersign ], [ apostrophe, 3 ] };
 
 is complete equvivalent for
 
-key <AE03> { symbols\[Group1\]= \[ 3, numbersign \], symbols\[Group2\]= \[ apostrophe, 3 \] };
+key <AE03> { symbols[Group1]= [ 3, numbersign ], symbols[Group2]= [ apostrophe, 3 ] };
 
-You see that the first pair of square brackets (with content inside) is interpreted as **symbols\[...\]** instruction for the first group, the second pair of brackets - as description for the second group and so one.
+You see that the first pair of square brackets (with content inside) is interpreted as **symbols[...]** instruction for the first group, the second pair of brackets - as description for the second group and so one.
 
 By the way, some **xkb_symbols** files can contain a partial description of full keyboard map. For example it can be some national alphabet symbols placed in the second **group**. Of course such files generally are used as addition to some other file (**xkb_symbols** type) that contains first group description.  
 For specifying that the symbols from this file must be loaded to the second group but the first group must not be touched you can use two ways:
 
 *   To specify group number explicitly in each key description:
     
-    key <AE03> { symbols\[Group2\]= \[ apostrophe, 3 \] };
+    key <AE03> { symbols[Group2]= [ apostrophe, 3 ] };
     
 *   or use 'empty brackets' for the skiped group:
     
-    key <AE03> { \[\], \[ apostrophe, 3 \] };
+    key <AE03> { [], [ apostrophe, 3 ] };
     
 
 ### 'Set of exceptions'.
@@ -1971,7 +1974,7 @@ key.repeat = no;
 
 or
 
-type\[Group2\]="ALPHABETIC";
+type[Group2]="ALPHABETIC";
 
 The first word (before period sign) in the left side must be "**key**" and the second one can be any of available in the key description - **type, locks, radiogroup**, etc.
 
@@ -2352,7 +2355,7 @@ Message(data="Hello!");
 
 But if it is some binary data you can specify the value of each element of the **data** array separately as numeric value. For example:
 
-Message(data\[0\]=123, data\[0\]=0, data\[0\]=200, data\[0\]=255, ...);
+Message(data[0]=123, data[0]=0, data[0]=200, data[0]=255, ...);
 
 Two additional arguments are **report** and a logical flag **genkeyevent** (its another name is **generatekeyevent**).
 
@@ -2445,7 +2448,7 @@ Private(type=123, data="abcde");
 
 or you can assign numeric value to each element of the **data** array
 
-Private(type=123, data\[1\]=0, data\[2\]=100, data\[3\]=12);
+Private(type=123, data[1]=0, data[2]=100, data[3]=12);
 
 ## Defaults declaration for actions.
 
@@ -2457,10 +2460,14 @@ These declarations can be used for specifying actions flags values by default. I
 
 For example:
 
+```
 setMods.clearLock = True;
+```
 
 means that in all next **SetMods** action description the **clearlock** flag must be added implicitly. And
 
+```
 latchMods.clearLock = True; latchMods.latchToLock = True;
+```
 
 means that in all **LatchMods** actions **clearLock** and **latchToLock** are implied.
