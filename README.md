@@ -59,28 +59,24 @@ describes key types. A key type defines, how the code produced by a key must be 
 
 **compat** (abridged from compatibility)
 
-describes modifiers 'behavior'. XKB has some internal variables that finally define, symbol will be produced when a key is pssed in every specific case. The 'compat' files describe, how these internal variables must change when any modifier key pssed. These files also describe the behaviour of the LED-indicators on the keyboard.
+describes modifiers 'behavior'. XKB has some internal variables that finally define, symbol will be produced when a key is passed in every specific case. The 'compat' files describe, how these internal variables must change when any modifier key passed. These files also describe the behavior of the LED-indicators on the keyboard.
 
 **symbols**
 
-This is the main table in which for every scan-code (the symbolic names are defined in 'keycodes') all posible values ('symbols') are specified. Of course the number of such values depends on the key type (that is described in 'types') and what value will result in a specific case depends on the modifiers state and their behavior (described in 'compat').
+This is the main table in which for every scan-code (the symbolic names are defined in 'keycodes') all possible values ('symbols') are specified. Of course the number of such values depends on the key type (that is described in 'types') and what value will result in a specific case depends on the modifiers state and their behavior (described in 'compat').
 
 **geometry**
 
 describes keyboard geometry - key placement on a physical keyboard. This description XKB doesn't use by itself but it can be useful for applications like **xkbprint** that draw keyboard images.
 
-All these components correcpond to subdirectories in directory **{XROOT}/lib/X11/xkb**. (I will write it as **{XKBROOT}**).
+All these components correspond to subdirectories in directory **{XROOT}/lib/X11/xkb**. (I will write it as **{XKBROOT}**).
 
 It must be mentioned that every such directory has several files (sometimes many) with different settings. Each file can contain several sections (parts, blocks) like
-
 ```
 component_type "section_name" {........};
 ```
 
-So to specify a single setting one has to write something like  
-**file_name(section_name)**  
-for example  
-**us(pc104)**
+So to specify a single setting one has to write something like ```file_name(section_name) ``` for example ``` us(pc104) ```.
 
 At the same time usually one of sections in such file is marked with 'flag' **default**. For example
 
@@ -98,11 +94,15 @@ All components needed for XKB configuration can be described in the Keyboard sec
 
 The first way is to specify explicitly every component. For example
 
+```
 XkbKeycodes "xfree86" XkbTypes "default" XkbCompat "default" XkbSymbols "us(pc104)" XkbGeometry "pc(pc104)"
+```
 
 or for XFree86 4.x version
 
+```
 Option "XkbKeycodes" "xfree86" Option "XkbTypes" "default" Option "XkbCompat" "default" Option "XkbSymbols" "us(pc104)" Option "XkbGeometry" "pc(pc104)"
+```
 
 As you guess it means that
 
@@ -112,37 +112,35 @@ As you guess it means that
 *   **symbols** description must be taken from file **"us"** from **{XKBROOT}/symbols** directory, section **"pc104"**;
 *   **geometry** description must be taken from file **"pc"** from **{XKBROOT}/geometry** directory, section **"pc104"**;
 
-It needs to be mentioned that any section in any component can contain an instruction
-
-**include "file_name(section_name)"** (of course section_name can be omitted)
-
-That means (as you guess) that some other description must be inserted from specified file/section to current section.
-
-So the full description can include data from many other files besides files you explicitly specify in the X server configuration file.
+It needs to be mentioned that any section in any component can contain an instruction **include "file_name(section_name)"** (of course section_name can be omitted). 
+That means (as you guess) that some other description must be inserted from specified file/section to current section. So the full description can include data from many other files besides files you explicitly specify in the X server configuration file.
 
 ### The second method.
 
 You can specify the full set of components by one name. Such components sets are named **keymaps** and like single components are placed in separate files (that can contain any number of sections) in **{XKBROOT}/keymap** directory.
 
-Usually every **keymap** section contains 'include' instructions only that define from which files XKB has to get every component. (In the most general case it can contain a full description of every component.) For example
+Usually every **keymap** section contains 'include' instructions only that define from which files XKB has to get every component. (In the most general case it can contain a full description of every component.) For example:
 
+```
 xkb_keymap "ru" { xkb_keycodes { include "xfree86" }; xkb_types { include "default" }; xkb_compatibility { include "default" }; xkb_symbols { include "en_US(pc105)+ru" }; xkb_geometry { include "pc(pc102)" }; };
+```
 
-Note that one **include** instruction can contain several files (sections) separated by "+" signs. Of course it means that all these sections must be inserted sequentially.
+Note that one **include** instruction can contain several files (sections) separated by "+" signs. Of course it means that all these sections must be inserted sequentially. Thus you can specify one complete **keymap** instead of five separate components. For example
 
-Thus you can specify one complete **keymap** instead of five separate components. For example
+``` XkbKeymap "xfree86(ru)" ```
 
-XkbKeymap "xfree86(ru)"
+or for XFree86 4.x 
 
-or for XFree86 4.x
-
+```
 Option "XkbKeymap" "xfree86(ru)"
+```
 
-Unfortunately this method is very unflexible. Since XKB ignores all other options when an XkbKeymap option is found, you can't 'tune' a single component in the X server configuration file.
+
+Unfortunately this method is very inflexible. Since XKB ignores all other options when an XkbKeymap option is found, you can't 'tune' a single component in the X server configuration file.
 
 ### The third method.
 
-And here is the third method that differs from the two pvious methods.
+And here is the third method that differs from the two previous methods.
 
 A configuration can be defined not only by a components list, but in terms of 'Rules', 'Model', 'Layout', 'Variant' and 'Options'. In this list only 'Rules' is a file that contains a table of rules that tell how to select all five components in dependence of the values of 'Model', 'Layout', etc.
 
@@ -150,29 +148,37 @@ All other terms are 'keywords' only that are used to search component files (**k
 
 In the other words 'Rules' defines a function (in mathematical meaning) which arguments are 'Model', 'Layout', 'Variant' and 'Options'. And the return value is a vector of components - **keycodes, types, compat, symbols** and **geometry** (or a full **keymap**).
 
-The Rules files also are placed in the **{XKBROOT}/rules** directory. If you look at such file, you can find lines that begin with a "!" sign. This is 'pattern' that describes, how to interpt the following lines (rules itself).
+The Rules files also are placed in the **{XKBROOT}/rules** directory. If you look at such file, you can find lines that begin with a "!" sign. This is 'pattern' that describes, how to interpret the following lines (rules itself).
 
 For example pattern
 
+```
 ! model = keycodes geometry
+```
 
 means that the following lines are rules and specify how to select **keycodes** and **geometry** files by 'Model' value. For example
 
+```
 pc104 = xfree86 pc(pc104)
+```
 
 means that if 'Model' value is **"pc104"** word so **keycodes** must be taken from **{XKBROOT}/keycodes/xfree86** file and **geometry** must be taken from **{XKBROOT}/geometry/pc** file **"pc104"** section.  
 And for example pattern
 
+```
 ! model layout = symbols
+```
 
 means that the following lines define, how to select **symbols** file and section in dependence of 'Model' and 'Layout' values.
 
 You can see also, that some lines from **rules** file can contain wildcards - "\*" sign. It means that you cannot only use words listed in rules file. If XKB can't find specified words exactly in left parts of rules it will anyway select appropriate component file name.  
 For example rule
 
+```
 ! model layout = symbols .... \* \* = en_US(pc102)+%l%(v)
+```
 
-means that if your 'Model' and 'Layout' was not found in pvious lines XKB has to take **pc102** section from **en_US** file as **symbols** and add to it a section which name is defined by 'Variant' value from a file which name is defined by 'Layout' value. (Thus in some case argument values can be file or section names. But in the common case they are 'keywords' only).
+means that if your 'Model' and 'Layout' was not found in previous lines XKB has to take **pc102** section from **en_US** file as **symbols** and add to it a section which name is defined by 'Variant' value from a file which name is defined by 'Layout' value. (Thus in some case argument values can be file or section names. But in the common case they are 'keywords' only).
 
 Also you can see that...  
 not all these terms are mandatory. Usually 'Model' and 'Layout' (and of course - 'Rules') are enough and Variant and/or Options are needed in some cases only.  
@@ -188,11 +194,15 @@ By the way note that although all Options consist of two words separated by a ":
 So if you decide to use the third method, you need to write in the X server configuration file XkbRules, XkbModel, XkbLayout words and if you need something non-standard, you have to write also XkbVariant and XkbOptions.  
 For example
 
+```
 XkbRules "xfree86" XkbModel "pc104" XkbLayout "ru" XkbVariant "" XkbOptions "ctrl:ctrl_ac"
+```
 
 or for XFree86 4.x
 
+```
 Option "XkbRules" "xfree86" Option "XkbModel" "pc104" Option "XkbLayout" "ru" Option "XkbVariant" "" Option "XkbOptions" "ctrl:ctrl_ac"
+```
 
 that means XKB has to
 
@@ -238,11 +248,13 @@ For 'russified' keyboard appropriate keymap is
 
 XkbKeymap "xfree86(ru)"
 
-Unfortunately some time ago russian full keymap had a 'default group_swither' inside **symbols** file, but frome some XFree version this switcher was removed from **symbols** (it is right because an 'alphabetical' symbols map is not the appropriate place for such keys). But at the same time such switcher was not added in any place in any russian **keymap**. Therefore if you choose this method, you can't switch on Russian language anyway.
+Unfortunately some time ago russian full keymap had a 'default group_switcher' inside **symbols** file, but from some XFree version this switcher was removed from **symbols** (it is right because an 'alphabetical' symbols map is not the appropriate place for such keys). But at the same time such switcher was not added in any place in any russian **keymap**. Therefore if you choose this method, you can't switch on Russian language anyway.
 
 The only way to add this group_switcher is to edit **{XKBROOT}/keymap/xfree86** file. You can find this file in your system, then go to section "ru" in this file and add to line **xkb_symbols** appropriate switcher name. For **CapsLock** key it is **group(caps_toggle)**. It means that this line must look like
 
+```
 xkb_symbols { include "en_US(pc105)+ru+group(caps_toggle)"};
+```
 
 ### If you want to use the third method - by Rules, Model, Layout
 
@@ -254,13 +266,17 @@ As I told above
 
 So an appropriate configuration looks like
 
+```
 XkbRules "xfree86" XkbModel "pc104" XkbLayout "ru"
+```
 
 With help of **XkbOptions** you can choose the behaviour of modifier keys. Possible values of **XkbOptions** and their descriptions you can see in the **{XKBROOT}/rules/xfree86.lst** file.
 
 Don't forget that in recent versions of XFree there is no 'default group_switcher', so you have to specify it explicitly. For **CapsLock** key it will be
 
+```
 XkbOptions "grp:caps_toggle"
+```
 
 ### And finally the first method - by separate XKB components (keycodes, compat, types, symbols, geometry).
 
@@ -281,11 +297,15 @@ Also you have to add a description of an appropriate "Russian/Latin" switcher to
 
 So for the first method the configuration can look like
 
+```
 XkbKeycodes "xfree86" XkbTypes "complete" XkbCompat "complete" XkbSymbols "en_US(pc101)+ru+group(caps_toggle)" XkbGeometry "pc(pc101)"
+```
 
 If you additionally want to change the behavior of other control keys (that in third method was defined by **XkbOptions**), you can find appropriate addition in **{XKBROOT}/rules/xfree86.lst** file. Then you have to 'plus' it to the **XkbSymbols** line. For example
 
+```
 XkbSymbols "en_US(pc101)+ru+group(shift_toggle)+ctrl(ctrl_ac)"
+```
 
 # One another way to describe XKB configuration.
 
@@ -294,14 +314,15 @@ There are one another way to describe XKB configuration. But in XFree it isn't u
 *   to set configuration for each display separately (if you have runned some Xservers with different displays)
 *   to set initial values for XKB internal variables.
 
-The additional configure file must be placed in **{XRoot}/lib/X11/xkb** directory and has name **X**<digit>**\-config.keyboard**  
-where <digit> is display number (usualy - **X0-config.keyboard**)
+The additional configure file must be placed in **{XRoot}/lib/X11/xkb** directory and has name **X**<digit>**\-config.keyboard**  where <digit> is display number (usualy - **X0-config.keyboard**)
 
 ## This file format.
 
 First of all note all statements in this file looks like C language assignment statement
 
+```
 xkb_option = expression ;
+```
 
 If statement is one per line then '**;**' sign at the end is unneeded. In any line (any place in line) comments can be inserted. Comments must begin from '**#**' or '**//**'.
 
@@ -335,7 +356,9 @@ Remind that 'additional configuration file' can be composed for each display sep
 
 ## Initial value for [modifiers](#modifiers) set.
 
-**modifiers** **[ = | -= | += ]** modifier1 + modifier2 + ...
+```
+modifiers [ = | -= | += ] modifier1 + modifier2 + ...
+```
 
 Where 'modifier\*' is name of one of 'real modifiers' - **shift, lock, control** (or **ctrl**), **mod1, mod2, mod3, mod4, mod5**.
 
@@ -344,129 +367,176 @@ As I told above in this statement 'variants of assignment' can be used - '**\-=*
 
 ## Initial value for ["control flags"](#control-flags-xkb-controls-change) set.
 
-**controls** **[ = | -= | += ]** flag1 + flag2 + ...
+```
+controls [ = | -= | += ] flag1 + flag2 + ...
+```
 
 As in prevous statement operation can be remove/add/replace (**'-='/'+='/'='**).
 
 ### "Flags" can be
 
-**repeat** (or **repeatkeys**)
+```
+repeat (or repeatkeys)
+```
 
-allow key autorepeat  
-(it is allowed by default so only their removing makes sense -  
+allow key autorepeat (it is allowed by default so only their removing makes sense -  
 controls -= repeat);
 
-**mousekeys**
+```
+mousekeys
+```
 
 switch on 'mouse emulation';
 
-**mousekeysaccel**
+```
+mousekeysaccel
+```
 
 switch on 'accelerated mode' for mouse cursor movement
 
-**overlay1  
-overlay2**
+```
+overlay1  
+overlay2
+```
 
 switch on corresponding ['overlays'](#overlay-group).
 
-**ignoregrouplock**
+```
+ignoregrouplock
+```
 
 to ignore 'current group' in GrabKey mode
 
-**audiblebell**
+```
+audiblebell
+```
 
 switch on (off) keyboard bell.  
 (Remind that XKB can send [bell-events](#bell-features-extension) to 'juke-box' (that will play sounds or music) instead of ordinar 'cheep'. If you system have such 'juke-box' you can switch of keyboard bell.
 
-**accessxkeys  
+```
+accessxkeys  
 slowkeys  
 bouncekeys  
 stickykeys  
 accessxtimeout  
-accessxfeedback**
+accessxfeedback
+```
 
 switch on several modes of AccessX (for Physically Impaired Persons).
 
 ## Modifiers that must be ignored in GrabKey mode
 
-**ignorelockmods** **[ -= | += | = ]** modifier1 + modifier2 + ... (or **ignorelockmodifiers** ...)
+```
+ignorelockmods [ -= | += | = ] modifier1 + modifier2 + ... (or ignorelockmodifiers ...)
+```
 
 ## List of 'internal modifiers'
 
-**internalmods** **[ -= | += | = ]** modifier1 + modifier2 + ... (or **internalmodifiers** ...)
+```
+internalmods [ -= | += | = ] modifier1 + modifier2 + ... (or internalmodifiers ...)
+```
 
 This is modifiers set that must be used inside Xserver (for 'action' selection if exists) and must not be reported to client applications in keyboard events
 
 ## Group ['adjust method'](#keep-group-number-in-range-method).
 
-**groups** = [ **wrap** | **clamp** | number ] (or **outofrangegroups** ...)
+```
+groups = [ wrap | clamp | number ] (or outofrangegroups ...)
+```
 
 It defines 'group adjustment method'. Remind that such method can be **wrap**, **clamp** or **redirect**. In the last case additional data required - group number 'what number redirect to' if original group number is out of bounds.  
 So **redirect** method can be specified in form
 
-**groups** = group_number
+```
+groups = group_number
+```
 
 ## Bell parameters.
 
-**bell** = number (or **bellvolume** = number ) **bellpitch** = number **bellduration** = number **click** = number (or **clickvolume** = number )
+```
+bell = number (or bellvolume = number ) bellpitch = number bellduration = number click = number (or clickvolume = number )
+```
 
 All this statements define 'cheeper' parameters (**bell**) and 'keyboard click' (ordinary click is sound shorter than bell).
 
 Statements **bell** and **click** also can looks like
 
-**bell** = [ **on | off** ] **click** = [ **on | off** ]
+```
+bell = [ on | off ] click = [ on | off ]
+```
 
 that means (as easy to guess) that these signals must be switched on/off. If command is "to switch on signal" without any volume the volume assumed 100.
 
 ## Some timeouts.
 
-**repeatdelay** = number
+```
+repeatdelay = number
+```
 
 delay (in milliseconds) between key press and autorepeat begin;
 
-**repeatinterval** = number
+```
+repeatinterval = number
+```
 
 interval (in milliseconds) between autorepeats;
 
-**slowkeysdelay** = number
+```
+slowkeysdelay = number
+```
 
 in **slowkeys** mode key considered as pressed when it is in pressed (physicaly) state some time interval to avoid 'accidental bump' of key. This parameter define such time interval.
 
-**debouncedelay** = number
+```
+debouncedelay = number
+```
 
 in **bouncekeys** mode XKB temporary desible key after key press or release to avoid 'key bounce' when it pressed inaccurately. This parameter define time interval when key be disabled.
 
-**accessxtimeout** = number (or **axtimeout** = number)
+```
+accessxtimeout = number (or axtimeout = number)
+```
 
-delay (in seconds) after what AccessX mode will be swithed off automaticaly. This parameter have sense if corresponding 'control flag' is up -  
-(**controls += ... accessxtimeout ...**);
+delay (in seconds) after what AccessX mode will be swithed off automaticaly. This parameter have sense if corresponding 'control flag' is up - (**controls += ... accessxtimeout ...**);
 
 ## Parameters of 'mouse cursor acceleration'.
 
-**mousekeysdelay** = number
+```
+mousekeysdelay = number
+```
 
 delay (in milliseconds) between 'mouse key' press and its autorepeat begin (the same as **repeatdelay** for other keys);
 
-**mousekeysinterval** = number
+```
+mousekeysinterval = number
+```
 
 autorepeat interval (the same as **repeatinterval** for other keys);
 
-**mousekeysmaxspeed** = number
+```
+mousekeysmaxspeed = number
+```
 
 maximum speed of cursor movement in pixels per event (precisely - if XKB 'action' of mouse movement key **MovePtr** have argument 'move per event' more than one than maximum speed will be product <move per event>x<mousekeysmaxspeed>);
 
-**mousekeystimetomax** = number
+```
+mousekeystimetomax = number
+```
 
 how many repeats have to occur before speed reach max value;
 
-**mousekeyscurve** = number (in bounds -1000:1000)
+```
+mousekeyscurve = number (in bounds -1000:1000)
+```
 
-acceleration 'curve Factor' ( in accelerated mode cursor speed grows from initial value to maximun not linear but as **X^(1 + curve/1000)**.  
-If **mousekeyscurve** = 0 than growth is linear)
+acceleration 'curve Factor' ( in accelerated mode cursor speed grows from initial value to maximun not linear but as **X^(1 + curve/1000)**. If **mousekeyscurve** = 0 than growth is linear)
 
 ## Switch on/off AccessX 'sound indication' modes
 
-**accessxtimeoutctrlson** [ -= | += | = ] option1 + option2 + ... (or **axtctrlson** ...) **accessxtimeoutctrlsoff** [ -= | += | = ] option1 + option2 + ... (or **axtctrlsoff** ...)
+```
+accessxtimeoutctrlson [ -= | += | = ] option1 + option2 + ... (or axtctrlson ...) accessxtimeoutctrlsoff [ -= | += | = ] option1 + option2 + ... (or axtctrlsoff ...)
+```
 
 here 'options' can be - **slowkeyspress, slowkeysaccept, feature, slowwarn, indicator, stickykeys, slowkeysrelease, slowkeysreject, bouncekeysreject, dumbbell.**
 
