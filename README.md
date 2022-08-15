@@ -1,7 +1,9 @@
 # About
 
 This XKB documentation is extracted from https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/
-It was originally created by Ivan Pascal. But looks like he doesn't maintain it anymore or at least I haven't found it. I was just reading his explanations on XKB and found them to be the easiest to understand among other docs referenced at https://www.x.org/wiki/XKB/. I wanted to fix few typos hence I created this repo.
+It was created by Ivan Pascal, but looks like he doesn't maintain it anymore or at least I haven't found it online anywhere else. I was just reading his explanations on XKB and found them to be the easiest to understand among other docs referenced at https://www.x.org/wiki/XKB/. I wanted to fix few typos hence I created this repo.
+
+As far as I understand Ivan created this documentation first in Russian (can be found [here](./README-ru)) and later translated it to English. The translation is far from being perfect and is not complete. I was reading first the Russian version. When I started to read the English version I realized that it's actually hard to read because of not good translation. I'll try to fix what I can in upcoming days. But if there will be no commits in a week then most probably I abandoned it.
 
 # X Keyboard Extension
 
@@ -23,7 +25,7 @@ It was originally created by Ivan Pascal. But looks like he doesn't maintain it 
     *   Group number switchers.(TODO: translate from Russian)
 *   Why national language input doesn't work?(TODO: translate from Russian)
     *   What to do with 'incorrect' applications?(TODO: translate from Russian)
-*   XKB related utilites.(TODO: translate from Russian)
+*   XKB related utilities. (TODO: translate from Russian)
 
 # How to configure XKB.
 
@@ -69,7 +71,7 @@ This is the main table in which for every scan-code (the symbolic names are defi
 
 describes keyboard geometry - key placement on a physical keyboard. This description XKB doesn't use by itself but it can be useful for applications like **xkbprint** that draw keyboard images.
 
-All these components correspond to subdirectories in directory **{XROOT}/lib/X11/xkb**. (I will write it as **{XKBROOT}**).
+All these components correspond to subdirectories in directory **{XKBROOT}/lib/X11/xkb**. (I will write it as **{XKBROOT}**).
 
 It must be mentioned that every such directory has several files (sometimes many) with different settings. Each file can contain several sections (parts, blocks) like
 ```
@@ -246,7 +248,9 @@ There are sets of full **keymaps**" for **xfree86** architecture (in XKB configu
 
 For 'russified' keyboard appropriate keymap is
 
+```
 XkbKeymap "xfree86(ru)"
+```
 
 Unfortunately some time ago russian full keymap had a 'default group_switcher' inside **symbols** file, but from some XFree version this switcher was removed from **symbols** (it is right because an 'alphabetical' symbols map is not the appropriate place for such keys). But at the same time such switcher was not added in any place in any russian **keymap**. Therefore if you choose this method, you can't switch on Russian language anyway.
 
@@ -270,7 +274,7 @@ So an appropriate configuration looks like
 XkbRules "xfree86" XkbModel "pc104" XkbLayout "ru"
 ```
 
-With help of **XkbOptions** you can choose the behaviour of modifier keys. Possible values of **XkbOptions** and their descriptions you can see in the **{XKBROOT}/rules/xfree86.lst** file.
+With help of **XkbOptions** you can choose the behavior of modifier keys. Possible values of **XkbOptions** and their descriptions you can see in the **{XKBROOT}/rules/xfree86.lst** file.
 
 Don't forget that in recent versions of XFree there is no 'default group_switcher', so you have to specify it explicitly. For **CapsLock** key it will be
 
@@ -311,10 +315,10 @@ XkbSymbols "en_US(pc101)+ru+group(shift_toggle)+ctrl(ctrl_ac)"
 
 There are one another way to describe XKB configuration. But in XFree it isn't used and isn't described. At the same time it allow
 
-*   to set configuration for each display separately (if you have runned some Xservers with different displays)
+*   to set configuration for each display separately (if you have run some X-servers with different displays)
 *   to set initial values for XKB internal variables.
 
-The additional configure file must be placed in **{XRoot}/lib/X11/xkb** directory and has name **X**<digit>**\-config.keyboard**  where <digit> is display number (usualy - **X0-config.keyboard**)
+The additional configure file must be placed in **{XRoot}/lib/X11/xkb** directory and has name **X**<digit>**\-config.keyboard**  where <digit> is display number (usually - **X0-config.keyboard**)
 
 ## This file format.
 
@@ -341,7 +345,7 @@ Also this file can use some variants of assignment statement. If statement defin
     flag_set **\-=** flag1 + flag2 + ...
 *   to add specified files to flags set  
     flag_set **+=** flag1 + flag2 + ...
-*   completly replace existent flags set by specified in the statement  
+*   completely replace existent flags set by specified in the statement  
     flag_set **\=** flag1 + flag2 + ...
 
 In this file you can specify...
@@ -371,7 +375,7 @@ As I told above in this statement 'variants of assignment' can be used - '**\-=*
 **controls** **\[ = | -= | += \]** flag1 + flag2 + ...
 ```
 
-As in prevous statement operation can be remove/add/replace (**'-='/'+='/'='**).
+As in previous statement operation can be remove/add/replace (**'-='/'+='/'='**).
 
 ### "Flags" can be
 
@@ -486,19 +490,19 @@ interval (in milliseconds) between autorepeats;
 slowkeysdelay = number
 ```
 
-in **slowkeys** mode key considered as pressed when it is in pressed (physicaly) state some time interval to avoid 'accidental bump' of key. This parameter define such time interval.
+in **slowkeys** mode key considered as pressed when it is in pressed (physically) state some time interval to avoid 'accidental bump' of key. This parameter define such time interval.
 
 ```
 debouncedelay = number
 ```
 
-in **bouncekeys** mode XKB temporary desible key after key press or release to avoid 'key bounce' when it pressed inaccurately. This parameter define time interval when key be disabled.
+in **bouncekeys** mode XKB temporary disable key after key press or release to avoid 'key bounce' when it pressed inaccurately. This parameter define time interval when key be disabled.
 
 ```
 accessxtimeout = number (or axtimeout = number)
 ```
 
-delay (in seconds) after what AccessX mode will be swithed off automaticaly. This parameter have sense if corresponding 'control flag' is up - (**controls += ... accessxtimeout ...**);
+delay (in seconds) after what AccessX mode will be switched off automatically. This parameter have sense if corresponding 'control flag' is up - (**controls += ... accessxtimeout ...**);
 
 ## Parameters of 'mouse cursor acceleration'.
 
@@ -506,7 +510,7 @@ delay (in seconds) after what AccessX mode will be swithed off automaticaly. Thi
 mousekeysdelay = number
 ```
 
-delay (in milliseconds) between 'mouse key' press and its autorepeat begin (the same as **repeatdelay** for other keys);
+delay (in milliseconds) between 'mouse key' press and its autorepeats begin (the same as **repeatdelay** for other keys);
 
 ```
 mousekeysinterval = number
@@ -1245,15 +1249,15 @@ There are three "complex types":
 
 # The xkb_types type file.
 
-This file contents describes rules of **shift level** computation that are used in symbols map.
+This file describes how the "level" (**shift level**) in a symbol table is calculated for each key.
 
-I should remind that to each **keycode** (key scan-code) can be bound from one to four one-line table of **symbols** (symbol code). Such one-line table must be chosen according to current **group number** and concrete symbol in table must be shosen according to **shift level** value.
+Recall that each **keycode** (key scan-code) can be bound to up to four one-row tables of **symbols** (symbol code). Such one-row tables are called '**groups**'. When a key is pressed the concrete group table is chosen according to the current **group number** value and the concrete column (symbol) in that table must be chosen according to the **shift level** value.
 
-Usualy different groups are used for different alphabets and different levels are used for small/capital letters. But note that XKB allow to have up to 64 **shift levels**.
+Usualy different groups are used for different alphabets and different levels are used for small/capital letters. But note that XKB allows to have up to 64 **shift levels**.
 
-So the xkb_types type file contents describes **shift level** dependence on state of modifier keys (**Shift, Control, Alt**, etc.). Strictly speaking this file describes **key types**. Each type has any name and type description consists of rules for level calculation.
+So xkb_types files describe how **shift level** dependends on the state of modifier keys (**Shift, Control, Alt**, etc.). Strictly speaking these files describe **key types**. Each type has a name and rules for the shift level calculation.
 
-Then these types are used in **xkb_symbols** type files where for each group table bound to keycode its own **key type** can be specified. But note that for most groups there are "default types" already defined so in most symbols maps you will not find explicit key type spcifying.
+Then these key types are used in **xkb_symbols** files. But note that for most groups there are "default types" already defined so in most symbols maps you will not find explicit key type spcifying.
 
 The **xkb_types** type files can contain records:
 
