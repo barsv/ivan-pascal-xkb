@@ -3,7 +3,7 @@
 This XKB documentation is extracted from https://web.archive.org/web/20190724015820/http://pascal.tsu.ru/en/xkb/
 It was created by Ivan Pascal, but looks like he doesn't maintain it anymore or at least I haven't found it online anywhere else. I was just reading his explanations on XKB and found them to be the easiest to understand among other docs referenced at https://www.x.org/wiki/XKB/. I wanted to fix few typos hence I created this repo.
 
-As far as I understand Ivan created this documentation first in Russian (can be found [here](./README-ru)) and later translated it to English. The translation is far from being perfect and is not complete. I was reading first the Russian version. When I started to read the English version I realized that it's actually hard to read because of not good translation. I'll try to fix what I can in upcoming days. But if there will be no commits in a week then most probably I abandoned it.
+As far as I understand Ivan created this documentation first in Russian (can be found [here](./README-ru)) and later translated it to English. The translation is far from being perfect and is not complete. I've read the Russian version first and I liked it. When I started to read the English version I realized that it's actually hard to read because of not good translation. I'll try to fix what I can in the upcoming days. But if there will be no commits in a week then most probably I abandoned it.
 
 # X Keyboard Extension
 
@@ -1411,40 +1411,44 @@ As in **xkb_types** files virtual modifiers that are used in the followed instru
 
 Virtual modifier declaration looks like:
 
+```
 'virtual_modifiers' modifiers list ';'
+```
 
 For example:
 
+```
 virtual_modifiers NumLock, AltGr ;
+```
 
 ## Interpretation description.
 
-Each **interpretation** defines relation between some control **symbol** code and an **action** that the XKB has to perform at key pressing.
+Each **interpretation** defines a relation between some control **symbol** code and an **action** that the XKB has to perform when the key is pressed.
 
-Internal structure that describes interpretation consists of fields
+The internal structure that describes an interpretation consists of the following fields:
 
 *   symbol code
 *   key **action**
-*   real modifiers set
+*   a set of real modifiers
 *   modifiers "match condition"
 *   **autorepeat** and **lock** flags
 *   virtual modifier for key
 
 Of course, not all fields need to be filled.
 
-The main fields are "symbol code" that defines symbol to which action has to be bound and "action" field that describes this action itself.
+The main fields are "symbol code" that defines a symbol to which the action has to be bound and "action" field that describes the action itself.
 
-Also interpretation can contain filled "real modifiers" and "match condition" fields.
+Also an interpretation can have "real modifiers" and "match condition" fields.
 
 What these two fields are used for?  
-Recall that for each **keycode** a real modifier can be bound. Searching appropriate place for **action** binding the XKB can use not only control symbol code but these real modifiers placement too.
+Recall that for each **keycode** a real modifier can be bound. While searching for an appropriate place for **action** binding the XKB can use not only the control symbol code but these real modifiers placement too.
 
-If these two fields isn't specified the XKB places **action** to the same key (to the same cell) where control symbol will be placed to.
+If these two fields aren't specified the XKB places the **action** to the same key (to the same cell) where the control symbol is placed.
 
-But if these fields aren't empty the XKB before **action** placing compares modifier bound to **keycode** with "real modifiers set" specified in **interpretation**. The "match condition" defines how modifiers has to be compared (details see below).  
+But if these fields aren't empty then before the **action** placing XKB compares the modifier bound to the **keycode** with the "real modifiers set" specified in **interpretation**. The "match condition" defines how modifiers has to be compared (details see below).
 Only if compare result is successful the **action** will be bound to keycode.
 
-By the way, if these two fields are specified the **interpretation** can have not "symbol code". It means that the XKB can find place for **action** using compare result only. For example, **interpretation** can mean - "place the **action** to keycode that has **Lock** modifier bound independently on what symbol is bound to that keycode".
+By the way, if these two fields are specified the **interpretation** can have no "symbol code". It means that the XKB can find the place for the **action** using the compare result only. For example, **interpretation** can mean - "place the **action** to keycode that has **Lock** modifier bound independently on what symbol is bound to that keycode".
 
 So.. The "real modifiers" field is one or more modifiers.  
 And "match condition" is one of conditions:
