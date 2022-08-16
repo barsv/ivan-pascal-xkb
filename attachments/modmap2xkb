@@ -1,0 +1,84 @@
+#!/usr/bin/perl
+
+$[ = 1;			# set array base to 1
+$, = ' ';		# set output field separator
+$\ = "\n";		# set output record separator
+
+$usage = <<EOT;
+usage: modmap2xkb [options] file
+  options:
+  -keycodes "name"         : xkb_keycodes map name
+			   (if not "xfree86(default)")
+  -names name1,name2,... : group names (f.e. English,Russian )
+EOT
+
+while ($#ARGV > 0) {
+   local ($arg) = shift(@ARGV);
+   if($arg =~ /^-key(codes)?$/) { $keycodes = shift(@ARGV); next;}
+   if($arg =~ /^-name(s)?$/)    { $names = shift(@ARGV); next;}
+   if($arg !~ /^-/)             { unshift (ARGV, $arg); last;}
+}
+
+if ($#ARGV == 0) { print $usage; exit;}
+
+$keycodes =~ /([^()]*)(.*)/ ;
+$key_file = $1; if ($key_file eq '') { $key_file = 'xfree86'; }
+$map_name = $2; $map_name =~ tr/[()]//d;
+
+$key_file_path = '/usr/X11R6/lib/X11/xkb/keycodes/';
+
+&get_keycodes;
+
+# main
+print 'xkb_symbols {';
+@Fld = split(',', $names);
+for ($i = 1; $i <= $#Fld; $i++) {
+   printf "name[ Group%d ]= \"%s\";\n", $i, $Fld[$i];
+}
+print "";
+
+while (<>) {
+    chop;	# strip record separator
+    @Fld = split(' ', $_, 9999);
+    if ($Fld[1] eq 'keycode') {
+	$k = $Fld[2]; if ($k == 0) { $k = hex($Fld[2]); }
+	printf 'key %s { ', $keycodes[$k];
+	for ($i = 4; $i <= $#Fld; ) {
+	  printf '[ %s%s %s ]', $Fld[$i++], (($Fld[$i] eq '') ? '' : ','),$Fld[$i++];
+	  printf '%s', (($Fld[$i] eq '') ? "};\n" : ',');
+	}
+    }
+
+    if ($Fld[1] eq 'add') {
+	printf 'modifier_map %s { ', $Fld[2];
+	for ($i = 4; $i <= $#Fld; ) {
+	    printf '%s', $Fld[$i++];
+	    printf '%s', (($Fld[$i] eq '') ? "};\n" : ',');
+	}
+    }
+}
+
+print '};';
+
+sub get_keycodes
+{
+  $found = 0;
+
+  if( ! open(CODES, $key_file) && ($key_file !~ /^\//) ) {
+     if(! open(CODES, $key_file_path . $key_file)) {
+       die "key_codes file '$key_file' not found\n";
+     }
+  }
+  while (<CODES>) {
+    if (/xkb_keycodes/) {
+      if (($map_name eq '' && /default/) || /"$map_name"/) {
+	$found = 1; last;}
+    }
+  }
+  if (! $found) { die "map '$map_name' not found\n";}
+  while (<CODES>) {
+    if (/(<.{1,4}>)[ \t]*=[ \t]*(\d+)/) { $keycodes[$2] = $1;}
+    last if /\}/ ;
+  }
+  close(CODES);
+}

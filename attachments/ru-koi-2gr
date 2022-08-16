@@ -1,0 +1,130 @@
+// $TOG: ru /main/4 1997/06/10 06:56:17 kaleb $
+
+// $XFree86: xc/programs/xkbcomp/symbols/ru,v 3.3.2.2 1997/07/05 15:55:54 dawes Exp $
+
+partial alphanumeric_keys 
+xkb_symbols "toggle" {
+    include "ru(basic)"
+    key	<CAPS> {	[  ISO_Next_Group ]	};
+};
+partial alphanumeric_keys 
+xkb_symbols "shift_toggle" {
+    include "ru(basic)"
+    key <LFSH>	{	[	Shift_L,	ISO_Prev_Group ]	};
+    key <RTSH>	{	[	Shift_R,	ISO_Next_Group ]	};
+};
+partial default alphanumeric_keys 
+xkb_symbols "basic" {
+
+    // Describes the differences between a very simple en_US
+    // keyboard and a very simple Russian keybaord
+
+    name[Group1]= "US/ASCII";
+    name[Group2]= "Russian";
+
+    key	<TLDE> {	[	    grave,	asciitilde	],
+			[            0xa3,            0xb3	]	};
+    key	<LSGT> {	[	     less,	   greater	],
+			[	      bar,	 brokenbar	]	};
+    key	<AD01> {	[		q,		 Q	],
+			[            0xca,            0xea	]	};
+    key	<AE01> {	[		1,	    exclam	],
+			[		exclam,		 1	]	};
+    key	<AB01> {	[		z,		 Z	],
+			[            0xd1,            0xf1	]	};
+    key	<AC02> {	[		s,		 S	],
+			[            0xd9,            0xf9	]	};
+    key	<AC01> {	[		a,		 A	],
+			[            0xc6,            0xe6	]	};
+    key	<AD02> {	[		w,		 W	],
+			[            0xc3,            0xe3	]	};
+    key	<AE02> {	[		2,		at	],
+			[		quotedbl,	 2	]	};
+    key	<AB03> {	[		c,		 C	],
+			[            0xd3,            0xf3	]	};
+    key	<AB02> {	[		x,		 X	],
+			[            0xde,            0xfe	]	};
+    key	<AC03> {	[		d,		 D	],
+			[            0xd7,            0xf7	]	};
+    key	<AD03> {	[		e,		 E	],
+			[            0xd5,            0xf5	]	};
+    key	<AE04> {	[		4,	    dollar	],
+			[		asterisk,	 4	]	};
+    key	<AE03> {	[		3,	numbersign	],
+			[		apostrophe,	 3	]	};
+    key	<AB04> {	[		v,		 V	],
+			[            0xcd,            0xed	]	};
+    key	<AC04> {	[		f,		 F	],
+			[            0xc1,            0xe1	]	};
+    key	<AD05> {	[		t,		 T	],
+			[            0xc5,            0xe5	]	};
+    key	<AD04> {	[		r,		 R	],
+			[            0xcb,            0xeb	]	};
+    key	<AE05> {	[		5,	   percent	],
+			[		colon,		 5	]	};
+    key	<AB06> {	[		n,		 N	],
+			[            0xd4,            0xf4	]	};
+    key	<AB05> {	[		b,		 B	],
+			[            0xc9,            0xe9	]	};
+    key	<AC06> {	[		h,		 H	],
+			[            0xd2,            0xf2	]	};
+    key	<AC05> {	[		g,		 G	],
+			[            0xd0,            0xf0	]	};
+    key	<AD06> {	[		y,		 Y	],
+			[            0xce,            0xee	]	};
+    key	<AE06> {	[		6,     asciicircum	],
+			[		comma,		 6	]	};
+    key	<AB07> {	[		m,		 M	],
+			[            0xd8,            0xf8	]	};
+    key	<AC07> {	[		j,		 J	],
+			[            0xcf,            0xef	]	};
+    key	<AD07> {	[		u,		 U	],
+			[            0xc7,            0xe7	]	};
+    key	<AE07> {	[		7,	 ampersand	],
+			[		period,		 7	]	};
+    key	<AE08> {	[		8,	  asterisk	],
+			[		semicolon,	 8	]	};
+    key	<AB08> {	[	    comma,	      less	],
+			[            0xc2,            0xe2	]	};
+    key	<AC08> {	[		k,		 K	],
+			[            0xcc,            0xec	]	};
+    key	<AD08> {	[		i,		 I	],
+			[            0xdb,            0xfb	]	};
+    key	<AD09> {	[		o,		 O	],
+			[            0xdd,            0xfd	]	};
+    key	<AE10> {	[		0,	parenright	],
+			[		parenright,	 0	]	};
+    key	<AE09> {	[		9,	 parenleft	],
+			[		parenleft,	 9	]	};
+    key	<AB09> {	[	   period,	   greater	],
+			[            0xc0,            0xe0	]	};
+    key	<AB10> {	[	    slash,	  question	],
+			[	    slash,	  question	]	};
+    key	<AC09> {	[		l,		 L	],
+			[            0xc4,            0xe4	]	};
+    key	<AC10> {	[	semicolon,	     colon	],
+			[            0xd6,            0xf6	]	};
+    key	<AD10> {	[		p,		 P	],
+			[            0xda,            0xfa	]	};
+    key	<AE11> {	[	    minus,	underscore	],
+			[	    minus,	underscore	]	};
+    key	<AC11> {	[      apostrophe,	  quotedbl	],
+			[            0xdc,            0xfc	]	};
+    key	<AD11> {	[     bracketleft,	 braceleft	],
+			[            0xc8,            0xe8	]	};
+    key	<AE12> {	[	    equal,	      plus	],
+			[	    equal,	      plus	]	};
+    key	<AD12> {	[    bracketright,	braceright	],
+			[            0xdf,            0xff	]	};
+    key	<BKSL> {	[	backslash,	       bar	],
+			[	backslash,             bar	]	};
+
+    // End alphanumeric section
+    
+    // Begin modifier mappings 
+
+    modifier_map Shift  { Shift_L };
+    modifier_map Lock   { Caps_Lock, ISO_Lock };
+    modifier_map Control{ Control_L };
+    modifier_map Mod3   { Mode_switch };
+};
