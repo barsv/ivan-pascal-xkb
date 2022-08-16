@@ -1982,7 +1982,7 @@ key.repeat = no;
 
 Естественно, это "умолчание" будет действовать, пока в тексте не встретится другое объявление для того же аттрибута.
 
-Кроме того, объявление "умолчаний" может спользоваться для "умолчаний" в описании "действий" (подробнее см. ["Описание действий"](https://web.archive.org/web/20190720050736/http://pascal.tsu.ru/other/xkb/gram-action.html)). В этом случае первое слово будет названием "действия", например,
+Кроме того, объявление "умолчаний" может спользоваться для "умолчаний" в описании "действий" (подробнее см. ["Описание действий"](#описание-"действий")). В этом случае первое слово будет названием "действия", например,
 
 SetMods.clearLocks = True;
 
@@ -1997,27 +1997,27 @@ allownone = 10;
 
 # Описание "действий".
 
-*   [Описание "действий".](http://pascal.tsu.ru/other/xkb/gram-action.html#actions)
-*   [Действия, изменяющие состояние XKB.](http://pascal.tsu.ru/other/xkb/gram-action.html#state)
-    *   [Изменение набора модификаторов (modifiers).](http://pascal.tsu.ru/other/xkb/gram-action.html#mods)
-    *   [Изменение номер группы.](http://pascal.tsu.ru/other/xkb/gram-action.html#group)
-    *   [Изменение управляющих флагов (XKB Controls).](http://pascal.tsu.ru/other/xkb/gram-action.html#controls)
-    *   [Действие ISO_Lock.](http://pascal.tsu.ru/other/xkb/gram-action.html#iso-lock)
-*   [Действия для эмуляции событий мыши](http://pascal.tsu.ru/other/xkb/gram-action.html#mouse)
-    *   [Движение курсора](http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-move)
-    *   [Нажатие кнопок мыши](http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-but)
-    *   [Нажатие и удержание кнопки мыши](http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-but-lock)
-    *   [Определение "кнопки по умолчанию".](http://pascal.tsu.ru/other/xkb/gram-action.html#mouse-but-default)
-*   [Другие действия.](http://pascal.tsu.ru/other/xkb/gram-action.html#misc)
-    *   [Посылка сообщения.](http://pascal.tsu.ru/other/xkb/gram-action.html#message)
-    *   [Эмуляция нажатия другой клавиши.](http://pascal.tsu.ru/other/xkb/gram-action.html#key)
-    *   [Выключить X-сервер.](http://pascal.tsu.ru/other/xkb/gram-action.html#terminate)
-    *   [Переключение экранов (screen).](http://pascal.tsu.ru/other/xkb/gram-action.html#screen)
-    *   [Нажатие кнопок на другом устройстве обслуживаемом XKB.](http://pascal.tsu.ru/other/xkb/gram-action.html#device)
-*   [Действия "особого назначения".](http://pascal.tsu.ru/other/xkb/gram-action.html#spec)
-    *   ["Пустышка".](http://pascal.tsu.ru/other/xkb/gram-action.html#noaction)
-    *   ["Сырое" действие.](http://pascal.tsu.ru/other/xkb/gram-action.html#raw)
-*   [Объявление "умолчания".](http://pascal.tsu.ru/other/xkb/gram-action.html#defaults)
+*   [Описание "действий".](#описание-"действий")
+*   [Действия, изменяющие состояние XKB.](#действия-изменяющие-состояние-xkb)
+    *   [Изменение набора модификаторов (modifiers).](#изменение-набора-модификаторов-modifiers)
+    *   [Изменение номер группы.](#изменение-номер-группы)
+    *   [Изменение управляющих флагов (XKB Controls).](#изменение-управляющих-флагов-xkb-controls)
+    *   [Действие ISO_Lock.](#действие-isolock)
+*   [Действия для эмуляции событий мыши](#действия-для-эмуляции-событий-мыши)
+    *   [Движение курсора](#движение-курсора)
+    *   [Нажатие кнопок мыши](#нажатие-кнопок-мыши)
+    *   [Нажатие и удержание кнопки мыши](#нажатие-и-удержание-кнопки-мыши)
+    *   [Определение "кнопки по умолчанию".](#определение-"кнопки-по-умолчанию")
+*   [Другие действия.](#другие-действия)
+    *   [Посылка сообщения.](#посылка-сообщения)
+    *   [Эмуляция нажатия другой клавиши.](#эмуляция-"мыши")
+    *   [Выключить X-сервер.](#выключить-x-сервер)
+    *   [Переключение экранов (screen).](#переключение-экранов-screen)
+    *   [Нажатие кнопок на другом устройстве обслуживаемом XKB.](#нажатие-кнопок-на-другом-устройстве-обслуживаемом-xkb)
+*   [Действия "особого назначения".](#действия-"особого-назначения")
+    *   ["Пустышка".](#"пустышка")
+    *   ["Сырое" действие.](#"сырое"-действие)
+*   [Объявление "умолчания".](#объявление-"умолчания")
 
 ## Описание "действий"
 
