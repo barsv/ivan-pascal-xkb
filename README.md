@@ -620,65 +620,21 @@ But it's more important that the eight modifiers can form up to 256 different co
 
 So first four columns corresponds to states:
 
-none modifiers
-
-Shift
-
-Mode_switch
-
-Mode_switch+Shift
-
+| none modifiers | Shift | Mode_switch | Mode_switch+Shift |
+|---|---|---|---|
   
 In core protocol terms we can say that the **Mode_switch** choose one of two column groups (note that here "group" means not the same that the "XKB group" about which we will talk below). And **Shift** state choose one of two columns inside group.  
 Of course you know that the different group usually used for different alphabets and **Shift** choose small or capital letters inside one alphabet.
 
-�
-
-Group 1
-
-Group 2
-
-�
-
-Shift
-
-Mode_switch
-
-Mode_switch+Shift
-
+|   | Group 1 |   | Group 2 |   |
+|---|---------|---|---------|---|
+| keycode | Base | Shift | Mode_switch | Mode_switch+Shift |
 ...
-
-keycode 38
-
-a
-
-A
-
-Cyrillic_ef
-
-Cyrillic_EF
-
-keycode 39
-
-s
-
-S
-
-Cyrillic_yeru
-
-Cyrillic_YERU
-
-keycode 40
-
-d
-
-D
-
-Cyrillic_ve
-
-Cyrillic_VE
-
+| keycode 38 | a | A | Cyrillic_ef | Cyrillic_EF |
+| keycode 39 | s | S | Cyrillic_yeru | Cyrillic_YERU |
+| keycode 40 | d | D | Cyrillic_ve | Cyrillic_VE |
 ...
+| |
 
 Also note that neither **Lock** nor **Control** don't participate in symbol choice. If these modifiers are active so special Xlib subroutines makes additional conversion for symbol after its choice.
 
@@ -715,81 +671,16 @@ So...
 *   Different **keycode** keycode can have different number of **groups**.
 *   Different group of the same **keycode** can have different number of **shift levels**.
 
-keycode
-
-groups number
-
-levels number
-
-�
-
-36
-
-1
-
-one column
-
-**Enter**
-
-�
-
-38
-
-1
-
-two columns
-
-a
-
-A
-
-�
-
-2
-
-three columns
-
-Cyrillic_ef
-
-Cyrillic_EF
-
-�
-
-3
-
-two columns
-
-Greek_alpha
-
-Greek_ALPHA
-
-�
-
-21
-
-1
-
-two columns
-
-+
-
-\=
-
-�
-
-2
-
-four columns
-
-+
-
-\=
-
-\\
-
-;
-
+| keycode | number of groups | number of levels | symbols | | | |
+|---|---|---|---|---|---|---|
+| 36 | 1 | one column | **Enter** |
+| 38 | 1 | two columns | a | A |
+|    | 2 | two columns | Cyrillic_ef | Cyrillic_EF |
+|    | 3 | two columns | Greek_alpha | Greek_ALPHA |
+| 21 | 1 | two columns | + | \= |
+|    | 2 | four columns | + | \= | \\ | ; |
 ...
+| |
 
 And finally I should say that the number of groups can be from 1 to 4 and number of levels can be up to 64.
 
@@ -1120,7 +1011,9 @@ Though there are some words that can be used in files (sections) of any type.
 
 Of course, it means that some portion of text must be inserted into this section from other file (section). Note that argument of this statement can be not a single file (section) name but a more complex string. For example
 
+```
   include "en_US(pc104)+ru"  
+```
 
 Of course, all words in such string (concatenated with plus sign) must be names of existent files and their internal sections. And each such file must have a type the same as the current section (where 'include' statement occur) has.
 
@@ -1145,11 +1038,15 @@ But if '|' sign instead of plus sign is used it means that next file must be add
 
 Also each 'merge mode' name (except **altrenate**) can be used instead of 'include' word. E.g. instead of
 
+```
 include "group(toggle)"  
+```
 
 one can use for example
 
+```
 replace "group(toggle)"  
+```
 
 statement.
 
@@ -1167,11 +1064,15 @@ The XKB configuration file can have one of three forms:
 
 If file contain the "simple configuration" there must begins from heading like
 
+```
 [ Flags ] FileType [ Name ]
+```
 
 after which instructions follows. For example:
 
+```
 xkb_key�odes <TLDE> = 49; <AE01> = 10; .......
+```
 
 ## Set of simple sections.
 
@@ -1179,11 +1080,15 @@ But often another form is used that is sequence of "simple sections". In such fi
 
 Each section has own heading the same as for "simple configuration" file.
 
+```
 [ Flags ] FileType [ Name1 ] '{' [ instructions ] '};' [ Flags ] FileType [ Name2 ] '{' [ instructions ] '};' ...
+```
 
 For example:
 
+```
 xkb_symbols "basic" {....}; xkb_symbols "us" {....}; ....
+```
 
 ## File types.
 
@@ -1203,11 +1108,15 @@ You can see that **FileType** in headings must presents always but **Name** can 
 
 But if there are some sections in one file they has to have different names. To refer to particular section it can be specified like
 
+```
 file_name(section_name)
+```
 
 for example:
 
+```
 us(pc104)
+```
 
 ## Flags.
 
@@ -1233,11 +1142,15 @@ By the way, complete list of all sections with their flags you can find in **\*.
 
 And finally lets consider third type of configuration file that is sequence of "complex sections". Each "Complex section" has form the same as "simple section":
 
+```
 [ Flags ] ComplexType [ Name ] '{' Section { Section } '};'
+```
 
 but contains not instruction but blocks of simple type sections. For example
 
+```
 xkb_keymap "complete" { xkb_keycodes {...}; xkb_types {...}; xkb_compat {...}; xkb_symbols {...}; xkb_geometry {...}; };
+```
 
 Like simple sections file this file can contain some sections of the same type but with different names (one of sections can be marked by **"default"** flag).
 
@@ -1471,19 +1384,27 @@ Flags will be added to "key behavior" and "virtual modifier" will be placed to "
 
 By default "virtual modifier" field is empty and "flags" field contains "autorepeat" flag. Thus, the **interpretation** whole description looks like:
 
+```
 'interpret' symbol '{' description '};'
+```
 
 or
 
+```
 'interpret' symbol '+' modifier '{' description '};'
+```
 
 or
 
+```
 'interpret' symbol '+' condition '(' modifiers ') {' description '};'
+```
 
 For example:
 
+```
 interpret Num_Lock {...}; interpret ISO_Level2 + Shift {...}; interpret ISO_Lock + AnyOf(Lock+shift) {...};
+```
 
 *   If in heading only symbol code is specified it means that the match condition is **AnyOfOrNone** and real modifier field is empty.
 *   If one has specified symbol code and modifier name (but no conditions) it means that condition is **Exactly**.
@@ -1492,7 +1413,9 @@ interpret Num_Lock {...}; interpret ISO_Level2 + Shift {...}; interpret ISO_Lock
 *   And as I already said, if interpretation has modifiers list and condition the symbol code can be absent. In this case the symbol name in heading must be replaced with word **Any**.  
     For example:
     
+```
     interpret Any + Any {...};
+```
     
     means that this **interpretation** has to be applied to each keycode that have any real modifier.
 
@@ -1508,7 +1431,9 @@ Instructions inside interpretation description looks like assignment instruction
 
 Is used for specifying **LevelOneOnly** condition. If a word on the right side is "**level1**" or "**levelone**" the condition has to be checked. But words "**anylevel**" or "**any**" means that the condition has to be ignored. By the way, by default this condition has to be ignored, so lines like
 
+```
 useModMapMods = anylevel;
+```
 
 doesn't make sense.
 
@@ -1517,7 +1442,9 @@ doesn't make sense.
 These instruction are used for specifying "autorepeat" and "locking" flags. The word on the right side must be name of logical value - **True** or **False**.  
 For example:
 
+```
 repeat = True; locking = False;
+```
 
 ### virtualModifier
 
@@ -1526,14 +1453,18 @@ This instruction defines a virtual modifier for keycode. Since such modifier is 
 A word on the right side is name of any virtual modifier.  
 For example:
 
+```
 virtualModifier = AltGr;
+```
 
 ### action (interpretation)
 
 This instruction describes an **action**. More details about format of action description you can read in [Actions description](#actions-description).  
 Here I only note that the **action** field can be empty. If **interpretation** is needed for binding flags or virtual modifiers only its description can looks like:
 
+```
 interpret ... { repeat = False; locking = True; action = NoAction(); };
+```
 
 ## Group number to modifier mapping.
 
@@ -1545,11 +1476,15 @@ For each value (from one to four) a separate modifier can be used. (But usually 
 
 This declaration looks simply:
 
+```
 'group' group number '=' modifier ';'
+```
 
 For example:
 
+```
 group 2 = AltGr;
+```
 
 ## Indicator behavior description.
 
@@ -1632,15 +1567,21 @@ Note that even if allowed such request changes indicator state only but XKB stat
 
 Since this **allowExplicit** is boolean flag it can be specified in form
 
+```
 allowExplicit = True; or allowExplicit = False;
+```
 
 or in short form
 
+```
 allowExplicit; (is equivalent to 'allowExplicit = True;' )
+```
 
 or
 
+```
 !allowExplicit; (is equivalent to 'allowExplicit = False;')
+```
 
 By default its value is **True**. It means that all application is allowed to change indicators.
 
@@ -1659,11 +1600,15 @@ Herewith if "**which...state**" is **none**, **base** or **any** it will not hav
 
 As for **allowExplicit** flag the **drivesKeyboard** declaration looks like
 
+```
 drivesKeyboard = True; (or simply - drivesKeyboard;)
+```
 
 or
 
+```
 drivesKeyboard = False; (or simply - !drivesKeyboard;)
+```
 
 ### index
 
@@ -1676,7 +1621,9 @@ This declaration is optional and allow specify some field (instruction) for all 
 The looks like assignment where left side looks like 'field of structure' in C language.  
 For example,
 
+```
 indicator.allowExplicit = False;
+```
 
 means that in all next **indicator** descriptions the **allowExplicit** flag imply **False** value (of course, if such instruction isn't specified explicitly in the description).
 
@@ -1687,7 +1634,9 @@ The first word in left side (before period sign) must be
 *   or name of **action** that can occur in some of **interpret** description. In this case the instruction declare default values for particular field in the **action** description.  
     For example,
     
+```
     SetMod.clearLock = True;
+```
     
     (more details about action description and possible fields see in [Actions description.](#actions-description))
     
@@ -1736,7 +1685,9 @@ This instruction simply declare list of virtual modifiers names which can be met
 
 It looks like
 
-**'virtual_modifiers'** list of modifiers **';'**
+```
+'virtual_modifiers' list of modifiers ';'
+```
 
 Remind that virtual modifiers can be used in the **action** description or as attribute of the key description. At the same time usually neither action description nor 'virtual modifier field' are specified in the **xkb_symbols** type files (generally they are specified in the **xkb_compat** type file). So your will hardly find such instruction in any 'standard' xkb_symbols file.
 
@@ -1746,11 +1697,15 @@ This instruction assigns to group some symbolic name. The name of group is short
 
 The instruction looks like
 
-**'name['** group **']='** group name **';'**
+```
+'name[' group ']=' group name ';'
+```
 
 For example,
 
+```
 name[Group1] = "English" ; name[Group2] = "Russian" ;
+```
 
 ## Key description.
 
@@ -1758,12 +1713,16 @@ This is the main type of records in xkb_symbols type files. Namely this record d
 
 It looks like
 
-**'key'** scan-code_name **'{'** descriptions **'};'**
+```
+'key' scan-code_name '{' descriptions '};'
+```
 
 Remind that the 'scan-code_names' are declared in **xkb_keycodes** type files and it is string of any printable symbols (but no longer than four symbols) bounded by 'angle brackets'.  
 For example,
 
+```
 key <LCTL> {...};
+```
 
 The 'descriptions' inside figure brackets are divided by comma. Note that it is namely comma but not semicolon that is used in other type records or files.
 
@@ -1790,15 +1749,21 @@ It defines key **type**. The word on the right side must be name of one of types
 
 Note that since different **groups** table of the same key can have different types (remind, the type defines number of **shift levels** inside the **group**) this description in common case must looks like
 
+```
 type[ group ] = type_name,
+```
 
 for example,
 
+```
 type[ Group1 ] = "ONE_LEVEL", type[ Group2 ] = "ALPHABETIC",
+```
 
 But if all groups have the same number of levels and belong to the same type the group specification (together with square brackets) can be omitted. For example:
 
+```
 type = "ALPHABETIC",
+```
 
 I should note that all keys have the 'default group' value. So generally the type is not specified in key description.
 
@@ -1831,13 +1796,19 @@ As for previous flag (**lock**) you can note that some keys don't generates auto
 These words defines "keeping in range" method for group number (see [The XKB internals:"Keeping in range" method](#keep-group-number-in-range-method) ). Each word means own method and it makes sense to specify only one of them.
 
 Flags **groupswrap** and **groupsclamp** are simple boolean variables. Therefore they can be specified as assignment with some logical value (**true, yes, on** or **false, no, off** in the right side) or in short form  
-**groupswrap,** - implies "**\= True**"  
-���  
-**!groupswrap,** - implies "**\= False**"
+```
+groupswrap, - implies "\= True"  
+```
+or
+```
+!groupswrap, - implies "\= False"
+```
 
 But the **groupsredirect** method needs one additional argument which means "what number redirect to". Therefore this method specification always looks like assignment where the right side part is group number. For example:
 
+```
 groupsredirect = 1,
+```
 
 By default all keys have method 'Wrap' (**groupswrap**).
 
@@ -1857,7 +1828,9 @@ By default there is not any radio-groups and their members.
 This instruction means that key belongs to one of two 'overlay group'. Remind that when the 'overlay mode' is active (the corresponded flag in in keyboard state is set) such key has to emulate press of key with another scan-code. Therefore on the right side of assignment there must be scan-code name which press has to be emulated. This name has the same look as scan-code name in the key description head and must be defined in the **xkb_keycodes** type file.  
 For example:
 
+```
 overlay1 = <XY01>,
+```
 
 By default there is not any overlay groups and their members.
 
@@ -1865,7 +1838,9 @@ By default there is not any overlay groups and their members.
 
 This word can not be used alone but is a prefix for words **radiogroup, overlay1, overlay2**, etc. For example:
 
+```
 permanentradiogroup = ..., permanentoverlay1 = ..., permanentoverlay2 = ...,
+```
 
 It means that such behavior is provided by hardware and the XKB don't need to emulate it but only send corresponded setup commands to keyboard at map loading.
 
@@ -1880,13 +1855,17 @@ Remind that generally virtual modifiers are bound not here but in the **xkb_comp
 It is the main part of the **key** description. It defines set of symbols for this key. One such instruction specifies the symbols set for one **group**. Therefore square brackets in the left side must contain name of group and the right side is list of symbols for all **shift levels** of this **group** (list must be bounded by square brackets too).  
 For example,
 
+```
 symbols[Group1] = [ semicolon, colon ], symbols[Group1] = [Cyrillic_zhe, Cyrillic_ZHE],
+```
 
 The 'symbols' here can be numeric codes of symbols (in decimal, octal or hexadecimal format) or special 'symbol names' (or **keysym** names).
 
 Possible names of keysyms you can find in the **X11R6/include/X11/keysymdefs.h** file. But note that there names have prefix "**XK_**". Thus if you see in this file definitions like
 
+```
 #define XK_Escape 0xFF1B #define XK_Delete 0xFFFF ....
+```
 
 it means that keysym names that can be used in the **xkb_symbols** file are **Escape** and **Delete**.
 
@@ -1894,7 +1873,9 @@ NOTE: If digits 0 - 9 are used as symbols they will be considered as names of sy
 
 The recent versions of XFree allow to use 'Unicode keysyms'. (Internally they are codes like 0x1000000+'unicode value'). Such symbols have names that looks like **U1234** where number after 'U' letter is the symbol's Unicode value in hexadecimal representation. So you can specify such symbols as numeric code or as a special 'Unicode keysym name'. For example:
 
+```
 symbols[Group1] = [ 0x100003a, 0x1000038 ], symbols[Group1] = [ U410, U430],
+```
 
 If one of shift levels is undefined and symbol there is not needed you can use a special 'empty symbol' name - **NoSymbol**.
 
@@ -1914,11 +1895,15 @@ I mention only here that if one of levels don't need any actions you can use a s
 Often description of key consists of symbols lists only (in square brackets) without any words like "**symbols[...] =**". Since usually most of keys need for description the symbols set only you can use a brief form of description.  
 For example, the description
 
+```
 key <AE03> { [ 3, numbersign ], [ apostrophe, 3 ] };
+```
 
 is complete equivalent for
 
+```
 key <AE03> { symbols[Group1]= [ 3, numbersign ], symbols[Group2]= [ apostrophe, 3 ] };
+```
 
 You see that the first pair of square brackets (with content inside) is interpreted as **symbols[...]** instruction for the first group, the second pair of brackets - as description for the second group and so one.
 
@@ -1927,11 +1912,15 @@ For specifying that the symbols from this file must be loaded to the second grou
 
 *   To specify group number explicitly in each key description:
     
+```
     key <AE03> { symbols[Group2]= [ apostrophe, 3 ] };
+```
     
 *   or use 'empty brackets' for the skipped group:
     
+```
     key <AE03> { [], [ apostrophe, 3 ] };
+```
     
 
 ### 'Set of exceptions'.
@@ -1951,7 +1940,9 @@ This instruction fills the internal XKB table **modmap** which describes relatio
 
 The instruction looks like
 
+```
 **'modifier_map'** real_modifier_name **'{'** keys_list **'};'**
+```
 
 Synonyms **modmap** or **mod_map** can be used instead of **modifier_map**" word.
 
@@ -1959,11 +1950,15 @@ The **real_modifier_name** there must name of one of real modifiers - **Shift, L
 
 But **keys_list** can consist of either names of scan-codes (keycodes), for example:
 
+```
 modifier_map Control { <LCTL>, <RCTL> };
+```
 
 or names of symbols (keysyms), for example:
 
+```
 modifier_map Mod1 { Alt_L, Alt_R };
+```
 
 Since the internal **modmap** table is 'scan_code to modifiers' mapping, in the second case the XKB has to find scan-codes where specified symbols are bound to and then place these scan-codes into **modmap**.
 
@@ -1976,11 +1971,15 @@ However the **xkbcomp** doesn't checks state where the same key one time is spec
 This instruction defines the default value for some key attributes and looks like assignment to the 'field of structure' in the C language.  
 For example:
 
+```
 key.repeat = no;
+```
 
 or
 
+```
 type[Group2]="ALPHABETIC";
+```
 
 The first word (before period sign) in the left side must be "**key**" and the second one can be any of available in the key description - **type, locks, radiogroup**, etc.
 
@@ -1988,13 +1987,17 @@ Of course, this default value will be actual until another default declaration f
 
 Also the default declaration can be used for arguments in the **action** descriptions (details read in the [Actions description](#actions-description)). In this case the first word is the action name, for example
 
+```
 SetMods.clearLocks = True;
+```
 
 And the last one, there is one another instruction that can be considered as the 'defaults declaration'. It is instruction which sets the **allownone** flag ("all members can be released") for radio-groups.
 
 Remind that this flag can be specified inside any key description. But since it is whole radio-group attribute but no attribute of the radio-group member key this flag can be specified outside of any key description. For example:
 
+```
 allownone = 10;
+```
 
 means the tenth radio-group has this flag.
 
@@ -2028,15 +2031,21 @@ Actions descriptions are used in the **xkb_symbols** type file where an **action
 
 In common the action description looks like the function declaration in C language:
 
+```
 action_name **'('** arguments_list **');'**
+```
 
 But a difference is that arguments are not values only but name-value pairs:
 
+```
 argument_name **'='** argument_value
+```
 
 For example:
 
+```
 MovePointer(x=10, y=10, repeat=False);
+```
 
 By the way, the **xkbcomp** program which compiles XKB configuration files in many cases understand different names for the same action and different names for the same argument.
 
@@ -2074,11 +2083,15 @@ But it is not all. Specially for boolean variables there is short record. You ca
 
 For example, all next lines are completely equivalent:
 
+```
 SomeAction(..., SomeFlag=yes, ...); SomeAction(..., SomeFlag=on, ...); SomeAction(..., SomeFlag=true, ...); SomeAction(..., SomeFlag, ...);
+```
 
 and all next lines are equivalent too:
 
+```
 SomeAction(..., SomeFlag=no, ...); SomeAction(..., SomeFlag=off, ...); SomeAction(..., SomeFlag=false, ...); SomeAction(..., !SomeFlag, ...); SomeAction(..., ~SomeFlag, ...);
+```
 
 But note that every flag has some default value so in many cases it is not needed to specify these flags explicitly.
 
@@ -2098,7 +2111,9 @@ Corresponded actions for their change are:
 
 The main argument for all three actions is - **modifiers** (or shortly - **mods**). And its value must be name of virtual or real modifier. (Strictly speaking all modifiers here are virtual ones but all real modifiers have virtual 'relatives' with the same names and there are some other virtual modifiers with another names.) If one action has to change some modifiers all their names can be specified in one argument through plus sign. For example:
 
+```
 SetMods(mods=Shift+Control);
+```
 
 Instead of modifier names a special word **UseModMapMods** (or **ModMapMods**) can be used here. It means that modifiers itself must be taken from the 'virtual modifiers' field which is part of the key description (see [Internals: modmap and vmodmap](#real-and-virtual-modifiers)).
 
@@ -2115,34 +2130,15 @@ Also the behavior of two first actions can be slightly changed by two flags that
 
 Therefore the complete description of all details looks like
 
-Action
-
-At press
-
-At release
-
-**SetMods**
-
-Adds modifiers to **base modifiers**
-
-*   Removes modifiers from **base modifiers**
-*   if **clearLocks=yes** and between press and release of this key no one other key has been pressed the same modifiers will be removed from **locked modifiers** too.
-
-**LatchMods**
-
-Adds modifiers to **latched modifiers**
-
-*   Removes modifiers from **latched modifiers**
-*   if **clearLocks=yes** and between press and release of this key no one other key has been pressed the same modifiers will be removed from **locked modifiers** too.
-*   if **latchToLock=yes** the same modifiers will be stored in **locked modifiers**
-
-**LockMods**
-
-*   Adds modifiers to **base modifiers**,
-*   if these modifiers are absent in **locked modifiers** adds them there and removes them from **locked modifiers** otherwise.
-
-*   Removes modifiers from **base modifiers**,
-*   **locked modifiers** stay unchanged.
+| Action | At press | At release |
+|---|---|---|
+| **SetMods** | Adds modifiers to **base modifiers** | *   Removes modifiers from **base modifiers** |
+| | | *   if **clearLocks=yes** and between press and release of this key no one other key has been pressed the same modifiers will be removed from **locked modifiers** too.|
+| **LatchMods** | Adds modifiers to **latched modifiers** | *   Removes modifiers from **latched modifiers** |
+| | | *   if **clearLocks=yes** and between press and release of this key no one other key has been pressed the same modifiers will be removed from **locked modifiers** too. |
+| | | *   if **latchToLock=yes** the same modifiers will be stored in **locked modifiers** |
+| **LockMods** | *   Adds modifiers to **base modifiers**, | *   Removes modifiers from **base modifiers**, |
+| | *   if these modifiers are absent in **locked modifiers** adds them there and removes them from **locked modifiers** otherwise. | *   **locked modifiers** stay unchanged. |
 
 ## Group number change.
 
@@ -2169,7 +2165,9 @@ By the way, note that group number varies from 1 to 4 and never is zero. So ever
 The **LockGroup** action behavior is slightly different from the **LockMods** behavior. It only puts (or increases) needed value to the **locked group** at the key press and never cleans this variable. Therefore if you need that sequential presses of keys with the **LockGroup** action switches all group, always use increments but not the absolute values  
 I should remind that after increase or decrease of the **locked group** variable its value will be corrected to fit available values range. So if your keyboard map consists of two groups and the current value of the **locked group** is 'group 2' after increasing by one this value become illegal (out of range) and the XKB will turn it back to the 'group 1' value. And if the current value is 'group 1' the addition of 1 will make the 'group 2' value without any additional tricks. Thus the action
 
+```
 LockGroup(group=+1);
+```
 
 will switch groups successfully (the first to the second and vice versa) in any state.
 
@@ -2177,32 +2175,14 @@ First two actions can have **clearLocks** and **latchToLock** flags (like **{Set
 
 The complete description of these actions:
 
-Action
-
-At press
-
-At release
-
-**SetGroup**
-
-puts the argument value or adds the increment to the **base group** variable
-
-*   subtracts the increment or the absolute value from the **base group** variable
-*   if **clearLocks=yes** and between press and release of this key no one other keys has been pressed the action cleans the **locked group** variable.
-
-**LatchGroup**
-
-puts the argument value or adds the increment to the**latched group** variable
-
-*   subtracts the increment or the absolute value from the **latched group** variable
-*   if **clearLocks=yes** and between the press and release of this key no one other key has been pressed the action cleans the **locked group** variable.
-*   if **latchToLock=yes** the action adds to the **locked group** the same value that is subtracted from the **latched group** variable.
-
-**LockGroup**
-
-puts the argument value or adds the increment to the**locked group** variable
-
-nothing changes
+| Action | At press | At release |
+|---|---|---|
+| **SetGroup** | puts the argument value or adds the increment to the **base group** variable | *   subtracts the increment or the absolute value from the **base group** variable |
+| | | *   if **clearLocks=yes** and between press and release of this key no one other keys has been pressed the action cleans the **locked group** variable.|
+| **LatchGroup** | puts the argument value or adds the increment to the**latched group** variable | *   subtracts the increment or the absolute value from the **latched group** variable |
+| | | *   if **clearLocks=yes** and between the press and release of this key no one other key has been pressed the action cleans the **locked group** variable. |
+| | | *   if **latchToLock=yes** the action adds to the **locked group** the same value that is subtracted from the **latched group** variable. |
+| **LockGroup** | puts the argument value or adds the increment to the**locked group** variable | nothing changes |
 
 ## Control flags (XKB Controls) change.
 
@@ -2245,7 +2225,7 @@ The main argument is **affect**. It allows to filter actions must be changed. Po
 *   **modifiers** or **mods** - change only **{Set,Latch}Mods** to **LockMods**.
 *   **groups** or **group** - change only **{Set,Latch}Group** to **LockGroup**.
 *   **controls** or **ctrls** - change only **SetControls** to **LockControls**.
-*   **pointers** ��� **ptr** - change only **PointerButton** to **LockPointerButton**.
+*   **pointers** or **ptr** - change only **PointerButton** to **LockPointerButton**.
 *   **all** - change all mentioned actions.
 *   **none** - none.
 
@@ -2367,11 +2347,15 @@ The action itself has name: **ActionMessage**, or **MessageAction**, or simply *
 The main argument is: arbitrary data for the message - **data**.  
 You can specify it in two ways. If these six (or less) bytes can be represented as string of printable symbols they can be specified in string form. For example:
 
+```
 Message(data="Hello!");
+```
 
 But if it is some binary data you can specify the value of each element of the **data** array separately as numeric value. For example:
 
+```
 Message(data[0]=123, data[0]=0, data[0]=200, data[0]=255, ...);
+```
 
 Two additional arguments are **report** and a logical flag **genkeyevent** (its another name is **generatekeyevent**).
 
@@ -2460,11 +2444,15 @@ Therefore the **Private** action arguments are:
 Values for the **data** can be specified in the same way as for the **Message** action.  
 I.e. it can be string of printable symbols (although in this case it is rather useless)
 
+```
 Private(type=123, data="abcde");
+```
 
 or you can assign numeric value to each element of the **data** array
 
+```
 Private(type=123, data[1]=0, data[2]=100, data[3]=12);
+```
 
 ## Defaults declaration for actions.
 
